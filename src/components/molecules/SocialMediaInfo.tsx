@@ -15,8 +15,8 @@ const SocialMediaInfo : React.FC<Props> = (props:Props) => {
   const { img, title } = socialMediaInfo;
 
   return (
-    <div>
-       <div>{img}</div>
+    <div className='flex m-4'>
+       <div className='flex mr-2'>{img}</div>
        <div>{title}</div>
     </div>
   );

@@ -23,12 +23,14 @@ const SubFooter: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-theme2 flex  min-h-[80px] justify-between ">
       <div> COMWELL IMG</div>
 
+      <div className="flex">
       {socialMediaInfo.map((social, index) => (
         <SocialMediaInfo key={index} socialMediaInfo={social} />
       ))}
+      </div>
 
       <LanguageSelection />
     </div>
