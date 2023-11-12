@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Drawer from "react-modern-drawer";
+import SecondDrawer from './SecondDrawer';
 
 const Header: React.FC = () => {
 
       // All of the state
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSecondDrawer, setIsOpenSecondDrawer] = useState(false);
   
   const [formData, setFormData] = useState({
     name: "",
@@ -34,7 +36,7 @@ const Header: React.FC = () => {
     <nav>
       <h1>Business Cards</h1>
       <button onClick={handleClick}>Create new</button>
-      <Drawer open={isOpen} onClose={handleClose} direction="right">
+      <Drawer open={isOpen} onClose={handleClose} direction="right" size={550}>
        WOOOOOOOOW
         {/* <form>
           <input
@@ -59,6 +61,8 @@ const Header: React.FC = () => {
             onChange={handleFormChange}
           />
         </form> */}
+        {/* This is a test to see if a second drawer would work on top of the first drawer */}
+        <SecondDrawer  setIsOpenSecondDrawer={setIsOpenSecondDrawer} isOpenSecondDrawer={isOpenSecondDrawer}></SecondDrawer>
       </Drawer>
     </nav>
   );
