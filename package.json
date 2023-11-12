@@ -13,6 +13,7 @@
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-modern-drawer": "^1.2.2",
     "vite": "^4.5.0",
     "vite-plugin-ssr": "^0.4.142"
   },

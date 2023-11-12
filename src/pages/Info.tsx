@@ -5,7 +5,6 @@ const Info: React.FC = () => {
   return (
     <div>
       <h1>Info Page</h1>
-      {/* Add more content here */}
       <Link href="/"> {/* Add the Link component */}
         <button>Go to Home Page</button>
       </Link>
