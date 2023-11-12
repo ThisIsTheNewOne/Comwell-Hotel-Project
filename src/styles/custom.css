@@ -1,0 +1,14 @@
+/* custom.css */
+
+/* Add your custom styles here */
+
+/* Example: Change the background color of the body */
+body {
+    background-color: #f0f0f0;
+  }
+  
+  /* Example: Add a custom class for a specific component */
+  .custom-heading {
+    font-size: 24px;
+    color: #333;
+  }
