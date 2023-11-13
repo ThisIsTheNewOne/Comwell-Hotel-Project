@@ -21,26 +21,27 @@ const Footer: React.FC = () => {
       <div className="grid-edge bg-theme-80 pt-16 pl-14 pr-12 text-white lg:pt-edge">
         <div className="lg:grid-comwell max-lg:gap-y-[40px] flex h-max flex-col lg:min-h-[600px]">
           <nav className="max-lg:hidden group col-span-4 h-max">
-           <ul className="contents">
-           {footerPages.map((page, index) => (
-              <li key={index} >
-                
+            <ul className="contents">
+              {footerPages.map((page, index) => (
+                <li key={index}>
                   <Link
                     className="text-heading-lg  block py-4 transition first:pt-0 leading-8 hover:!opacity-100 group-hover:opacity-40"
                     href={`/${page.toLowerCase().replace(/ & | /, "-and-")}`}
                   >
                     {page}
                   </Link>
-              
-              </li>
-            ))}
-           </ul>
-           
+                </li>
+              ))}
+            </ul>
           </nav>
           <div className="col-span-8 lg:flex max-lg:space-y-10">
-            <div className="flex flex-col">
+            <div className="flex flex-col text-sm">
+              <div className=" mb-1 text-sm">CONTACT</div>
               {contactInfo.map((contact, index) => (
-                <ContactInfo key={index} contactInfo={contact}></ContactInfo>
+                <div key={index}>
+                  <h1 className="mb-2 mt-2">{contact.header}</h1>
+                  <ContactInfo contactInfo={contact.body}></ContactInfo>
+                </div>
               ))}
             </div>
           </div>

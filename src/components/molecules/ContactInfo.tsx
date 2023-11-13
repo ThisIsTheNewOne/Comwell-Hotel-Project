@@ -1,37 +1,44 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
-  contactInfo: ContactInfo,
-}
-
-type ContactInfo = {
-  header:string,
-  body: ContactDetail[],
+  contactInfo: { header: string; body: ContactDetail[] }[];
 }
 
 type ContactDetail = {
-  title: string,
-  content: string,
-}
+  title: string;
+  content: string;
+};
 
-const ContactInfo : React.FC<Props> = (props:Props) => {
+const ContactInfo: React.FC<Props> = (props: Props) => {
   const { contactInfo } = props;
-  const { header, body } = contactInfo;
 
   return (
     <div>
-       <div>{header}</div>
-        <div>
-          {body.map((item, index) => (
+      <div>
+        {contactInfo.map((infoItem, index) => {
+          return (
             <div key={index}>
-              <h1>{item.title}</h1>
-              <p>{item.content}</p>
+              <div className="mb-2 mt-2">{infoItem.header}</div>
+              <div>
+                {infoItem.body.map((item, index) => (
+                  <div key={index} className="flex">
+                    <h3 className="font-light mb-1 !important">
+                      <strong>
+                        {item.title !== "" ? item.title + ":" + " " : item.title}
+                      </strong>
+                    </h3>
+                    <p>
+                      <strong>{item.content}</strong>
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
+      </div>
     </div>
   );
-
 };
 
-export default ContactInfo ;
+export default ContactInfo;
