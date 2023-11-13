@@ -118,6 +118,14 @@ h6 {
        url('./../assets/styles/fonts/Fellix-Bold.woff2') format('woff2');
 }
 
+@font-face{
+  font-family: "FelixSemiBold";
+  src: url('./../assets/styles/fonts/Fellix-SemiBold.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-SemiBold.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-SemiBold.woff2') format('woff2');
+
+}
+
 @font-face {
   font-family: 'FelixLight';
   src: url('./../assets/styles/fonts/Fellix-Light.ttf') format('ttf'),
@@ -134,9 +142,9 @@ h6 {
 
 @font-face {
   font-family: 'FelixItalic';
-  src: url('./../assets/styles/fonts/Fellix-Italic.ttf') format('ttf'),
-       url('./../assets/styles/fonts/Fellix-Italic.woff') format('woff'),
-       url('./../assets/styles/fonts/Fellix-Italic.woff2') format('woff2');
+  src: url('./../assets/styles/fonts/Fellix-MediumItalic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-MediumItalic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-MediumItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -168,3 +176,21 @@ h6 {
 }
 
 
+@media (min-width: 1024px) {
+  .lg\:grid-comwell {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    max-width: var(--page-width-plus-gutter);
+    grid-template-columns: var(--grid, repeat(12, minmax(0, 1fr)));
+    -moz-column-gap: var(--grid-padding-x, 16px);
+    column-gap: var(--grid-padding-x, 16px);
+  }
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+.col-span-8 {
+  grid-column: span 8 / span 8;
+}

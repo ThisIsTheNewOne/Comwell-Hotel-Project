@@ -17,23 +17,32 @@ const Footer: React.FC = () => {
   const contactInfo = contactInfoFooter;
 
   return (
-    <footer className="bg-theme text-theme-80 lg:min-h-[680px] lg:pb-0 text-white flex flex-col font-felix">
-      <div className="grid-edge bg-theme-80 pt-10 pl-10 text-white lg:pt-edge">
-        <div className="flex max-lg:gap-y-[40px] h-max  lg:min-h-[600px]">
-          <div className="max-lg:hidden group col-span-4 h-max">
-            {footerPages.map((page, index) => (
-              <li key={index} className="list-none">
-                <Link href={`/${page.toLowerCase().replace(/ & | /, "-and-")}`}>
-                  <h1>{page}</h1>
-                </Link>
+    <footer className="h-max bg-theme text-theme-80 lg:min-h-[680px] lg:pb-0 text-white flex flex-col  font-semibold">
+      <div className="grid-edge bg-theme-80 pt-16 pl-14 pr-12 text-white lg:pt-edge">
+        <div className="lg:grid-comwell max-lg:gap-y-[40px] flex h-max flex-col lg:min-h-[600px]">
+          <nav className="max-lg:hidden group col-span-4 h-max">
+           <ul className="contents">
+           {footerPages.map((page, index) => (
+              <li key={index} >
+                
+                  <Link
+                    className="text-heading-lg  block py-4 transition first:pt-0 leading-8 hover:!opacity-100 group-hover:opacity-40"
+                    href={`/${page.toLowerCase().replace(/ & | /, "-and-")}`}
+                  >
+                    {page}
+                  </Link>
+              
               </li>
             ))}
-          </div>
-
-          <div className="flex flex-col">
-            {contactInfo.map((contact, index) => (
-              <ContactInfo key={index} contactInfo={contact}></ContactInfo>
-            ))}
+           </ul>
+           
+          </nav>
+          <div className="col-span-8 lg:flex max-lg:space-y-10">
+            <div className="flex flex-col">
+              {contactInfo.map((contact, index) => (
+                <ContactInfo key={index} contactInfo={contact}></ContactInfo>
+              ))}
+            </div>
           </div>
         </div>
       </div>
