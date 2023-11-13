@@ -102,3 +102,69 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+
+@font-face {
+  font-family: 'FelixMedium';
+  src: url('./../assets/styles/fonts/Fellix-Medium.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-Medium.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixBold';
+  src: url('./../assets/styles/fonts/Fellix-Bold.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-Bold.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixLight';
+  src: url('./../assets/styles/fonts/Fellix-Light.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-Light.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixRegular';
+  src: url('./../assets/styles/fonts/Fellix-Regular.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-Regular.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixItalic';
+  src: url('./../assets/styles/fonts/Fellix-Italic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-Italic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixBoldItalic';
+  src: url('./../assets/styles/fonts/Fellix-BoldItalic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-BoldItalic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-BoldItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixLightItalic';
+  src: url('./../assets/styles/fonts/Fellix-LightItalic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-LightItalic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-LightItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixMediumItalic';
+  src: url('./../assets/styles/fonts/Fellix-MediumItalic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-MediumItalic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-MediumItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'FelixBoldItalic';
+  src: url('./../assets/styles/fonts/Fellix-BoldItalic.ttf') format('ttf'),
+       url('./../assets/styles/fonts/Fellix-BoldItalic.woff') format('woff'),
+       url('./../assets/styles/fonts/Fellix-BoldItalic.woff2') format('woff2');
+}
+
+

@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   const contactInfo = contactInfoFooter;
 
   return (
-    <footer className="bg-theme text-theme-80 lg:min-h-[680px] lg:pb-0 text-white flex flex-col">
+    <footer className="bg-theme text-theme-80 lg:min-h-[680px] lg:pb-0 text-white flex flex-col font-felix">
       <div className="grid-edge bg-theme-80 pt-10 pl-10 text-white lg:pt-edge">
         <div className="flex max-lg:gap-y-[40px] h-max  lg:min-h-[600px]">
           <div className="max-lg:hidden group col-span-4 h-max">

@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'medium': ['FelixMedium', 'sans-serif'], 
+        'regular': ['FelixRegular', 'sans-serif'],
+        'light': ['FelixLight', 'sans-serif'],
+        'bold': ['FelixBold', 'sans-serif'],
+        'black': ['FelixBlack', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
