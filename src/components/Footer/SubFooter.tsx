@@ -5,21 +5,18 @@ import LanguageSelection from "../Header/LanguageSelection";
 const SubFooter: React.FC = () => {
   const socialMediaInfo = [
     {
-      img: "facebook",
+      img: "fb",
       title: "facebook",
     },
     {
-      img: "instagram",
+      img: "ig",
       title: "instagram",
     },
     {
-      img: "twitter",
-      title: "twitter",
+      img: "li",
+      title: "linkedin",
     },
-    {
-      img: "youtube",
-      title: "youtube",
-    },
+   
   ];
 
   return (
