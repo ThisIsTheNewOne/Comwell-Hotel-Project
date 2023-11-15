@@ -3,11 +3,11 @@
     "header": "Central reservation",
     "body": [
       {
-        "header": "BOOK OVERNATNING",
+        "header": "BOOK ACCOMMODATION",
         "body": [
           {
-            "title": "Telefon",
-            "content": "(+45) 70 274 274 tryk 2"
+            "title": "Phone",
+            "content": "(+45) 70 274 274 press 2"
           },
           {
             "title": "Email",
@@ -16,11 +16,11 @@
         ]
       },
       {
-        "header": "BOOK KONFERENCE",
+        "header": "BOOK CONFERENCE",
         "body": [
           {
-            "title": "Telefon",
-            "content": "(+45) 70 274 274 tryk 1"
+            "title": "Phone",
+            "content": "(+45) 70 274 274 press 1"
           },
           {
             "title": "Email",
@@ -29,15 +29,15 @@
         ]
       },
       {
-        "header": "GENERELT",
+        "header": "GENERAL",
         "body": [
           {
             "title": "",
-            "content": "Kontakt Comwells Afdelinger"
+            "content": "Contact Comwells Departments"
           },
           {
             "title": "",
-            "content": "Kontakt Hoteller"
+            "content": "Contact Hotels"
           }
         ]
       }

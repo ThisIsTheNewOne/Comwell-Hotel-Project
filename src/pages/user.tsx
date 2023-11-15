@@ -1,11 +1,11 @@
 import React from "react";
-import Link from "next/link";
+import LocalizedLink from "@/components/molecules/LocalizedLink";
 
 export default function user() {
   return (
     <div>
       user
-      <Link href="/booking/room/room">go to room</Link>
+      <LocalizedLink href="/booking/room/room">go to room</LocalizedLink>
     </div>
   );
 }

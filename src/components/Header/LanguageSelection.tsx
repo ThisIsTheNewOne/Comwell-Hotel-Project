@@ -1,36 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Select from "react-select";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import LanguageContext from "@/hooks/useContext/LanguageContext";
 
-type language = {
-  value: string;
-  label: string;
-}
+
 
 const LanguageSelection: React.FC = () => {
-  const languages = [
-    {
-      value: "en",
-      label: "English",
-    },
-    {
-      value: "da",
-      label: "Danish",
-    },
-  ];
-
-  const [selectedValue, setSelectedValue] = useState(languages[0] as language);
+  const { selectedValue, setSelectedValue, languages } = useContext(LanguageContext);
+  
   const router = useRouter();
 
   const handleChange = (selectedOption: any) => {
     setSelectedValue(selectedOption);
-    if(selectedOption.value !== 'da'){
-      router.push(`/${selectedOption.value}`); 
+    if (selectedOption.value !== "da") {
+      router.push(`/${selectedOption.value}`);
     } else {
       router.push(`/`);
     }
   };
-
 
   return (
     <div>
@@ -45,6 +32,6 @@ const LanguageSelection: React.FC = () => {
       />
     </div>
   );
-}; 
+};
 
 export default LanguageSelection;

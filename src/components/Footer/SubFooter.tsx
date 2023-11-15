@@ -16,20 +16,21 @@ const SubFooter: React.FC = () => {
       img: "li",
       title: "linkedin",
     },
-   
   ];
 
   return (
-    <div className="bg-theme2 flex  min-h-[80px] justify-between ">
-      <div> COMWELL IMG</div>
+    <div className="bg-theme2 flex  min-h-[80px] justify-between items-center pl-6 pr-6">
 
-      <div className="flex">
-      {socialMediaInfo.map((social, index) => (
-        <SocialMediaInfo key={index} socialMediaInfo={social} />
-      ))}
-      </div>
+        <div> COMWELL IMG</div>
 
-      <LanguageSelection />
+        <div className="flex justify-center">
+          {socialMediaInfo.map((social, index) => (
+            <SocialMediaInfo key={index} socialMediaInfo={social} />
+          ))}
+        </div>
+
+        <LanguageSelection />
+    
     </div>
   );
 };

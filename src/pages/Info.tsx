@@ -1,13 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/molecules/LocalizedLink';
 
 const Info: React.FC = () => {
   return (
     <div>
       <h1>Info Page</h1>
-      <Link href="/"> {/* Add the Link component */}
+      <LocalizedLink href="/"> {/* Add the Link component */}
         <button>Go to Home Page</button>
-      </Link>
+      </LocalizedLink>
     </div>
   );
 };
