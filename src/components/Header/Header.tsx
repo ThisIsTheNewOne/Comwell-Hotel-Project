@@ -1,44 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
-import SecondDrawer from './SecondDrawer';
+import SecondDrawer from "./SecondDrawer";
 
 const Header: React.FC = () => {
-
-      // All of the state
+  // All of the state
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSecondDrawer, setIsOpenSecondDrawer] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     name: "",
     job: "",
     website: "",
   });
-    function handleClick() {
-        console.log("Hello from create new button", isOpen);
-        setIsOpen(true);
-      }
-    
-      function handleClose() {
-        setIsOpen(false);
-      }
-    
-      function handleFormChange(event: { target: { value: string; name: string; }; }) {
-        const { value, name } = event.target;
-    
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      }
-    
-     
+  function handleClick() {
+    console.log("Hello from create new button", isOpen);
+    setIsOpen(true);
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+  }
+
+  function handleFormChange(event: {
+    target: { value: string; name: string };
+  }) {
+    const { value, name } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
   return (
-    <nav>
-      <h1>Business Cards</h1>
-      <button onClick={handleClick}>Create new</button>
-      <Drawer open={isOpen} onClose={handleClose} direction="right" size={550}>
-       WOOOOOOOOW
-        {/* <form>
+    <header className="grid-edge fixed top-0 z-50 flex h-[84px] w-full items-center justify-center transition delay-75 duration-200 bg-transparent pl-14 pr-14 text-black">
+      <div className="grid-comwell w-full">
+        <div className="col-span-full grid grid-cols-2 items-center lg:grid-cols-3">
+          <div className="w-max relative z-[1] flex">
+            <h1 className="mr-4">Comwell hotels</h1>
+            <button onClick={handleClick}>Open Drawer</button>
+            <Drawer
+              open={isOpen}
+              onClose={handleClose}
+              direction="right"
+              size={550}
+            >
+              WOOOOOOOOW
+              {/* <form>
           <input
             type="text"
             name="name"
@@ -61,10 +69,28 @@ const Header: React.FC = () => {
             onChange={handleFormChange}
           />
         </form> */}
-        {/* This is a test to see if a second drawer would work on top of the first drawer */}
-        <SecondDrawer  setIsOpenSecondDrawer={setIsOpenSecondDrawer} isOpenSecondDrawer={isOpenSecondDrawer}></SecondDrawer>
-      </Drawer>
-    </nav>
+              {/* This is a test to see if a second drawer would work on top of the first drawer */}
+              <SecondDrawer
+                setIsOpenSecondDrawer={setIsOpenSecondDrawer}
+                isOpenSecondDrawer={isOpenSecondDrawer}
+              ></SecondDrawer>
+            </Drawer>
+          </div>
+
+          <div> 
+            {/* Navigation Booking on scrolling */}
+          </div>
+
+          <nav className="z-[5] ml-auto">
+            <ul className="flex items-center md:gap-x-7">
+              <div>Location</div>
+              <div>Profile</div>
+              <div>Menu</div>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
   );
 };
 

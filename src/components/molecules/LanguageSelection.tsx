@@ -18,7 +18,7 @@ const LanguageSelection: React.FC = () => {
       router.push(`/`);
     }
   };
-
+ 
   return (
     <div>
       <Select

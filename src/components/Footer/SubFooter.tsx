@@ -1,6 +1,6 @@
 import React from "react";
 import SocialMediaInfo from "../molecules/SocialMediaInfo";
-import LanguageSelection from "../Header/LanguageSelection";
+import LanguageSelection from "../molecules/LanguageSelection"; 
 
 const SubFooter: React.FC = () => {
   const socialMediaInfo = [

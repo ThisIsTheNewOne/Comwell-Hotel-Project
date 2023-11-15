@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 interface Props {
   children: React.ReactNode;
 }
-
+ 
 export const DefaultLayout: React.FC<Props> = (props:Props) => {
 
   const { children } = props;

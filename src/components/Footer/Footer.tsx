@@ -10,7 +10,7 @@ import LanguageContext from "@/hooks/useContext/LanguageContext";
 const Footer: React.FC = () => {
   const { selectedValue } = useContext(LanguageContext);
 
-  const footerPages = [
+  const footerPages = [ 
     "Hotels",
     "Packages",
     "Meeting & Conference",
