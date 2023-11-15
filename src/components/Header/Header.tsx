@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
 import SecondDrawer from "./SecondDrawer";
+import Navigation from "./Navigation";
 
 const Header: React.FC = () => {
   // All of the state
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <header className="grid-edge fixed top-0 z-50 flex h-[84px] w-full items-center justify-center transition delay-75 duration-200 bg-transparent pl-14 pr-14 text-black">
+    <header className="grid-edge fixed top-0 z-50 flex h-[84px] w-full items-center justify-center transition delay-75 duration-200 bg-transparent pl-14 pr-6 text-black">
       <div className="grid-comwell w-full">
         <div className="col-span-full grid grid-cols-2 items-center lg:grid-cols-3">
           <div className="w-max relative z-[1] flex">
@@ -81,13 +82,9 @@ const Header: React.FC = () => {
             {/* Navigation Booking on scrolling */}
           </div>
 
-          <nav className="z-[5] ml-auto">
-            <ul className="flex items-center md:gap-x-7">
-              <div>Location</div>
-              <div>Profile</div>
-              <div>Menu</div>
-            </ul>
-          </nav>
+         <div>
+          <Navigation/>
+         </div>
         </div>
       </div>
     </header>
