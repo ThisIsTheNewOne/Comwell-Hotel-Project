@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
+import Filter from "./Filters";
+import HotelInput from "./HotelInput";
 
 interface Props {
   isOpenHotelListDrawer: boolean;
@@ -8,6 +10,7 @@ interface Props {
 
 const HotelListDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenHotelListDrawer, setIsOpenHotelListDrawer } = props;
+  const [selectedFilter, setSelectedFilter] = useState<string>("Alle");
 
   function handleClick() {
     console.log("Hotel list drawer open");
@@ -16,6 +19,12 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
 
   function handleClose() {
     setIsOpenHotelListDrawer(false);
+  }
+
+  function handleFilterChange(filter: string) {
+    setSelectedFilter(filter);
+    // Apply filtering logic here to filter the hotel list based on the selected filter
+    // This could involve updating the state that holds the filtered hotels or fetching filtered data from an API
   }
 
   return (
@@ -31,6 +40,30 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
             </svg>
           </button>
         </div>
+        <Filter selectedFilter={selectedFilter} handleFilterChange={handleFilterChange} />
+        <div className="divider"></div>
+        {/* Add your hotel list here based on the selectedFilter */}
+        <div className="hotelList">
+          <ul className="flex flex-col gap-y-2">
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+            <HotelInput />
+          </ul>
+        </div>
+        <div className="selectButton">
+          <button>Vælg</button>
+        </div>
+        {/* You'll need to implement logic to display hotels based on the selected filter */}
       </Drawer>
     </nav>
   );

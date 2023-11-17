@@ -1,28 +1,16 @@
 import React, { useState } from "react";
 import HotelListDrawer from "../HotelListDrawer/HotelListDrawer";
+import GuestsDrawer from "../GuestsDrawer/GuestsDrawer";
 
 const BookingWidget: React.FC = () => {
   // All of the state
   const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    job: "",
-    website: "",
-  });
-
-  function handleFormChange(event: { target: { value: string; name: string } }) {
-    const { value, name } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
+  const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
 
   return (
     <nav>
-      <HotelListDrawer setIsOpenHotelListDrawer={setIsOpenHotelListDrawer} isOpenHotelListDrawer={isOpenHotelListDrawer}></HotelListDrawer>
+      <HotelListDrawer setIsOpenHotelListDrawer={setIsOpenHotelListDrawer} isOpenHotelListDrawer={isOpenHotelListDrawer} />
+      <GuestsDrawer setIsOpenGuestsDrawer={setIsOpenGuestsDrawer} isOpenGuestsDrawer={isOpenGuestsDrawer} />
     </nav>
   );
 };

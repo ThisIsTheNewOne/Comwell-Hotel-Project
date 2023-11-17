@@ -79,25 +79,25 @@
 }
 
 /*DRAWER*/
-.hotelListDrawer {
+.guestsDrawer {
   font-family: FelixSemiBold;
   padding: 30px 15px;
 }
 
-.hotelListDrawer .header {
+.guestsDrawer .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.hotelListDrawer .closeButton {
+.guestsDrawer .closeButton {
   background-color: rgb(225 225 229);
   border-radius: 100px;
   padding: 8px;
   height: fit-content;
 }
 
-.hotelListDrawer h1 {
+.guestsDrawer h1 {
   font-size: 36px;
 }
 
@@ -107,91 +107,30 @@
   margin-top: 20px;
 }
 
-/*FILTERS*/
-.filters {
+/*GUEST SELECTION BUTTONS*/
+.guestsSelection {
+  margin-top: 50px;
+}
+
+.guestsSelection h2 {
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+
+.guestSelectionButtons {
   display: flex;
-  gap: 5px;
-  font-size: 13px;
-  margin-top: 20px;
+  justify-content: space-between;
+  font-size: 18px;
 }
 
-.activeFilter {
-  background-color: #182b39;
-  color: #ffffff;
-}
-
-.filters button {
-  padding: 3px 10px;
-  border-radius: 100px;
-  cursor: pointer;
-}
-
-/*HOTEL LIST*/
-.hotelList {
-  height: 66vh;
-  overflow-y: scroll;
-  width: 100%;
-  padding-top: 30px;
-}
-
-.hotelButton {
+.plusMinusBtn {
   display: flex;
-  overflow: hidden;
-  border: solid 1px #e5e7eb;
-  border-radius: 5px;
-  width: 100%;
-  position: relative;
+  gap: 10px;
 }
 
-.hotelButton.selected {
-  border: solid 1px #000;
-}
-
-.imageContainer {
-  width: 83px;
-}
-
-.hotelInfo {
-  padding: 10px 12px;
-}
-
-.hotelCity {
-  font-size: 14px;
-  font-family: FelixMedium;
-  color: #000000a6;
-  width: fit-content;
-  line-height: 15px;
-}
-
-.selector {
-  background-color: #fff;
-  padding: 4px;
+.plusMinusBtn button {
+  background-color: grey;
+  width: 45px;
+  height: 45px;
   border-radius: 100px;
-  align-self: center;
-  position: absolute;
-  right: 14px;
-}
-
-.hotelButton.selected .selector {
-  background-color: #000;
-}
-
-.selectButton {
-  position: fixed;
-  z-index: 10;
-  width: 94%;
-  padding-top: 20px;
-}
-
-.selectButton button {
-  background-color: #182b39;
-  color: #fff;
-  width: 100%;
-  border-radius: 100px;
-  padding: 14px;
-  transition: all 0.2s;
-}
-
-.selectButton button:hover {
-  background-color: #182b39e8;
 }
