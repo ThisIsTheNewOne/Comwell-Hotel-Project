@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'grid-comwell': 'repeat(auto-fill, minmax(250px, 1fr))', 
+      },
       fontFamily: {
         light: ["FelixLight", "sans-serif"],
         regular: ["FelixRegular", "sans-serif"],

@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="h-max bg-theme text-theme-80 lg:min-h-[680px] lg:pb-0 text-white flex flex-col  font-semibold">
-      <div className="grid-edge bg-theme-80 pt-16 pl-14 pr-12 text-white lg:pt-edge">
+      <div className="bg-theme-80 pt-16 pl-14 pr-12 text-white lg:pt-edge">
         <div className="lg:grid-comwell max-lg:gap-y-[40px] flex h-max flex-col lg:min-h-[600px]">
           <nav className="max-lg:hidden group col-span-4 h-max">
             <ul className="contents">
