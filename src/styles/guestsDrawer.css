@@ -1,0 +1,136 @@
+@font-face {
+  font-family: "FelixMedium";
+  src:
+    url("./../assets/styles/fonts/Fellix-Medium.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Medium.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBold";
+  src:
+    url("./../assets/styles/fonts/Fellix-Bold.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Bold.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixSemiBold";
+  src:
+    url("./../assets/styles/fonts/Fellix-SemiBold.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-SemiBold.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixLight";
+  src:
+    url("./../assets/styles/fonts/Fellix-Light.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Light.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixRegular";
+  src:
+    url("./../assets/styles/fonts/Fellix-Regular.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Regular.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBoldItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixLightItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-LightItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-LightItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixMediumItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBoldItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
+}
+
+/*DRAWER*/
+.guestsDrawer {
+  font-family: FelixSemiBold;
+  padding: 30px 15px;
+}
+
+.guestsDrawer .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guestsDrawer .closeButton {
+  background-color: rgb(225 225 229);
+  border-radius: 100px;
+  padding: 8px;
+  height: fit-content;
+}
+
+.guestsDrawer h1 {
+  font-size: 36px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin-top: 20px;
+}
+
+/*GUEST SELECTION BUTTONS*/
+.guestsSelection {
+  margin-top: 50px;
+}
+
+.guestsSelection h2 {
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+
+.guestSelectionButtons {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.plusMinusBtn {
+  display: flex;
+  gap: 10px;
+}
+
+.plusMinusBtn button {
+  background-color: grey;
+  width: 45px;
+  height: 45px;
+  border-radius: 100px;
+}

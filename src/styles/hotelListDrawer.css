@@ -1,0 +1,197 @@
+@font-face {
+  font-family: "FelixMedium";
+  src:
+    url("./../assets/styles/fonts/Fellix-Medium.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Medium.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBold";
+  src:
+    url("./../assets/styles/fonts/Fellix-Bold.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Bold.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixSemiBold";
+  src:
+    url("./../assets/styles/fonts/Fellix-SemiBold.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-SemiBold.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixLight";
+  src:
+    url("./../assets/styles/fonts/Fellix-Light.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Light.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixRegular";
+  src:
+    url("./../assets/styles/fonts/Fellix-Regular.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-Regular.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBoldItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixLightItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-LightItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-LightItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixMediumItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FelixBoldItalic";
+  src:
+    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
+    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
+}
+
+/*DRAWER*/
+.hotelListDrawer {
+  font-family: FelixSemiBold;
+  padding: 30px 15px;
+}
+
+.hotelListDrawer .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hotelListDrawer .closeButton {
+  background-color: rgb(225 225 229);
+  border-radius: 100px;
+  padding: 8px;
+  height: fit-content;
+}
+
+.hotelListDrawer h1 {
+  font-size: 36px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin-top: 20px;
+}
+
+/*FILTERS*/
+.filters {
+  display: flex;
+  gap: 5px;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.activeFilter {
+  background-color: #182b39;
+  color: #ffffff;
+}
+
+.filters button {
+  padding: 3px 10px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+/*HOTEL LIST*/
+.hotelList {
+  height: 66vh;
+  overflow-y: scroll;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.hotelButton {
+  display: flex;
+  overflow: hidden;
+  border: solid 1px #e5e7eb;
+  border-radius: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.hotelButton.selected {
+  border: solid 1px #000;
+}
+
+.imageContainer {
+  width: 83px;
+}
+
+.hotelInfo {
+  padding: 10px 12px;
+}
+
+.hotelCity {
+  font-size: 14px;
+  font-family: FelixMedium;
+  color: #000000a6;
+  width: fit-content;
+  line-height: 15px;
+}
+
+.selector {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 100px;
+  align-self: center;
+  position: absolute;
+  right: 14px;
+}
+
+.hotelButton.selected .selector {
+  background-color: #000;
+}
+
+.selectButton {
+  position: fixed;
+  z-index: 10;
+  width: 94%;
+  padding-top: 20px;
+}
+
+.selectButton button {
+  background-color: #182b39;
+  color: #fff;
+  width: 100%;
+  border-radius: 100px;
+  padding: 14px;
+  transition: all 0.2s;
+}
+
+.selectButton button:hover {
+  background-color: #182b39e8;
+}

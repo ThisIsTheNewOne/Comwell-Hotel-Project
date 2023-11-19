@@ -3,9 +3,10 @@ import "react-modern-drawer/dist/index.css";
 import { DefaultLayout } from "@/components/Layouts/DefaultLayout";
 import MyContext from "@/hooks/useContext/MyContext";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import "@/styles/hotelListDrawer.css";
+import "@/styles/guestsDrawer.css";
 import { LanguageContextProvider } from "@/hooks/useContext/LanguageContext";
-
+import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   const contextValue = null; // initial value set to null

@@ -22,9 +22,7 @@ const Header: React.FC = () => {
     setIsOpen(false);
   }
 
-  function handleFormChange(event: {
-    target: { value: string; name: string };
-  }) {
+  function handleFormChange(event: { target: { value: string; name: string } }) {
     const { value, name } = event.target;
 
     setFormData({
