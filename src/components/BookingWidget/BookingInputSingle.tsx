@@ -10,15 +10,19 @@ const BookingInputSingle = (props: Props) => {
   const { label, placeholder } = bookingInputProps;
 
   return (
-    <div className="border-[1px] border-gray-300 pl-[12px] rounded-[4px]">
-      <label className="font-medium mt-[3px] tracking-[-.05em] opacity-[.67]">
-        {label}
-      </label>
-      <input
-        type="text"
-        className="w-full font-bold leading-none focus:outline-none focus:ring-0 mb-[5px]"
-        placeholder={placeholder}
-      />
+    <div className="flex w-full justify-between items-center border-[1px] border-gray-300 px-[12px] cursor-pointer rounded-[4px]  hover:border-black ">
+      <div>
+        <label className="font-medium mt-[3px] tracking-[-.05em] opacity-[.67]">
+          {label}
+        </label>
+        <input
+          type="text"
+          className="w-full font-bold  cursor-pointer leading-none focus:outline-none focus:ring-0 mb-[5px]"
+          placeholder={placeholder}
+        />
+      </div>
+
+      <div>V</div>
     </div>
   );
 };

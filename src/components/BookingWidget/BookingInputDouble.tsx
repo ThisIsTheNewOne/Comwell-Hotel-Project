@@ -1,11 +1,18 @@
 import { useState } from "react";
 import Drawer from "react-modern-drawer";
 
-const BookingInputDouble = () => {
-  const bookingInputProps = [
-    { label: "Check ind", placeholder: "19.nov.", type: "text" },
-    { label: "Check ud", placeholder: "20.nov.", type: "text" },
-  ];
+interface Props {
+  bookingInputProps: CalendarInput[];
+}
+
+type CalendarInput = {
+  label: string;
+  placeholder: string;
+  type: string;
+};
+
+const BookingInputDouble = (props: Props) => {
+  const { bookingInputProps } = props;
 
   const doesDrawerExist = true;
   const [isOpenDrawer, setIsDrawer] = useState(false);
@@ -22,7 +29,7 @@ const BookingInputDouble = () => {
   return (
     <div>
       <div
-        className="flex border-[1px] border-gray-300 pl-[12px] cursor-pointer rounded-[4px]"
+        className="flex border-[1px] border-gray-300 pl-[12px] cursor-pointer rounded-[4px] hover:border-black"
         onClick={openDrawer}
       >
         {bookingInputProps.map((input, index) => (

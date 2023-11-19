@@ -23,8 +23,23 @@ const BookingWidgetContainer = () => {
     placeholder: "",
   };
 
+  const hotelInput = {
+    label: "Hotel",
+    placeholder: "Vælg hotel",
+  };
+
+  const roomsInput = {
+    label: "Værelser",
+    placeholder: "1 Værelse, 1 Person",
+  };
+
+  const calendarInput = [
+    { label: "Check ind", placeholder: "19.nov.", type: "text" },
+    { label: "Check ud", placeholder: "20.nov.", type: "text" },
+  ];
+
   return (
-    <div className="flex h-full w-1/4 flex-col justify-start bg-white border-2 border-black rounded-[17px]">
+    <div className="flex  w-1/4 flex-col justify-start bg-white border-2 border-black rounded-[17px] absolute z-100">
       <div className="m-4 mt-0 mr-8">
         <h1 className="text-heading-lg block py-4 font-semibold leading-none">
           Check ind på Comwell og kom ud i Danmark
@@ -49,9 +64,9 @@ const BookingWidgetContainer = () => {
         <section className="flex flex-col gap-[10px] mt-[20px]">
           {/* <BookingWidget /> */}
 
-          <BookingInputDouble />
-          <BookingInputDouble />
-          <BookingInputDouble />
+          <BookingInputSingle bookingInputProps={hotelInput} />
+          <BookingInputSingle bookingInputProps={roomsInput} />
+          <BookingInputDouble bookingInputProps={calendarInput}/>
 
           {!isBookingCodeOpen ? (
             <BookingCode
