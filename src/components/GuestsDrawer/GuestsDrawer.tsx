@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
+import BookingInputSingle from "../BookingWidget/BookingInputSingle";
 
 interface Props {
   isOpenGuestsDrawer: boolean;
@@ -33,10 +34,17 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
     setAmount(newAmount);
   }
 
+  const roomsInput = {
+    label: "Værelser",
+    placeholder: "1 Værelse, 1 Person",
+  };
+
+
   return (
     <nav>
-      <h1 className="text-heading-lg block py-4">Choose rooms</h1>
-      <button onClick={handleClick}>Select rooms</button>
+      {/* <h1 className="text-heading-lg block py-4">Choose rooms</h1>
+      <button onClick={handleClick}>Select rooms</button> */}
+       <BookingInputSingle bookingInputProps={roomsInput} handleClick={handleClick} />
       <Drawer className="guestsDrawer" open={isOpenGuestsDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="header">
           <h1>Gæster & Værelser</h1>

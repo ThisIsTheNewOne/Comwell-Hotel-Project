@@ -8,7 +8,7 @@ const BookingWidget: React.FC = () => {
   const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
 
   return (
-    <nav>
+    <nav className="flex flex-col gap-[10px]">
       <HotelListDrawer setIsOpenHotelListDrawer={setIsOpenHotelListDrawer} isOpenHotelListDrawer={isOpenHotelListDrawer} />
       <GuestsDrawer setIsOpenGuestsDrawer={setIsOpenGuestsDrawer} isOpenGuestsDrawer={isOpenGuestsDrawer} />
     </nav>

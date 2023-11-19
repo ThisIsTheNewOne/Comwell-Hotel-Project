@@ -23,15 +23,6 @@ const BookingWidgetContainer = () => {
     placeholder: "",
   };
 
-  const hotelInput = {
-    label: "Hotel",
-    placeholder: "Vælg hotel",
-  };
-
-  const roomsInput = {
-    label: "Værelser",
-    placeholder: "1 Værelse, 1 Person",
-  };
 
   const calendarInput = [
     { label: "Check ind", placeholder: "19.nov.", type: "text" },
@@ -62,10 +53,8 @@ const BookingWidgetContainer = () => {
         </section>
 
         <section className="flex flex-col gap-[10px] mt-[20px]">
-          {/* <BookingWidget /> */}
-
-          <BookingInputSingle bookingInputProps={hotelInput} />
-          <BookingInputSingle bookingInputProps={roomsInput} />
+          <BookingWidget />
+          
           <BookingInputDouble bookingInputProps={calendarInput}/>
 
           {!isBookingCodeOpen ? (

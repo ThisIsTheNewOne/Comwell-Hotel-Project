@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
 import Filter from "./Filters";
 import HotelInput from "./HotelInput";
+import BookingInputSingle from "../BookingWidget/BookingInputSingle";
 
 interface Props {
   isOpenHotelListDrawer: boolean;
@@ -27,10 +28,15 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     // This could involve updating the state that holds the filtered hotels or fetching filtered data from an API
   }
 
+  const hotelInput = {
+    label: "Hotel",
+    placeholder: "Vælg hotel",
+  };
+
+
   return (
     <nav>
-      <h1 className="text-heading-lg block py-4">Choose hotel</h1>
-      <button onClick={handleClick}>Select hotel</button>
+      <BookingInputSingle bookingInputProps={hotelInput} handleClick={handleClick} />
       <Drawer className="hotelListDrawer" open={isOpenHotelListDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="header">
           <h1>Hoteller</h1>
