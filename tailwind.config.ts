@@ -32,6 +32,8 @@ const config: Config = {
         theme2: "rgb(24, 43, 57)",
       },
       screens: {
+        "3xl": "1920px",
+        "2xl": '1536px',
         md: "1024px",
       },
       colors: {
