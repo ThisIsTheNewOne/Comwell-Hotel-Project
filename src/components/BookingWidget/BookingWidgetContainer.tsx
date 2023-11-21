@@ -30,7 +30,7 @@ const BookingWidgetContainer = () => {
   ];
 
   return (
-    <div className="flex  w-1/4 flex-col justify-start bg-white border-2 border-black rounded-[17px] absolute z-100">
+    <div className=" bg-white border-2 border-black rounded-[17px] xl:col-span-4 lg:col-span-5 lg:block hidden">
       <div className="m-4 mt-0 mr-8">
         <h1 className="text-heading-lg block py-4 font-semibold leading-none">
           Check ind på Comwell og kom ud i Danmark
@@ -54,9 +54,7 @@ const BookingWidgetContainer = () => {
 
         <section className="flex flex-col gap-[10px] mt-[20px]">
           <BookingWidget />
-          
           <BookingInputDouble bookingInputProps={calendarInput}/>
-
           {!isBookingCodeOpen ? (
             <BookingCode
               setIsBookingCodeOpen={setIsBookingCodeOpen}
