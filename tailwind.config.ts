@@ -11,6 +11,9 @@ const config: Config = {
       gridTemplateColumns: {
         'grid-comwell': 'repeat(auto-fill, minmax(250px, 1fr))', 
       },
+      gridColumn: {
+        'span-4': 'span 4 / span 4',
+      },
       fontFamily: {
         light: ["FelixLight", "sans-serif"],
         regular: ["FelixRegular", "sans-serif"],
@@ -29,6 +32,8 @@ const config: Config = {
         theme2: "rgb(24, 43, 57)",
       },
       screens: {
+        "3xl": "1920px",
+        "2xl": '1536px',
         md: "1024px",
       },
       colors: {
