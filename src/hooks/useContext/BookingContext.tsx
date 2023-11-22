@@ -1,16 +1,12 @@
-import { useRouter } from "next/router";
+import { CalendarVariable } from "@/types/Booking";
 import { createContext, useState } from "react";
 
 const BookingContext = createContext({
-  selectedValue: { value: "en", label: "English" } as language,
-  setSelectedValue: (selectedValue: language) => {},
-  languages: [] as language[],
+  checkIn: {} as CalendarVariable,
+  setCheckIn: (checkIn: CalendarVariable) => {},
+  checkOut: {} as CalendarVariable,
+  setCheckOut: (checkOut: CalendarVariable) => {},
 });
-
-type language = {
-  value: string;
-  label: string;
-};
 
 interface BookingContextProviderProps {
   children: React.ReactNode;
@@ -18,44 +14,24 @@ interface BookingContextProviderProps {
 export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   props: BookingContextProviderProps
 ) => {
-  const languages = [
-    {
-      value: "en",
-      label: "English",
-    },
-    {
-      value: "da",
-      label: "Danish",
-    },
-  ];
+  const [checkIn, setCheckIn] = useState({
+    type: "checkIn",
+    date: [],
+  } as CalendarVariable);
+  const [checkOut, setCheckOut] = useState({
+    type: "checkOut",
+    date: [],
+  } as CalendarVariable);
 
-
-  const router = useRouter();
-  const firstPartOfPath = router.asPath.split("/")[1];
-  let initialLanguage;
-
-  if (firstPartOfPath === "en") {
-    initialLanguage = {
-      value: "en",
-      label: "English",
-    };
-  } else {
-    initialLanguage = {
-      value: "da",
-      label: "Danish",
-    };
-  }
-
-  const [selectedValue, setSelectedValue] = useState(
-    initialLanguage as language
-  );
+  console.log("THis is the data from the calendar", checkIn, checkOut);
 
   return (
     <BookingContext.Provider
       value={{
-        selectedValue,
-        setSelectedValue,
-        languages,
+        checkIn,
+        setCheckIn,
+        checkOut,
+        setCheckOut,
       }}
     >
       {props.children}

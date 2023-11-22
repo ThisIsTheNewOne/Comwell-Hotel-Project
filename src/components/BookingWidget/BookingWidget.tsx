@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import HotelListDrawer from "../HotelListDrawer/HotelListDrawer";
 import GuestsDrawer from "../GuestsDrawer/GuestsDrawer";
 import BookingFlow from "../BookingFlow/BookingFlow";
 import BookingInputDouble from "./BookingInputDouble";
 import BookingCode from "./BookingCode";
 import BookingInputSingle from "./BookingInputSingle";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import { useChangeDate } from "@/hooks/useChangeDate";
+
 
 const BookingWidget: React.FC = () => {
   // All of the state
@@ -13,15 +16,16 @@ const BookingWidget: React.FC = () => {
   const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
   const [isBookingCodeOpen, setIsBookingCodeOpen] = useState(false);
 
+ const {checkIn, checkOut} = useContext(BookingContext)
+
   const bookingCodeInput = {
     label: "Bookingkode",
     placeholder: "",
   };
 
-  const calendarInput = [
-    { label: "Check ind", placeholder: "19.nov.", type: "text" },
-    { label: "Check ud", placeholder: "20.nov.", type: "text" },
-  ];
+  const [calendarInput] = useChangeDate({checkIn, checkOut})
+
+
 
   return (
     <nav className="flex flex-col gap-[10px]">

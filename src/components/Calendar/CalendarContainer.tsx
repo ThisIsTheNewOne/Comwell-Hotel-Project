@@ -1,7 +1,7 @@
 import "flatpickr/dist/themes/dark.css";
 import Flatpickr from "react-flatpickr";
 import { Component } from "react";
-import { CalendarVariable } from "../BookingWidget/BookingInputDouble";
+import { CalendarVariable } from "@/types/Booking";
 
 interface State {
   date: Date[];
