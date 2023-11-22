@@ -11,6 +11,7 @@ interface Props {
 const HotelListDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenHotelListDrawer, setIsOpenHotelListDrawer } = props;
   const [selectedFilter, setSelectedFilter] = useState<string>("Alle");
+  const [selectedHotel, setSelectedHotel] = useState<string | null>(null);
 
   function handleClick() {
     console.log("Hotel list drawer open");
@@ -27,6 +28,14 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     // This could involve updating the state that holds the filtered hotels or fetching filtered data from an API
   }
 
+  function handleHotelSelect(hotelName: string) {
+    if (selectedHotel === hotelName) {
+      setSelectedHotel(null);
+    } else {
+      setSelectedHotel(hotelName);
+    }
+  }
+
   return (
     <nav>
       <h1 className="text-heading-lg block py-4">Choose hotel</h1>
@@ -34,7 +43,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
       <Drawer className="hotelListDrawer" open={isOpenHotelListDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="header">
           <h1>Hoteller</h1>
-          <button className="closeButton">
+          <button className="closeButton" onClick={handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-[16px] h-[16px]">
               <path stroke="currentColor" stroke-width="1.5" d="M2.62 13.38 12.99 3.01M13.38 13.38 3.01 3.01"></path>
             </svg>
@@ -45,25 +54,13 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
         {/* Add your hotel list here based on the selectedFilter */}
         <div className="hotelList">
           <ul className="flex flex-col gap-y-2">
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
-            <HotelInput />
+            <HotelInput hotelName="Borupgaard" city="Snekkersten" isSelected={selectedHotel === "Borupgaard"} onClick={() => handleHotelSelect("Borupgaard")} />
+            <HotelInput hotelName="Borupgaard2" city="Snekkersten" isSelected={selectedHotel === "Borupgaard2"} onClick={() => handleHotelSelect("Borupgaard2")} />
           </ul>
         </div>
-        <div className="selectButton">
-          <button>Vælg</button>
+        <div className="drawerSelectButton">
+          <button onClick={handleClose}>Vælg</button>
         </div>
-        {/* You'll need to implement logic to display hotels based on the selected filter */}
       </Drawer>
     </nav>
   );
