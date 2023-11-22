@@ -117,20 +117,66 @@
   margin-bottom: 18px;
 }
 
+.guestButtonsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 .guestSelectionButtons {
   display: flex;
   justify-content: space-between;
   font-size: 18px;
 }
 
+.guestTypeWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.guestType {
+  margin-bottom: -6px;
+}
+
+.ageGap {
+  font-family: FelixRegular;
+  font-size: 13px;
+}
+
 .plusMinusBtn {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .plusMinusBtn button {
-  background-color: grey;
-  width: 45px;
-  height: 45px;
+  background-color: #e2e2e2;
+  width: 32px;
+  height: 32px;
   border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusMinusBtn p {
+  border: solid 1px #e2e2e2;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: FelixRegular;
+}
+
+.minusBtn:disabled,
+.plusBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.guestsDrawer .drawerSelectButton {
+  position: absolute;
+  bottom: 20px;
 }

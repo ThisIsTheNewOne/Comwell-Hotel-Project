@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 
-const HotelInput: React.FC = () => {
+interface HotelInputProps {
+  hotelName: string;
+  city: string;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const HotelInput: React.FC<HotelInputProps> = ({ hotelName, city, isSelected, onClick }) => {
   // All of the state
 
   return (
     <>
       <li>
-        <button className="hotelButton">
+        <button className={`hotelButton ${isSelected ? "selected" : ""}`} onClick={onClick}>
           <div className="imageContainer">
             <img src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/borupgaard.webp" alt="borupgaard" />
           </div>
           <div className="hotelInfo">
-            <div className="hotelName">Borupgaard</div>
-            <div className="hotelCity">Snekkersten</div>
+            <div className="hotelName">{hotelName}</div>
+            <div className="hotelCity">{city}</div>
           </div>
           <div className="selector">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-[16px]">

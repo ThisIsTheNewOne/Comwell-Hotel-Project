@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 import "@/styles/hotelListDrawer.css";
 import "@/styles/guestsDrawer.css";
 import { LanguageContextProvider } from "@/hooks/useContext/LanguageContext";
+import "@/styles/bookingFlow.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {

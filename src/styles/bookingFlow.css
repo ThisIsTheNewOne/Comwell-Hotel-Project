@@ -79,25 +79,25 @@
 }
 
 /*DRAWER*/
-.hotelListDrawer {
+.guestsDrawer {
   font-family: FelixSemiBold;
   padding: 30px 15px;
 }
 
-.hotelListDrawer .header {
+.guestsDrawer .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.hotelListDrawer .closeButton {
+.guestsDrawer .closeButton {
   background-color: rgb(225 225 229);
   border-radius: 100px;
   padding: 8px;
   height: fit-content;
 }
 
-.hotelListDrawer h1 {
+.guestsDrawer h1 {
   font-size: 36px;
 }
 
@@ -105,93 +105,4 @@
   height: 1px;
   background-color: #e5e7eb;
   margin-top: 20px;
-}
-
-/*FILTERS*/
-.filters {
-  display: flex;
-  gap: 5px;
-  font-size: 13px;
-  margin-top: 20px;
-}
-
-.activeFilter {
-  background-color: #182b39;
-  color: #ffffff;
-}
-
-.filters button {
-  padding: 3px 10px;
-  border-radius: 100px;
-  cursor: pointer;
-}
-
-/*HOTEL LIST*/
-.hotelList {
-  height: 66vh;
-  overflow-y: scroll;
-  width: 100%;
-  padding-top: 30px;
-}
-
-.hotelButton {
-  display: flex;
-  overflow: hidden;
-  border: solid 1px #e5e7eb;
-  border-radius: 5px;
-  width: 100%;
-  position: relative;
-}
-
-.hotelButton.selected {
-  border: solid 1px #000;
-}
-
-.imageContainer {
-  width: 83px;
-}
-
-.hotelInfo {
-  padding: 10px 12px;
-}
-
-.hotelCity {
-  font-size: 14px;
-  font-family: FelixMedium;
-  color: #000000a6;
-  width: fit-content;
-  line-height: 15px;
-}
-
-.selector {
-  background-color: #fff;
-  padding: 4px;
-  border-radius: 100px;
-  align-self: center;
-  position: absolute;
-  right: 14px;
-}
-
-.hotelButton.selected .selector {
-  background-color: #000;
-}
-
-.drawerSelectButton {
-  position: fixed;
-  z-index: 10;
-  width: 94%;
-  padding-top: 20px;
-}
-
-.drawerSelectButton button {
-  background-color: #182b39;
-  color: #fff;
-  width: 100%;
-  border-radius: 100px;
-  padding: 14px;
-  transition: all 0.2s;
-}
-
-.drawerSelectButton button:hover {
-  background-color: #182b39e8;
 }

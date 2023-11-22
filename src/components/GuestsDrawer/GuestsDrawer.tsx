@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
 import BookingInputSingle from "../BookingWidget/BookingInputSingle";
+import GuestSelectionButton from "./GuestSelectionButton";
 
 interface Props {
   isOpenGuestsDrawer: boolean;
@@ -48,7 +49,7 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
       <Drawer className="guestsDrawer" open={isOpenGuestsDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="header">
           <h1>Gæster & Værelser</h1>
-          <button className="closeButton">
+          <button className="closeButton" onClick={handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-[16px] h-[16px]">
               <path stroke="currentColor" stroke-width="1.5" d="M2.62 13.38 12.99 3.01M13.38 13.38 3.01 3.01"></path>
             </svg>
@@ -56,20 +57,14 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
         </div>
         <div className="guestsSelection">
           <h2>VÆRELSE</h2>
-          <div className="guestSelectionButtons">
-            <div>Voksne</div>
-            <div className="guestsButtons">
-              <div className="plusMinusBtn">
-                <button onClick={minus} disabled={amount === 0} className="minusBtn">
-                  -
-                </button>
-                <p>{amount}</p>
-                <button onClick={plus} className="plusBtn">
-                  +
-                </button>
-              </div>
-            </div>
+          <div className="guestButtonsWrapper">
+            <GuestSelectionButton guestType="Voksne" ageGap="" />
+            <GuestSelectionButton guestType="Børn" ageGap="3 - 11 år" />
+            <GuestSelectionButton guestType="Småbørn" ageGap="0 - 2 år" />
           </div>
+        </div>
+        <div className="drawerSelectButton">
+          <button onClick={handleClose}>Vælg</button>
         </div>
       </Drawer>
     </nav>
