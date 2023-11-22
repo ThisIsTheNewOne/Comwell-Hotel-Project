@@ -65,11 +65,7 @@ const BookingWidgetContainer = () => {
           )}
         </section>
 
-        <div className="max-lg:mt-auto w-full py-[16px] ">
-          <button className="bg-theme2 w-full text-white rounded-[30px] py-[16px] font-semibold text-[16px]">
-            Søg
-          </button>
-        </div>
+    
       </div>
     </div>
   );
