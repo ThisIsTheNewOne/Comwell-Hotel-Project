@@ -1,12 +1,9 @@
 import { useState } from "react";
 import BookingWidget from "./BookingWidget";
-import BookingCode from "./BookingCode";
-import BookingInputSingle from "./BookingInputSingle";
-import BookingInputDouble from "./BookingInputDouble";
 
 const BookingWidgetContainer = () => {
   const [selectedBookingType, setSelectedBookingType] = useState("overnatning");
-  const [isBookingCodeOpen, setIsBookingCodeOpen] = useState(false);
+
 
   const widgetButtons = [
     "Overnatning",
@@ -18,16 +15,6 @@ const BookingWidgetContainer = () => {
     setSelectedBookingType(value);
   };
 
-  const bookingCodeInput = {
-    label: "Bookingkode",
-    placeholder: "",
-  };
-
-
-  const calendarInput = [
-    { label: "Check ind", placeholder: "19.nov.", type: "text" },
-    { label: "Check ud", placeholder: "20.nov.", type: "text" },
-  ];
 
   return (
     <div className=" bg-white border-2 border-black rounded-[17px] 3xl:col-span-4 2xl:col-span-5 xl:col-span-6 lg:col-span-7 lg:block hidden">
@@ -54,15 +41,6 @@ const BookingWidgetContainer = () => {
 
         <section className="flex flex-col gap-[10px] mt-[20px]">
           <BookingWidget />
-          <BookingInputDouble bookingInputProps={calendarInput}/>
-          {!isBookingCodeOpen ? (
-            <BookingCode
-              setIsBookingCodeOpen={setIsBookingCodeOpen}
-              isBookingCodeOpen={isBookingCodeOpen}
-            />
-          ) : (
-            <BookingInputSingle bookingInputProps={bookingCodeInput} />
-          )}
         </section>
 
     

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Drawer from "react-modern-drawer";
+import CalendarContainer from "../Calendar/CalendarContainer";
 
 interface Props {
   bookingInputProps: CalendarInput[];
@@ -10,6 +11,11 @@ type CalendarInput = {
   placeholder: string;
   type: string;
 };
+
+export type CalendarVariable = {
+    type: string;
+    date: Date[];
+}
 
 const BookingInputDouble = (props: Props) => {
   const { bookingInputProps } = props;
@@ -25,6 +31,12 @@ const BookingInputDouble = (props: Props) => {
   const closeDrawer = () => {
     setIsDrawer(false);
   };
+
+  const [checkIn, setCheckIn] = useState({type: "checkIn" , date: []} as CalendarVariable);
+  const [checkOut, setCheckOut] = useState({type: "checkOut" , date: []} as CalendarVariable);
+
+
+  console.log("THis is the data from the calendar", checkIn,checkOut ) 
 
   return (
     <div>
@@ -53,12 +65,14 @@ const BookingInputDouble = (props: Props) => {
       </div>
       {doesDrawerExist && (
         <Drawer
-          className="hotelListDrawer"
+          className="hotelListDrawer z-[100]"
           open={isOpenDrawer}
           onClose={closeDrawer}
           direction="right"
           size={390}
-        ></Drawer>
+        >
+          <CalendarContainer setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+        </Drawer>
       )}
     </div>
   );

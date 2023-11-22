@@ -8,6 +8,7 @@ import "@/styles/guestsDrawer.css";
 import { LanguageContextProvider } from "@/hooks/useContext/LanguageContext";
 import "@/styles/bookingFlow.css";
 import type { AppProps } from "next/app";
+import { BookingContextProvider } from "@/hooks/useContext/BookingContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const contextValue = null; // initial value set to null
@@ -15,9 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <MyContext.Provider value={contextValue}>
       <LanguageContextProvider>
-        <DefaultLayout>
-          <Component {...pageProps} />
-        </DefaultLayout>
+        <BookingContextProvider>
+          <DefaultLayout>
+            <Component {...pageProps} />
+          </DefaultLayout>
+        </BookingContextProvider>
       </LanguageContextProvider>
     </MyContext.Provider>
   );
