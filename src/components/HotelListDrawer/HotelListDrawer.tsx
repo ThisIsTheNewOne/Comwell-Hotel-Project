@@ -45,7 +45,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
   return (
     <nav>
       <BookingInputSingle bookingInputProps={hotelInput} handleClick={handleClick} />
-      <Drawer className="hotelListDrawer" open={isOpenHotelListDrawer} onClose={handleClose} direction="right" size={390}>
+      <Drawer className="hotelListDrawer font-semibold" open={isOpenHotelListDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="header">
           <h1>Hoteller</h1>
           <button className="closeButton" onClick={handleClose}>

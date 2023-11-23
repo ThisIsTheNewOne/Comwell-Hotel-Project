@@ -19,7 +19,7 @@ const HotelInput: React.FC<HotelInputProps> = ({ hotelName, city, isSelected, on
           </div>
           <div className="hotelInfo">
             <div className="hotelName">{hotelName}</div>
-            <div className="hotelCity">{city}</div>
+            <div className="hotelCity font-medium">{city}</div>
           </div>
           <div className="selector">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-[16px]">

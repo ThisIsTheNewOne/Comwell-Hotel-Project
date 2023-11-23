@@ -1,103 +1,25 @@
-@font-face {
-  font-family: "FelixMedium";
-  src:
-    url("./../assets/styles/fonts/Fellix-Medium.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-Medium.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-Medium.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixBold";
-  src:
-    url("./../assets/styles/fonts/Fellix-Bold.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-Bold.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-Bold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixSemiBold";
-  src:
-    url("./../assets/styles/fonts/Fellix-SemiBold.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-SemiBold.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-SemiBold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixLight";
-  src:
-    url("./../assets/styles/fonts/Fellix-Light.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-Light.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-Light.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixRegular";
-  src:
-    url("./../assets/styles/fonts/Fellix-Regular.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-Regular.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixItalic";
-  src:
-    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixBoldItalic";
-  src:
-    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixLightItalic";
-  src:
-    url("./../assets/styles/fonts/Fellix-LightItalic.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-LightItalic.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-LightItalic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixMediumItalic";
-  src:
-    url("./../assets/styles/fonts/Fellix-MediumItalic.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-MediumItalic.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-MediumItalic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "FelixBoldItalic";
-  src:
-    url("./../assets/styles/fonts/Fellix-BoldItalic.ttf") format("ttf"),
-    url("./../assets/styles/fonts/Fellix-BoldItalic.woff") format("woff"),
-    url("./../assets/styles/fonts/Fellix-BoldItalic.woff2") format("woff2");
-}
-
 /*DRAWER*/
-.guestsDrawer {
-  font-family: FelixSemiBold;
-  padding: 30px 15px;
+.bookingFlowDrawer {
+  padding: 0px 20px;
 }
 
-.guestsDrawer .header {
+.bookingFlowDrawer .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 0px;
+  position: sticky;
+  top: 0;
 }
 
-.guestsDrawer .closeButton {
+.bookingFlowDrawer .closeButton {
   background-color: rgb(225 225 229);
   border-radius: 100px;
   padding: 8px;
   height: fit-content;
 }
 
-.guestsDrawer h1 {
+.bookingFlowDrawer h1 {
   font-size: 36px;
 }
 
@@ -105,4 +27,107 @@
   height: 1px;
   background-color: #e5e7eb;
   margin-top: 20px;
+}
+
+.bookingFlowDrawer .header .left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.bookingSummary {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.summaryInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bookingFlowDrawer .header .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bookingFlowDrawer .header .price {
+  display: flex;
+  gap: 5px;
+  font-size: 28px;
+}
+
+.bookingFlowDrawer .bedicon {
+  background-color: rgb(243 243 245);
+}
+
+/*SELECT ROOM*/
+.selectRoomContainer {
+  padding: 10px 60px 0px 60px;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.roomListLink {
+  list-style: none;
+}
+
+.room-selector {
+  border: solid 1px #e5e7eb;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.room-selector:hover {
+  border-color: #aeaeae;
+}
+
+.selectRoomContainer .roomPrice {
+  font-size: 28px;
+  margin-top: 18px;
+}
+
+/*GUEST INFO*/
+.guestInfoWrapper {
+  display: flex;
+}
+.guestInfoContainer {
+  padding: 10px 60px 0px 60px;
+  width: 60%;
+}
+
+.guestInfoContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 40px;
+}
+
+.guestInfoContainer form input {
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 14px 12px;
+  font-size: 16px;
+}
+
+.guestInfoContainer input::placeholder {
+  color: black;
+}
+
+.overviewContainer {
+  padding: 82px 20px 0px 20px;
+  background-color: #f3f3f5;
+  width: 50%;
+  height: 100vh;
+  margin-right: -20px;
+  margin-top: -72px;
+  z-index: 1;
+  border-left: 1px solid rgb(198, 198, 198);
+}
+
+.package-text {
+  font-size: 13px;
+  line-height: 18px;
 }
