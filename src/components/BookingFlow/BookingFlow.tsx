@@ -81,9 +81,9 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
             </div>
           </div>
         </div>
-        <SelectRoom />
+        {/* <SelectRoom /> */}
         {/* <GuestInfo /> */}
-        {/* <Payment /> */}
+        <Payment />
       </Drawer>
     </nav>
   );

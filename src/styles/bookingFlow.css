@@ -141,8 +141,57 @@
   padding: 10px 20px 0px 60px;
   width: 60%;
   height: 76vh;
+  padding-bottom: 100px;
 }
 
 .paymentContainer .rounded-full {
   background-color: #e5e7eb;
+}
+
+.paymentContainer .card-check {
+  background-color: #fff;
+}
+
+.paymentContainer .card-check.selected {
+  background-color: #000;
+}
+
+.cardWrapper {
+  width: 100%;
+}
+
+.cardWrapper .input-group {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+.cardWrapper input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 8px 12px;
+}
+
+.cardWrapper label {
+  font-size: 14px;
+}
+
+.cardWrapper svg {
+  position: absolute;
+  right: 10px;
+  bottom: 30%;
+}
+
+.cardWrapper .multi-input {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.cardWrapper small {
+  color: red;
+  font-size: 10px;
+  display: block;
 }
