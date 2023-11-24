@@ -131,3 +131,18 @@
   font-size: 13px;
   line-height: 18px;
 }
+
+/*PAYMENT*/
+.paymentWrapper {
+  display: flex;
+}
+
+.paymentContainer {
+  padding: 10px 20px 0px 60px;
+  width: 60%;
+  height: 76vh;
+}
+
+.paymentContainer .rounded-full {
+  background-color: #e5e7eb;
+}

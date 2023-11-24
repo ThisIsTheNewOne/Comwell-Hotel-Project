@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
 import SelectRoom from "./SelectRoom";
 import GuestInfo from "./GuestInfo";
+import Payment from "./Payment";
 
 interface Props {
   isOpenBookingFlowDrawer: boolean;
@@ -32,7 +33,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
           <div className="left">
             <button className="closeButton" onClick={handleClose}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="h-3 w-3">
-                <path fill="currentColor" fill-rule="evenodd" d="m7.524 9.61 5.835-5.835-.884-.884L5.81 9.557l6.638 7.523.937-.827L7.524 9.61Z" clip-rule="evenodd"></path>
+                <path fill="currentColor" fillRule="evenodd" d="m7.524 9.61 5.835-5.835-.884-.884L5.81 9.557l6.638 7.523.937-.827L7.524 9.61Z" clipRule="evenodd"></path>
               </svg>
             </button>
             <div className="bookingSummary font-regular">
@@ -72,16 +73,17 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-[20px]">
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M5.625 3.125A.625.625 0 0 0 5 3.75v4.375h1.875v-2.5c0-.69.56-1.25 1.25-1.25h3.75c.69 0 1.25.56 1.25 1.25v2.5H15V3.75a.625.625 0 0 0-.625-.625h-8.75Zm7.5 6.25H4.617l-.833 2.5h12.432l-.833-2.5h-2.258Zm-1.25-1.25v-2.5h-3.75v2.5h3.75Zm-8.125 5v2.5h12.5v-2.5H3.75Zm0 5v-1.25h12.5v1.25h1.25v-6.351l-1.25-3.75V3.75c0-1.036-.84-1.875-1.875-1.875h-8.75c-1.036 0-1.875.84-1.875 1.875v4.274l-1.25 3.75v6.351h1.25Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </div>
           </div>
         </div>
-        {/* <SelectRoom /> */}
-        <GuestInfo />
+        <SelectRoom />
+        {/* <GuestInfo /> */}
+        {/* <Payment /> */}
       </Drawer>
     </nav>
   );

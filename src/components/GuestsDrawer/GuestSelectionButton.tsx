@@ -32,13 +32,13 @@ const GuestSelectionButton: React.FC<GuestSelectionButtonProps> = ({ guestType, 
         <div className="plusMinusBtn">
           <button onClick={minus} disabled={amount === 0} className="minusBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="2" fill="none" className="w-[16px]">
-              <path fill="currentColor" fill-rule="evenodd" d="M15.556 1.667H.445V.333h15.11v1.334Z" clip-rule="evenodd"></path>
+              <path fill="currentColor" fillRule="evenodd" d="M15.556 1.667H.445V.333h15.11v1.334Z" clipRule="evenodd"></path>
             </svg>
           </button>
           <p className="font-regular">{amount}</p>
           <button onClick={plus} disabled={amount === 10} className="plusBtn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-5">
-              <path stroke="currentColor" stroke-width="1.5" d="M12 3.5v17M3.5 12h17"></path>
+              <path stroke="currentColor" strokeWidth="1.5" d="M12 3.5v17M3.5 12h17"></path>
             </svg>
           </button>
         </div>
