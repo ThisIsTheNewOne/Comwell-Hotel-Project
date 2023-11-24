@@ -1,0 +1,376 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Hotel A",
+      "city": "City A",
+      "region": "Region A",
+      "rooms": [
+        {
+          "room_name": "Standard Room",
+          "img1": "image_url_1",
+          "img2": "image_url_2",
+          "img3": "image_url_3",
+          "room_size": "300 sqft",
+          "facilities": [
+            {
+              "facility1": {
+                "icon": "icon_url_1",
+                "facility_type": "Facility Type 1"
+              }
+            },
+            {
+              "facility2": {
+                "icon": "icon_url_2",
+                "facility_type": "Facility Type 2"
+              }
+            },
+            {
+              "facility3": {
+                "icon": "icon_url_3",
+                "facility_type": "Facility Type 3"
+              }
+            }
+          ],
+          "room_description": "Description of the room",
+          "packages": [
+            {
+              "package_name": "Package 1",
+              "package_description": "Description of Package 1",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 1",
+              "package_price": 200
+            },
+            {
+              "package_name": "Package 2",
+              "package_description": "Description of Package 2",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 2",
+              "package_price": 250
+            }
+          ],
+          "room_price": 200,
+          "room_addons": [
+            {
+              "addon1": {
+                "addon_name": "Addon 1",
+                "addon_price": 50,
+                "addon_description": "Description of Addon 1"
+              }
+            },
+            {
+              "addon2": {
+                "addon_name": "Addon 2",
+                "addon_price": 40,
+                "addon_description": "Description of Addon 2"
+              }
+            }
+          ],
+          "room_availability": "Available",
+          "room_capacity": 2
+        },
+        {
+          "room_name": "Suite",
+          "img1": "image_url_1",
+          "img2": "image_url_2",
+          "img3": "image_url_3",
+          "room_size": "300 sqft",
+          "facilities": [
+            {
+              "facility1": {
+                "icon": "icon_url_1",
+                "facility_type": "Facility Type 1"
+              }
+            },
+            {
+              "facility2": {
+                "icon": "icon_url_2",
+                "facility_type": "Facility Type 2"
+              }
+            },
+            {
+              "facility3": {
+                "icon": "icon_url_3",
+                "facility_type": "Facility Type 3"
+              }
+            }
+          ],
+          "room_description": "Description of the room",
+          "packages": [
+            {
+              "package_name": "Package 1",
+              "package_description": "Description of Package 1",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 1",
+              "package_price": 500
+            },
+            {
+              "package_name": "Package 2",
+              "package_description": "Description of Package 2",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 2",
+              "package_price": 850
+            }
+          ],
+          "room_price": 700,
+          "room_addons": [
+            {
+              "addon1": {
+                "addon_name": "Addon 1",
+                "addon_price": 50,
+                "addon_description": "Description of Addon 1"
+              }
+            },
+            {
+              "addon2": {
+                "addon_name": "Addon 2",
+                "addon_price": 40,
+                "addon_description": "Description of Addon 2"
+              }
+            }
+          ],
+          "room_availability": "Available",
+          "room_capacity": 2
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Hotel A",
+      "city": "City A",
+      "region": "Region A",
+      "rooms": [
+        {
+          "room_name": "Standard Room",
+          "img1": "image_url_1",
+          "img2": "image_url_2",
+          "img3": "image_url_3",
+          "room_size": "300 sqft",
+          "facilities": [
+            {
+              "facility1": {
+                "icon": "icon_url_1",
+                "facility_type": "Facility Type 1"
+              }
+            },
+            {
+              "facility2": {
+                "icon": "icon_url_2",
+                "facility_type": "Facility Type 2"
+              }
+            },
+            {
+              "facility3": {
+                "icon": "icon_url_3",
+                "facility_type": "Facility Type 3"
+              }
+            }
+          ],
+          "room_description": "Description of the room",
+          "packages": [
+            {
+              "package_name": "Package 1",
+              "package_description": "Description of Package 1",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 1",
+              "package_price": 200
+            },
+            {
+              "package_name": "Package 2",
+              "package_description": "Description of Package 2",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 2",
+              "package_price": 250
+            }
+          ],
+          "room_price": 200,
+          "room_addons": [
+            {
+              "addon1": {
+                "addon_name": "Addon 1",
+                "addon_price": 50,
+                "addon_description": "Description of Addon 1"
+              }
+            },
+            {
+              "addon2": {
+                "addon_name": "Addon 2",
+                "addon_price": 40,
+                "addon_description": "Description of Addon 2"
+              }
+            }
+          ],
+          "room_availability": "Available",
+          "room_capacity": 2
+        },
+        {
+          "room_name": "Suite",
+          "img1": "image_url_1",
+          "img2": "image_url_2",
+          "img3": "image_url_3",
+          "room_size": "300 sqft",
+          "facilities": [
+            {
+              "facility1": {
+                "icon": "icon_url_1",
+                "facility_type": "Facility Type 1"
+              }
+            },
+            {
+              "facility2": {
+                "icon": "icon_url_2",
+                "facility_type": "Facility Type 2"
+              }
+            },
+            {
+              "facility3": {
+                "icon": "icon_url_3",
+                "facility_type": "Facility Type 3"
+              }
+            }
+          ],
+          "room_description": "Description of the room",
+          "packages": [
+            {
+              "package_name": "Package 1",
+              "package_description": "Description of Package 1",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 1",
+              "package_price": 500
+            },
+            {
+              "package_name": "Package 2",
+              "package_description": "Description of Package 2",
+              "package_features": [
+                {
+                  "feature1": {
+                    "icon": "icon_url_1",
+                    "feature_name": "Feature Name 1"
+                  }
+                },
+                {
+                  "feature2": {
+                    "icon": "icon_url_2",
+                    "feature_name": "Feature Name 2"
+                  }
+                }
+              ],
+              "cancellation_conditions": "Cancellation conditions for Package 2",
+              "package_price": 850
+            }
+          ],
+          "room_price": 700,
+          "room_addons": [
+            {
+              "addon1": {
+                "addon_name": "Addon 1",
+                "addon_price": 50,
+                "addon_description": "Description of Addon 1"
+              }
+            },
+            {
+              "addon2": {
+                "addon_name": "Addon 2",
+                "addon_price": 40,
+                "addon_description": "Description of Addon 2"
+              }
+            }
+          ],
+          "room_availability": "Available",
+          "room_capacity": 2
+        }
+      ]
+    }
+  ]
+}

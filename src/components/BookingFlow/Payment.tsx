@@ -13,7 +13,7 @@ const Payment: React.FC = () => {
     setIsSelected(!isSelected);
   };
 
-  const handleCardValidation = (isValid) => {
+  const handleCardValidation = (isValid: boolean) => {
     setIsCreditCardValid(isValid);
   };
 
