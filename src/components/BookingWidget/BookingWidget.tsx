@@ -7,6 +7,7 @@ import BookingCode from "./BookingCode";
 import BookingInputSingle from "./BookingInputSingle";
 import BookingContext from "@/hooks/useContext/BookingContext";
 import { useChangeDate } from "@/hooks/useChangeDate";
+import { HotelList } from "@/types/Booking";
 
 
 const BookingWidget: React.FC = () => {
@@ -16,29 +17,59 @@ const BookingWidget: React.FC = () => {
   const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
   const [isBookingCodeOpen, setIsBookingCodeOpen] = useState(false);
 
- const {checkIn, checkOut} = useContext(BookingContext)
+  const { checkIn, checkOut } = useContext(BookingContext);
 
   const bookingCodeInput = {
     label: "Bookingkode",
     placeholder: "",
   };
 
-  const [calendarInput] = useChangeDate({checkIn, checkOut})
-  const disableDates = ["2023-11-30", "2023-12-11", "2023-12-07", new Date(2025, 4, 9) ]
+  const [calendarInput] = useChangeDate({ checkIn, checkOut });
+  const disableDates = [
+    "2023-11-30",
+    "2023-12-11",
+    "2023-12-07",
+    new Date(2025, 4, 9),
+  ];
 
-
+  const hotelList = [
+    {
+      hotelName: "Borupgaard",
+      city: "Sjælland",
+    },
+    {
+      hotelName: "Borupgaard2",
+      city: "Sjælland",
+    },
+    {
+      hotelName: "Borupgaard3",
+      city: "Sjælland",
+    },
+    {
+      hotelName: "Borupgaard4",
+      city: "Fyn",
+    },
+    {
+      hotelName: "Borupgaard5",
+      city: "Jylland",
+    },
+  ] as HotelList[];
 
   return (
     <nav className="flex flex-col gap-[10px]">
       <HotelListDrawer
         setIsOpenHotelListDrawer={setIsOpenHotelListDrawer}
         isOpenHotelListDrawer={isOpenHotelListDrawer}
+        hotelList={hotelList}
       />
       <GuestsDrawer
         setIsOpenGuestsDrawer={setIsOpenGuestsDrawer}
         isOpenGuestsDrawer={isOpenGuestsDrawer}
       />
-      <BookingInputDouble bookingInputProps={calendarInput} disableDates={disableDates} />
+      <BookingInputDouble
+        bookingInputProps={calendarInput}
+        disableDates={disableDates}
+      />
       {!isBookingCodeOpen ? (
         <BookingCode
           setIsBookingCodeOpen={setIsBookingCodeOpen}

@@ -10,6 +10,8 @@ const BookingContext = createContext({
   setRoomList: (roomList: RoomList[]) => {},
   roomsNumber: 1,
   setRoomsNumber: (roomsNumber: number) => {},
+  selectedHotel: null as string | null,
+  setSelectedHotel: (selectedHotel: string | null) => {},
 });
 
 interface BookingContextProviderProps {
@@ -37,6 +39,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
 
   const [roomList, setRoomList] = useState([initialRoom] as RoomList[]);
   const [roomsNumber, setRoomsNumber] = useState(1);
+  const [selectedHotel, setSelectedHotel] = useState<string | null>(null);
   // console.log("THis is the data from the calendar", checkIn, checkOut);
 
   useEffect(() => {
@@ -54,6 +57,8 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setRoomList,
         roomsNumber,
         setRoomsNumber,
+        selectedHotel,
+        setSelectedHotel,
       }}
     >
       {props.children}

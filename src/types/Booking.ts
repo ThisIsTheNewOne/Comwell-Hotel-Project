@@ -18,3 +18,9 @@ export type RoomList = {
 };
 
 export const guestTypes = ["Adults", "Children", "Infants"];
+
+
+export type HotelList = {
+  hotelName: string;
+  city: string;
+} 
