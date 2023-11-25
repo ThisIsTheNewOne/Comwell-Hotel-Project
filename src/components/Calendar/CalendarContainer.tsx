@@ -5,11 +5,13 @@ import { CalendarVariable } from "@/types/Booking";
 
 interface State {
   date: Date[];
+
 }
 
 interface Props {
   setCheckIn: (checkIn: CalendarVariable) => void;
   setCheckOut: (checkOut: CalendarVariable) => void;
+  disableDates: (string | Date)[]
 }
 
 class CalendarContainer extends Component<Props, State> {
@@ -46,8 +48,14 @@ class CalendarContainer extends Component<Props, State> {
           mode: "range",
           minDate: "today",
           dateFormat: "Y-m-d",
-          //   disable: ["2025-01-30", "2025-02-21", "2025-03-08", new Date(2025, 4, 9) ], //disables specific dates
+            disable: this.props.disableDates, //disables specific dates
           inline: true,
+           onDayCreate: (dObj, dStr, fp, dayElem) => {
+            // You can fetch the price based on the date (dStr) from your server
+            // For simplicity, let's just use a random price for now
+            const price = Math.floor(Math.random() * 100) + 50;
+            dayElem.innerHTML += `</b><span class="price"> ${price}</span>`;
+          },
         }}
         value={date}
         // onChange={date => {

@@ -24,6 +24,7 @@ const BookingWidget: React.FC = () => {
   };
 
   const [calendarInput] = useChangeDate({checkIn, checkOut})
+  const disableDates = ["2023-11-30", "2023-12-11", "2023-12-07", new Date(2025, 4, 9) ]
 
 
 
@@ -37,7 +38,7 @@ const BookingWidget: React.FC = () => {
         setIsOpenGuestsDrawer={setIsOpenGuestsDrawer}
         isOpenGuestsDrawer={isOpenGuestsDrawer}
       />
-      <BookingInputDouble bookingInputProps={calendarInput} />
+      <BookingInputDouble bookingInputProps={calendarInput} disableDates={disableDates} />
       {!isBookingCodeOpen ? (
         <BookingCode
           setIsBookingCodeOpen={setIsBookingCodeOpen}
