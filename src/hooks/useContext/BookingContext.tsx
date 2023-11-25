@@ -1,11 +1,15 @@
-import { CalendarVariable } from "@/types/Booking";
-import { createContext, useState } from "react";
+import { CalendarVariable, RoomList, guestTypes } from "@/types/Booking";
+import { createContext, useEffect, useState } from "react";
 
 const BookingContext = createContext({
   checkIn: {} as CalendarVariable,
   setCheckIn: (checkIn: CalendarVariable) => {},
   checkOut: {} as CalendarVariable,
   setCheckOut: (checkOut: CalendarVariable) => {},
+  roomList: [] as RoomList[],
+  setRoomList: (roomList: RoomList[]) => {},
+  roomsNumber: 1,
+  setRoomsNumber: (roomsNumber: number) => {},
 });
 
 interface BookingContextProviderProps {
@@ -23,7 +27,21 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
     date: [],
   } as CalendarVariable);
 
-  console.log("THis is the data from the calendar", checkIn, checkOut);
+  const initialRoom = {
+    label: "Room 1",
+    guests: guestTypes.map((guestType) => ({
+      label: guestType,
+      amount: guestType === "Adults" ? 1 : 0,
+    })),
+  };
+
+  const [roomList, setRoomList] = useState([initialRoom] as RoomList[]);
+  const [roomsNumber, setRoomsNumber] = useState(1);
+  // console.log("THis is the data from the calendar", checkIn, checkOut);
+
+  useEffect(() => {
+    console.log("hahahaahah", roomList);
+  }, [roomList]);
 
   return (
     <BookingContext.Provider
@@ -32,6 +50,10 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setCheckIn,
         checkOut,
         setCheckOut,
+        roomList,
+        setRoomList,
+        roomsNumber,
+        setRoomsNumber,
       }}
     >
       {props.children}

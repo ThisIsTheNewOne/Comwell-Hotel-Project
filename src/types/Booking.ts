@@ -1,11 +1,20 @@
 export type CalendarVariable = {
-    type: string;
-    date: Date[];
-}
+  type: string;
+  date: Date[];
+};
 
 export type CalendarInput = {
+  label: string;
+  placeholder: string;
+  type: string;
+};
+
+export type RoomList = {
+  label: string;
+  guests: {
     label: string;
-    placeholder: string;
-    type: string;
-  };
-  
+    amount: number;
+  }[];
+};
+
+export const guestTypes = ["Adults", "Children", "Infants"];
