@@ -6,13 +6,14 @@ import { CalendarInput } from "@/types/Booking";
 
 interface Props {
   bookingInputProps: CalendarInput[];
+  disableDates: (string | Date)[]
 }
 
 
 
 
 const BookingInputDouble = (props: Props) => {
-  const { bookingInputProps } = props;
+  const { bookingInputProps, disableDates } = props;
   const {  setCheckIn,  setCheckOut } = useContext(BookingContext);
 
   const doesDrawerExist = true;
@@ -61,7 +62,7 @@ const BookingInputDouble = (props: Props) => {
           direction="right"
           size={390}
         >
-          <CalendarContainer setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+          <CalendarContainer setCheckIn={setCheckIn} setCheckOut={setCheckOut} disableDates={disableDates} />
         </Drawer>
       )}
     </div>
