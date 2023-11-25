@@ -24,3 +24,12 @@ export type HotelList = {
   hotelName: string;
   city: string;
 } 
+
+
+export type roomDetails = {
+  roomSize: string;
+  roomImage: string;
+  roomName: string;
+  roomDescription: string;
+  price: number;
+  }

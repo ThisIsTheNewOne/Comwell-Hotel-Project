@@ -1,4 +1,9 @@
-import { CalendarVariable, RoomList, guestTypes } from "@/types/Booking";
+import {
+  CalendarVariable,
+  RoomList,
+  guestTypes,
+  roomDetails,
+} from "@/types/Booking";
 import { createContext, useEffect, useState } from "react";
 
 const BookingContext = createContext({
@@ -14,6 +19,8 @@ const BookingContext = createContext({
   setSelectedHotel: (selectedHotel: string | null) => {},
   totalGuests: 1,
   setTotalGuests: (totalGuests: number) => {},
+  selectedRoom: null as null | roomDetails,
+  setSelectedRoom: (selectedRoom: null | roomDetails) => {},
 });
 
 interface BookingContextProviderProps {
@@ -43,7 +50,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [roomsNumber, setRoomsNumber] = useState(1);
   const [selectedHotel, setSelectedHotel] = useState<string | null>(null);
   const [totalGuests, setTotalGuests] = useState(1);
-
+  const [selectedRoom, setSelectedRoom] = useState(null as null | roomDetails);
 
   return (
     <BookingContext.Provider
@@ -60,6 +67,8 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setSelectedHotel,
         totalGuests,
         setTotalGuests,
+        selectedRoom,
+        setSelectedRoom,
       }}
     >
       {props.children}

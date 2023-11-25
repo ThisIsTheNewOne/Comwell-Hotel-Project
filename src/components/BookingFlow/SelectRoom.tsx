@@ -16,6 +16,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
       roomImage:
         "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp",
       roomName: "Twin seng",
+      roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
       price: 7.402,
     },
     {
@@ -23,6 +24,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
       roomImage:
         "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/suite.webp",
       roomName: "Suite",
+      roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
       price: 13.439,
     },
     {
@@ -30,6 +32,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
       roomImage:
         "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp",
       roomName: "Twin seng",
+      roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
       price: 7.402,
     },
   ];
@@ -49,6 +52,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
               roomSize={room.roomSize}
               roomImage={room.roomImage}
               roomName={room.roomName}
+              roomDescription={room.roomDescription}
               price={room.price}
               setDrawerComponent={setDrawerComponent}
             />
