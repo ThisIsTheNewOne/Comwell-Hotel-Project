@@ -103,7 +103,8 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = ({ roomImage, roomSi
                 <span>kr.</span>
               </div>
             </div>
-            <button className="absolute right-4 top-4 flex h-[24px] w-[24px] items-center justify-center overflow-hidden rounded-full transition border-gray border group-hover:border-black/[0.3]"></button>
+            {/* This creates a hydration problem between the server and client */}
+            {/* <button className="absolute right-4 top-4 flex h-[24px] w-[24px] items-center justify-center overflow-hidden rounded-full transition border-gray border group-hover:border-black/[0.3]"></button> */}
           </div>
         </button>
       </li>
