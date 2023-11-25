@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import Drawer from "react-modern-drawer";
 import BookingInputSingle from "../BookingWidget/BookingInputSingle";
 import GuestSelectionButton from "./GuestSelectionButton";
@@ -11,9 +11,14 @@ interface Props {
 
 const GuestsDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenGuestsDrawer, setIsOpenGuestsDrawer } = props;
-  const [totalGuests, setTotalGuests] = useState(1);
-
-  const { roomList, setRoomList, roomsNumber, setRoomsNumber } = useContext(BookingContext);
+  const {
+    roomList,
+    setRoomList,
+    roomsNumber,
+    setRoomsNumber,
+    totalGuests,
+    setTotalGuests,
+  } = useContext(BookingContext);
 
   function handleClick() {
     console.log("Guests drawer open");
@@ -64,8 +69,8 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
     };
 
     setRoomList([...roomList, newRoom]);
-    setRoomsNumber(roomsNumber + 1)
-    setTotalGuests(totalGuests + 1)
+    setRoomsNumber(roomsNumber + 1);
+    setTotalGuests(totalGuests + 1);
   };
 
   const removeRoom = (roomLabel: string) => {
@@ -82,11 +87,11 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
 
     // Update the room list
     setRoomList(renumberedRooms);
-    setRoomsNumber(roomsNumber - 1)
-    setTotalGuests(totalGuests - 1)
+    setRoomsNumber(roomsNumber - 1);
+    setTotalGuests(totalGuests - 1);
   };
 
- const [disableSelectionButtons, setDisableSelectionButtons] = useState(false)
+  const [disableSelectionButtons, setDisableSelectionButtons] = useState(false);
 
   const checkNumberGuestsInARoom = (selectedRoom: string) => {
     const totalGuestsInOneRoom = roomList.map((room) => {
@@ -98,19 +103,22 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
       };
     });
 
-    const totalGuestsInOneRoomFiltered = totalGuestsInOneRoom.filter((room) => room.roomNumber === selectedRoom);
+    const totalGuestsInOneRoomFiltered = totalGuestsInOneRoom.filter(
+      (room) => room.roomNumber === selectedRoom
+    );
 
-    console.log("This is the total guests in one room",totalGuestsInOneRoomFiltered[0])
-    if(totalGuestsInOneRoomFiltered[0].totalGuests > 3) {
-      setDisableSelectionButtons(true)
+    console.log(
+      "This is the total guests in one room",
+      totalGuestsInOneRoomFiltered[0]
+    );
+    if (totalGuestsInOneRoomFiltered[0].totalGuests > 3) {
+      setDisableSelectionButtons(true);
     } else {
-      setDisableSelectionButtons(false)
+      setDisableSelectionButtons(false);
     }
 
     return totalGuestsInOneRoomFiltered;
   };
-
-
 
   return (
     <nav>
@@ -165,7 +173,7 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
                     amount={guest.amount}
                     setTotalGuests={setTotalGuests}
                     totalGuests={totalGuests}
-                    checkNumberGuestsInARoom= {checkNumberGuestsInARoom} 
+                    checkNumberGuestsInARoom={checkNumberGuestsInARoom}
                     disableSelectionButtons={disableSelectionButtons}
                   />
                 ))}
