@@ -5,13 +5,14 @@ type ContinueContainerType = {
   setDrawerComponent: (drawerComponent: string) => void;
   type?: string;
   nextPage?: string;
+  price?: number;
 };
 
 const ContinueContainer: React.FC<ContinueContainerType> = (
   props: ContinueContainerType
 ) => {
   // All of the state
-  const { id, setDrawerComponent, type, nextPage } = props;
+  const { id, setDrawerComponent, type, nextPage, price } = props;
 
   const selectNextComponent = () => {
     setDrawerComponent(nextPage || "selectRoom");
@@ -32,7 +33,7 @@ const ContinueContainer: React.FC<ContinueContainerType> = (
             >
             <span className={`flex items-center ${type === "addon" ? "justify-between" : "justify-center"} gap-x-[7px] `}>
                 {type === "addon" ? "Add to booking" : "Fortsæt"}
-                {type === "addon" ? "349 kr." : "" }
+            {type === "addon" ? `${price + " "+ "kr"}` : "" }
               </span>
             </button>
           </div>

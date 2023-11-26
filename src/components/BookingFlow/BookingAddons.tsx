@@ -7,6 +7,13 @@ type BookingAddonsType = {
   setDrawerComponent: (drawerComponent: string) => void;
 };
 
+type AddOnType = {
+    name: string;
+    price: number;
+    description: string;
+    fullDescription?: string;
+    };
+
 const BookingAddons: React.FC<BookingAddonsType> = (
   props: BookingAddonsType
 ) => {
@@ -18,18 +25,23 @@ const BookingAddons: React.FC<BookingAddonsType> = (
       name: "Early check-in",
       price: 200,
       description: "Check ind 2 timer tidligere",
+      fullDescription: "With early check-in, you will be able to arrive earlier than the usual check-in. Subject to availability and specific time will be confirmed by the hotel",
     },
     {
       name: "Late departure",
       price: 200,
       description: "",
+      fullDescription: "With late departure you can extend your stay for a few hours. Subject to availability and time will be confirmed by the hotel.",
     },
-   
   ];
 
-  const openAddOnDrawer = () => {
+  const [selectedAddOns, setSelectedAddOns] = useState(addOnsList[0] as AddOnType);
+
+  const openAddOnDrawer = (AddOnName: string) => {
     console.log("openAddOnDrawer");
+    const activeAddOn = addOnsList.find((addOn: AddOnType) => addOn.name === AddOnName) as AddOnType;
     setAddOnDrawer(true);
+    setSelectedAddOns(activeAddOn);
   }
 
   const closeAddOnDrawer = () => {
@@ -58,7 +70,7 @@ const BookingAddons: React.FC<BookingAddonsType> = (
                 <div className="font-medium text-[13px] line-clamp-2 overflow-hidden ">
                   {addOn.description}
                 </div>
-                <div className="mt-[10px]" onClick={openAddOnDrawer}> Read more</div>
+                <div className="mt-[10px]" onClick={() => openAddOnDrawer(addOn.name)}> Read more</div>
               </div>
             </div>
           </div>
@@ -73,9 +85,9 @@ const BookingAddons: React.FC<BookingAddonsType> = (
       >
         <div>
             <div>Img</div>
-            <h1>Early check-in</h1>
-            <div className="text-light">With early check-in, you will be able to arrive earlier than the usual check-in. Subject to availability and specific time will be confirmed by the hotel</div>
-            <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} type={"addon"} />
+            <h1>{selectedAddOns.name}</h1>
+            <div className="text-light">{selectedAddOns.fullDescription}</div>
+            <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} type={"addon"} price={selectedAddOns.price} nextPage="addons" />
         </div>
       </Drawer>
 
