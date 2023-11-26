@@ -1,24 +1,18 @@
 import BookingContext from "@/hooks/useContext/BookingContext";
-import { RoomList } from "@/types/Booking";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 interface GuestSelectionButtonProps {
-  room: string;
+  room: number;
   guestType: string;
   ageGap: string;
   amount: number;
   setTotalGuests: (totalGuests: number) => void;
   totalGuests: number;
-  checkNumberGuestsInARoom: (type: string) => void;
+  checkNumberGuestsInARoom: (type: number) => void;
   disableSelectionButtons: boolean;
 }
 
-interface Guest {
-  guestType: string;
-  amount: number;
-}
-
-type GuestType = {
+type Guest = {
   label: string;
   amount: number;
 };
@@ -28,11 +22,9 @@ const GuestSelectionButton: React.FC<GuestSelectionButtonProps> = (
 ) => {
   const { room, guestType, ageGap, amount, setTotalGuests, totalGuests, checkNumberGuestsInARoom, disableSelectionButtons } =
     props;
-  const { roomList, setRoomList } = useContext(BookingContext);
+  const { guestList, setGuestList } = useContext(BookingContext);
 
-  const currentRoomNumber = parseInt(room.split(" ")[1]);
-  // Find the room that we are currently in
-  const currentRoom = roomList[currentRoomNumber - 1];
+  const currentRoomNumber = room;
 
   //adding guests functions
   function minus() {
@@ -45,10 +37,10 @@ const GuestSelectionButton: React.FC<GuestSelectionButtonProps> = (
       amount: newAmount,
     };
 
-    const newRoomList = makeNewRoomList(newGuest);
+    const newGuestList = updateGuestList(newGuest);
     checkNumberGuests("minus");
     checkNumberGuestsInARoom(room)
-    setRoomList(newRoomList);
+    setGuestList(newGuestList);
     
   }
 
@@ -60,30 +52,26 @@ const GuestSelectionButton: React.FC<GuestSelectionButtonProps> = (
       amount: newAmount,
     };
 
-    const newRoomList = makeNewRoomList(newGuest);
+    const newRoomList = updateGuestList(newGuest);
     checkNumberGuests("plus");
     checkNumberGuestsInARoom(room)
-    setRoomList(newRoomList);
+    setGuestList(newRoomList);
   }
 
-  const makeNewRoomList = (newGuest: GuestType): RoomList[] => {
-    const newRoomList = roomList.map((room) => {
-      if (room.label === currentRoom.label) {
-        return {
-          ...room,
-          guests: room.guests.map((guest) => {
-            if (guest.label === guestType) {
+  const updateGuestList = (newGuest: Guest): Guest[][] => {
+    return guestList.map((guest, index) => {
+      if (index === currentRoomNumber) {
+        return  guest.map((guest) => {
+            if ( guestType === guest.label) {
               return newGuest;
             } else {
               return guest;
             }
-          }),
-        };
+          })
       } else {
-        return room;
+        return guest;
       }
     });
-    return newRoomList;
   };
 
   const checkNumberGuests = ( type: string) => {
