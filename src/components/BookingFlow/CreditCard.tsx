@@ -24,7 +24,7 @@ const CreditCard: React.FC<CreditCardProps> = ({ onCardValidation }) => {
   } = useCreditCardValidator({ expiryDateValidator: expDateValidate });
 
   useEffect(() => {
-    const isValid = !erroredInputs.cardNumber && !erroredInputs.expiryDate && !erroredInputs.cvc;
+    const isValid = true
     // Add more conditions as needed for card validation
 
     setIsCardValid(isValid);

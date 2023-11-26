@@ -9,15 +9,20 @@ interface Props {
   setIsOpenGuestsDrawer: (isOpenGuestsDrawer: boolean) => void;
 }
 
+type GuestList = {
+  label: string;
+  amount: number;
+}[]
+
 const GuestsDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenGuestsDrawer, setIsOpenGuestsDrawer } = props;
   const {
-    roomList,
-    setRoomList,
     roomsNumber,
     setRoomsNumber,
     totalGuests,
     setTotalGuests,
+    guestList,
+    setGuestList
   } = useContext(BookingContext);
 
   function handleClick() {
@@ -50,61 +55,39 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
   };
 
   const createNewRoom = () => {
-    // Get the last room
-    const lastRoom = roomList[roomList.length - 1];
+    const newRoom = [
+      { label: "Adults", amount: 1 },
+      { label: "Children", amount: 0 },
+      { label: "Infants", amount: 0 },
+    ]
 
-    // Extract the room number from the label of the last room
-    const lastRoomNumber = parseInt(lastRoom.label.split(" ")[1]);
-
-    // Create a new room number by incrementing the last room number by 1
-    const newRoomNumber = lastRoomNumber + 1;
-
-    const newRoom = {
-      label: `Room ${newRoomNumber}`,
-      guests: [
-        { label: "Adults", amount: 1 },
-        { label: "Children", amount: 0 },
-        { label: "Infants()", amount: 0 },
-      ],
-    };
-
-    setRoomList([...roomList, newRoom]);
+    setGuestList([...guestList, newRoom]);
     setRoomsNumber(roomsNumber + 1);
     setTotalGuests(totalGuests + 1);
   };
 
-  const removeRoom = (roomLabel: string) => {
-    // Filter out the room to be removed
-    const newRoomList = roomList.filter((room) => room.label !== roomLabel);
-
-    // Renumber all rooms
-    const renumberedRooms = newRoomList.map((room, index) => {
-      return {
-        ...room,
-        label: `Room ${index + 1}`,
-      };
-    });
-
-    // Update the room list
-    setRoomList(renumberedRooms);
-    setRoomsNumber(roomsNumber - 1);
-    setTotalGuests(totalGuests - 1);
+  const removeRoom = (index: number) => {
+    if (index > -1) {
+      setGuestList(guestList.filter((_, i)=> i!==index));
+      setRoomsNumber(roomsNumber - 1);
+      setTotalGuests(totalGuests - 1);
+    }
   };
 
   const [disableSelectionButtons, setDisableSelectionButtons] = useState(false);
 
-  const checkNumberGuestsInARoom = (selectedRoom: string) => {
-    const totalGuestsInOneRoom = roomList.map((room) => {
+  const checkNumberGuestsInARoom = (selectedRoom: number) => {
+    const totalGuestsInOneRoom = guestList.map((room, index) => {
       return {
-        roomNumber: room.label,
-        totalGuests: room.guests.reduce((acc, guest) => {
+        roomNumber: index,
+        totalGuests: room.reduce((acc, guest) => {
           return acc + guest.amount;
         }, 0),
       };
     });
 
     const totalGuestsInOneRoomFiltered = totalGuestsInOneRoom.filter(
-      (room) => room.roomNumber === selectedRoom
+      (room, index) => index === selectedRoom
     );
 
     console.log(
@@ -153,15 +136,15 @@ const GuestsDrawer: React.FC<Props> = (props: Props) => {
           </button>
         </div>
         <div className="guestsSelection">
-          {roomList.map((room, index) => (
-            <div key={index}>
-              <h2>{room.label}</h2>
-              <div onClick={() => removeRoom(room.label)}>Remove room</div>
+          {guestList.map((room, roomIndex) => (
+            <div key={roomIndex}>
+              <h2>{roomIndex}</h2>
+              <div onClick={() => removeRoom(roomIndex)}>Remove room</div>
               <div className="guestButtonsWrapper">
-                {room.guests.map((guest, index) => (
+                {room.map((guest, guestIndex) => (
                   <GuestSelectionButton
-                    key={index}
-                    room={room.label}
+                    key={guestIndex}
+                    room={roomIndex}
                     guestType={guest.label}
                     ageGap={
                       guest.label === "Adults"

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BookingOverview from "./bookingOverview";
 import CreditCard from "./CreditCard";
+import BookingContext from "@/hooks/useContext/BookingContext";
 
 const Payment: React.FC = () => {
   // All of the state
   const [showCreditCard, setShowCreditCard] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [isCreditCardValid, setIsCreditCardValid] = useState(false);
+  const { postBooking } = useContext(BookingContext)
 
   const toggleCreditCardVisibility = () => {
     setShowCreditCard(!showCreditCard);
@@ -176,6 +178,7 @@ const Payment: React.FC = () => {
             <div className="flex justify-between items-center gap-x-4">
               <div className="relative max-lg:transition-opacity md:ml-auto opacity-100 max-md:w-full">
                 <button
+                onClick={postBooking} 
                   disabled={!isCreditCardValid}
                   className={
                     "body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] " + (isCreditCardValid ? "bg-theme text-white hover:lg:bg-theme-80" : "opacity-40 bg-theme text-white")
