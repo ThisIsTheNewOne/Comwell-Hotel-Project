@@ -3,16 +3,18 @@ import React from "react";
 type ContinueContainerType = {
   id: string;
   setDrawerComponent: (drawerComponent: string) => void;
+  type?: string;
+  nextPage?: string;
 };
 
 const ContinueContainer: React.FC<ContinueContainerType> = (
   props: ContinueContainerType
 ) => {
   // All of the state
-  const { id, setDrawerComponent } = props;
+  const { id, setDrawerComponent, type, nextPage } = props;
 
   const selectNextComponent = () => {
-    setDrawerComponent("guestInfo");
+    setDrawerComponent(nextPage || "selectRoom");
   };
 
   return (
@@ -28,8 +30,9 @@ const ContinueContainer: React.FC<ContinueContainerType> = (
               form="guestForm"
               className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80"
             >
-              <span className="flex items-center gap-x-[7px] justify-center">
-                Fortsæt
+            <span className={`flex items-center ${type === "addon" ? "justify-between" : "justify-center"} gap-x-[7px] `}>
+                {type === "addon" ? "Add to booking" : "Fortsæt"}
+                {type === "addon" ? "349 kr." : "" }
               </span>
             </button>
           </div>

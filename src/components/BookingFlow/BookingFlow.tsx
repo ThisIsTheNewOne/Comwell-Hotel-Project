@@ -9,6 +9,7 @@ import BookingHotel from "./HeaderBookingFlow/BookingHotel";
 import BookingPrice from "./HeaderBookingFlow/BookingPrice";
 import GoBackButton from "./HeaderBookingFlow/GoBackButton";
 import RoomDetails from "./RoomDetails";
+import BookingAddons from "./BookingAddons";
 
 interface Props {
   isOpenBookingFlowDrawer: boolean;
@@ -18,7 +19,13 @@ interface Props {
 const BookingFlow: React.FC<Props> = (props: Props) => {
   const { isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer } = props;
   const [drawerComponent, setDrawerComponent] = useState("selectedRoom");
-  const [componentList] = useState(["selectedRoom", "roomDetails", "guestInfo", "payment"]);
+  const [componentList] = useState([
+    "selectedRoom",
+    "roomDetails",
+    "addons",
+    "guestInfo",
+    "payment",
+  ]);
 
   function handleClick() {
     console.log("Booking flow drawer open");
@@ -74,9 +81,13 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
           )}
 
           {drawerComponent === "roomDetails" && (
-          <RoomDetails id="roomDetails" setDrawerComponent={setDrawerComponent} />
-          )  
-          }
+            <RoomDetails
+              id="roomDetails"
+              setDrawerComponent={setDrawerComponent}
+            />
+          )}
+
+          {drawerComponent === "addons" && <BookingAddons id="addons"  setDrawerComponent={setDrawerComponent} />}
 
           {drawerComponent === "guestInfo" && (
             <GuestInfo id="guestInfo" setDrawerComponent={setDrawerComponent} />

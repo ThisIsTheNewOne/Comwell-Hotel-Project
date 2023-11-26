@@ -83,7 +83,7 @@ const GuestInfo: React.FC<GuestInfoType> = (props: GuestInfoType) => {
           </form>
         </div>
         <BookingOverview />
-        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} />
+        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} nextPage="payment" />
       </div>
     </div>
   );

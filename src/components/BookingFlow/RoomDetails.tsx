@@ -88,7 +88,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
           </section>
         </div>
 
-        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} />
+        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} nextPage={"addons"} />
       </div>
     </div>
   );
