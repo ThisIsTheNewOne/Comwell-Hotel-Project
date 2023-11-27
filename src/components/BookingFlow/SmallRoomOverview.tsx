@@ -1,9 +1,11 @@
 import BookingContext from "@/hooks/useContext/BookingContext";
 import React, { useContext } from "react";
 import BookingFacilities from "./BookingFacilities";
+import { Room } from "@/types/Booking";
 
 interface SmallRoomOverviewProps {
-  roomSize: string;
+  room: Room;
+  roomSize: number;
   roomImage: string;
   roomName: string;
   roomDescription: string;
@@ -14,19 +16,19 @@ interface SmallRoomOverviewProps {
 const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
   props: SmallRoomOverviewProps
 ) => {
-  const { roomImage, roomSize, roomDescription, roomName, price, setDrawerComponent } = props;
+  const { room, roomImage, roomSize, roomDescription, roomName, price, setDrawerComponent } = props;
   const { setSelectedRoom } = useContext(BookingContext);
-  const currentRoom = {
-    roomImage,
-    roomSize,
-    roomName,
-    roomDescription,
-    price,
-  };
+  // const currentRoom = {
+  //   roomImage,
+  //   roomSize,
+  //   roomName,
+  //   roomDescription,
+  //   price,
+  // };
 
   const selectNextComponent = () => {
     setDrawerComponent("roomDetails");
-    setSelectedRoom(currentRoom);
+    setSelectedRoom(room);
   };
 
   return (

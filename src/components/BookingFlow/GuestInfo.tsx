@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import BookingOverview from "./BookingOverview";
+import BookingOverview from "./bookingOverview";
 import ContinueContainer from "./FooterBookingFlow/ContinueContainer";
 
 type GuestInfoType = {

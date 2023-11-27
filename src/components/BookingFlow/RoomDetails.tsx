@@ -15,7 +15,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
 
   const roomImgList = ["", "", "", ""];
 
-  const roomPackages = [   
+  const roomPackages = [
     {
       name: "Black Weekend 2023 - Save 30% on accommodation with breakfast buffet",
       price: 1083,
@@ -34,11 +34,10 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
       description:
         "Stays with dinner and/or spa treatments can be canceled free of charge, no later than 7 days before arrival. If canceled between 6 and 2 days before arrival, 50% of the price of the stay will be charged. If canceled less than 2 days before arrival, the full price of the stay will be charged.",
     },
-    
   ];
 
   return (
-    <div key={id} >
+    <div key={id}>
       <div>
         <div className="md:px-[14px] md:py-[10px]">
           <div className="relative w-full flex">
@@ -47,7 +46,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
                 key={index}
                 className="flex h-full w-full min-w-[calc(48.8%-5px)] snap-start items-center justify-center bg-gray-200 text-black/50 aspect-[16/9] md:rounded-[10px] overflow-hidden pointer-events-none keen-slider__slide mr-4 "
               >
-                <img src={selectedRoom?.roomImage} alt="" />
+                <img src={selectedRoom?.image} alt="" />
               </div>
             ))}
           </div>
@@ -57,17 +56,17 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
           <section className="px-[20px] pt-[40px] h-auto">
             <div className="flex justify-between items-start w-full ">
               <div className="w-1/2">
-                <h1 className="mb-[10px]">{selectedRoom?.roomName}</h1>
+                <h1 className="mb-[10px]">{selectedRoom?.label}</h1>
                 <div className="trumpet text-sm max-lg:right-2 w-[60px] top-2 rounded-full bg-theme2 text-white px-2.5 py-1 lowercase lg:left-2 lg:top-2">
-                  <span>{selectedRoom?.roomSize}</span>
+                  <span>{selectedRoom?.label}</span>
                   <sup>2</sup>
                 </div>
               </div>
 
               <div className=" w-1/2 flex flex-col pt-[15px]">
                 <BookingFacilities />
-                  <div className="text-s font-light leading-[1.1] ">
-                  <p className="pt-[20px]">{selectedRoom?.roomDescription}</p>
+                <div className="text-s font-light leading-[1.1] ">
+                  <p className="pt-[20px]">{selectedRoom?.description}</p>
                   <p className="pt-[20px]">Show full description</p>
                 </div>
               </div>
@@ -89,7 +88,11 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
           </section>
         </div>
 
-        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} nextPage={"addons"} />
+        <ContinueContainer
+          id={id}
+          setDrawerComponent={setDrawerComponent}
+          nextPage={"addons"}
+        />
       </div>
     </div>
   );

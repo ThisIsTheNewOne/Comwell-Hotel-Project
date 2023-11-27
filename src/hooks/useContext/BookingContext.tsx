@@ -1,26 +1,35 @@
 import {
   CalendarVariable,
-  RoomList,
+  Hotel,
+  Room,
   guestTypes,
   roomDetails,
 } from "@/types/Booking";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
+
+type Guest = {
+  label: string;
+  amount: number;
+};
 
 const BookingContext = createContext({
+  hotels: [] as Hotel[],
   checkIn: {} as CalendarVariable,
   setCheckIn: (checkIn: CalendarVariable) => {},
   checkOut: {} as CalendarVariable,
   setCheckOut: (checkOut: CalendarVariable) => {},
-  roomList: [] as RoomList[],
-  setRoomList: (roomList: RoomList[]) => {},
+  roomList: [] as Room[],
+  setRoomList: (roomList: Room[]) => {},
+  guestList: [] as Guest[][],
+  setGuestList: (newGuests: Guest[][]) => {},
   roomsNumber: 1,
   setRoomsNumber: (roomsNumber: number) => {},
-  selectedHotel: null as string | null,
-  setSelectedHotel: (selectedHotel: string | null) => {},
+  selectedHotel: null as Hotel | null,
+  setSelectedHotel: (selectedHotel: Hotel | null) => {},
   totalGuests: 1,
   setTotalGuests: (totalGuests: number) => {},
-  selectedRoom: null as null | roomDetails,
-  setSelectedRoom: (selectedRoom: null | roomDetails) => {},
+  selectedRoom: null as null | Room,
+  setSelectedRoom: (selectedRoom: null | Room) => {},
   isOpenBookingFlowDrawer: false,
   setIsOpenBookingFlowDrawer: (isOpenBookingFlowDrawer: boolean) => {},
   isOpenHotelListDrawer: false,
@@ -29,6 +38,7 @@ const BookingContext = createContext({
   setIsOpenGuestsDrawer: (isOpenGuestsDrawer: boolean) => {},
   isOpenCalendarDrawer: false,
   setIsCalendarDrawer: (isOpenCalendarDrawer: boolean) => {},
+  postBooking: () => {}
 });
 
 interface BookingContextProviderProps {
@@ -46,29 +56,78 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
     date: [],
   } as CalendarVariable);
 
-  const initialRoom = {
-    label: "Room 1",
-    guests: guestTypes.map((guestType) => ({
-      label: guestType,
-      amount: guestType === "Adults" ? 1 : 0,
-    })),
-  };
+  const initialRoom = ["Adults", "Children", "Infants"].map((guestType) => ({
+    label: guestType,
+    amount: guestType === "Adults" ? 1 : 0,
+  }));
 
-  const [roomList, setRoomList] = useState([initialRoom] as RoomList[]);
+  const [hotels, setHotels] = useState([] as Hotel[]);
+  const [roomList, setRoomList] = useState([] as Room[]);
+  const [guestList, setGuestList] = useState([initialRoom] as Guest[][]);
   const [roomsNumber, setRoomsNumber] = useState(1);
-  const [selectedHotel, setSelectedHotel] = useState<string | null>(null);
+  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [totalGuests, setTotalGuests] = useState(1);
-  const [selectedRoom, setSelectedRoom] = useState(null as null | roomDetails);
+  const [selectedRoom, setSelectedRoom] = useState(null as null | Room);
   const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
   const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
   const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
   const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
 
+  // Get all hotels on render
+  useEffect(() => {
+    fetch("http://localhost:3006/" + "hotel")
+      .then(async (res) => {
+        const dataHotels: Hotel[] = await res.json();
+        console.log("GET Hotels:", dataHotels);
+        setHotels(dataHotels);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // Get all rooms on selectHotel
+  useEffect(() => {
+    if (selectedHotel) {
+      fetch("http://localhost:3006/" + "room/hotel/" + selectedHotel._id)
+        .then(async (res) => {
+          const dataRooms: Room[] = await res.json();
+          console.log("GET Rooms:", dataRooms);
+          setRoomList(dataRooms);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [selectedHotel]);
+
+  const postBooking = useCallback(async () => {
+    try {
+      const response = await fetch("http://localhost:3006/" + "booking/", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          startDate: checkIn.date,
+          endDate: checkOut.date,
+          // Needs to be updated with user info
+          userId: "guest",
+          roomId: selectedRoom?._id,
+        }),
+      });
+
+      const result = await response.json();
+      console.log("Success:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }, [checkIn, checkOut, selectedRoom]);
+
   return (
     <BookingContext.Provider
       value={{
+        hotels,
         checkIn,
         setCheckIn,
+        guestList, 
+        setGuestList,
         checkOut,
         setCheckOut,
         roomList,
@@ -81,14 +140,15 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setTotalGuests,
         selectedRoom,
         setSelectedRoom,
-        isOpenBookingFlowDrawer, 
+        isOpenBookingFlowDrawer,
         setIsOpenBookingFlowDrawer,
-        isOpenHotelListDrawer, 
+        isOpenHotelListDrawer,
         setIsOpenHotelListDrawer,
-        isOpenGuestsDrawer, 
+        isOpenGuestsDrawer,
         setIsOpenGuestsDrawer,
-        isOpenCalendarDrawer, 
-        setIsCalendarDrawer
+        isOpenCalendarDrawer,
+        setIsCalendarDrawer,
+        postBooking
       }}
     >
       {props.children}

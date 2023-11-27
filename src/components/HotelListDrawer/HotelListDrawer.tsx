@@ -3,13 +3,13 @@ import Drawer from "react-modern-drawer";
 import Filter from "./Filters";
 import HotelInput from "./HotelInput";
 import BookingInputSingle from "../BookingWidget/BookingInputSingle";
-import { HotelList } from "@/types/Booking";
+import { Hotel } from "@/types/Booking";
 import BookingContext from "@/hooks/useContext/BookingContext";
 
 interface Props {
   isOpenHotelListDrawer: boolean;
   setIsOpenHotelListDrawer: (isOpenHotelListDrawer: boolean) => void;
-  hotelList: HotelList[];
+  hotelList: Hotel[];
 }
 
 const HotelListDrawer: React.FC<Props> = (props: Props) => {
@@ -49,11 +49,11 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     placeholder: `${selectedHotel !== null ? selectedHotel : "Vælg hotel"}`,
   };
 
-  function handleHotelSelect(hotelName: string) {
-    if (selectedHotel === hotelName) {
+  function handleHotelSelect(hotel: Hotel) {
+    if (selectedHotel?._id === hotel._id) {
       setSelectedHotel(null);
     } else {
-      setSelectedHotel(hotelName);
+      setSelectedHotel(hotel);
     }
   }
 
@@ -109,11 +109,11 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
               })
               .map((hotel) => (
                 <HotelInput
-                  key={hotel.hotelName}
-                  hotelName={hotel.hotelName}
+                  key={hotel.name}
+                  hotelName={hotel.name}
                   city={hotel.city}
-                  isSelected={selectedHotel === hotel.hotelName}
-                  onClick={() => handleHotelSelect(hotel.hotelName)}
+                  isSelected={selectedHotel?.name === hotel.name}
+                  onClick={() => handleHotelSelect(hotel)}
                 />
               ))}
           </ul>

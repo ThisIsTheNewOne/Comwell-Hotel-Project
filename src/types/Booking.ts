@@ -9,20 +9,24 @@ export type CalendarInput = {
   type: string;
 };
 
-export type RoomList = {
+export type Room = {
   label: string;
-  guests: {
-    label: string;
-    amount: number;
-  }[];
+  adultGuests: number;
+  childGuests: number;
+  infantGuests: number;
+  image: string;
+  description:string;
+  price: number;
+  _id: string;
 };
-
 export const guestTypes = ["Adults", "Children", "Infants"];
 
 
-export type HotelList = {
-  hotelName: string;
+export type Hotel = {
+  _id:string;
+  name: string;
   city: string;
+  address: string;
 } 
 
 

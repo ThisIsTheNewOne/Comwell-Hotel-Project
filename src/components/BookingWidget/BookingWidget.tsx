@@ -7,7 +7,6 @@ import BookingCode from "./BookingCode";
 import BookingInputSingle from "./BookingInputSingle";
 import BookingContext from "@/hooks/useContext/BookingContext";
 import { useChangeDate } from "@/hooks/useChangeDate";
-import { HotelList } from "@/types/Booking";
 
 const BookingWidget: React.FC = () => {
   // const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
@@ -24,6 +23,7 @@ const BookingWidget: React.FC = () => {
     setIsOpenHotelListDrawer,
     isOpenGuestsDrawer,
     setIsOpenGuestsDrawer,
+    hotels
   } = useContext(BookingContext);
 
   const bookingCodeInput = {
@@ -39,35 +39,13 @@ const BookingWidget: React.FC = () => {
     new Date(2025, 4, 9),
   ];
 
-  const hotelList = [
-    {
-      hotelName: "Borupgaard",
-      city: "Sjælland",
-    },
-    {
-      hotelName: "Borupgaard2",
-      city: "Sjælland",
-    },
-    {
-      hotelName: "Borupgaard3",
-      city: "Sjælland",
-    },
-    {
-      hotelName: "Borupgaard4",
-      city: "Fyn",
-    },
-    {
-      hotelName: "Borupgaard5",
-      city: "Jylland",
-    },
-  ] as HotelList[];
 
   return (
     <nav className="flex flex-col gap-[10px]">
       <HotelListDrawer
         setIsOpenHotelListDrawer={setIsOpenHotelListDrawer}
         isOpenHotelListDrawer={isOpenHotelListDrawer}
-        hotelList={hotelList}
+        hotelList={hotels}
       />
       <GuestsDrawer
         setIsOpenGuestsDrawer={setIsOpenGuestsDrawer}

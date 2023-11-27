@@ -1,8 +1,8 @@
-import React from "react";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import React, { useContext } from "react";
 
 const BookingOverview: React.FC = () => {
-  // All of the state
-
+  const { postBooking } = useContext(BookingContext)
   return (
     <>
       <div className="overviewContainer">
@@ -61,7 +61,7 @@ const BookingOverview: React.FC = () => {
         <div className="bottom-bar relative border-t border-gray-200 bg-white p-4 lg:py-6 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full before:pointer-events-none">
           <div className="flex justify-between items-center gap-x-4">
             <div className="relative max-lg:transition-opacity md:ml-auto opacity-100 max-md:w-full">
-              <button className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-40 bg-theme text-white hover:lg:bg-theme-80">
+              <button  onClick={postBooking}  className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-40 bg-theme text-white hover:lg:bg-theme-80">
                 <span className="flex items-center gap-x-[7px] justify-center">Tilføj betalingsmetode for at bekræfte bookingen</span>
               </button>
             </div>
