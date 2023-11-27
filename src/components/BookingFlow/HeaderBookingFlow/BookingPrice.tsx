@@ -1,9 +1,16 @@
+import React, { useContext } from "react";
+import BookingContext from "@/hooks/useContext/BookingContext";
+
 const BookingPrice = () => {
+
+  const { selectedRoom } = useContext(BookingContext);
+
+  const price = selectedRoom?.price || 0;
 
   return (
     <>
       <div className="price">
-        <span>2.345</span>
+        <span>0</span>
         <span>kr.</span>
       </div>
       <div className="bedicon flex h-[36px] w-[36px] items-center justify-center rounded-full">

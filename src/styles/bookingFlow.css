@@ -1,6 +1,8 @@
 /*DRAWER*/
 .bookingFlowDrawer {
   padding: 0px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .bookingFlowDrawer .header {
@@ -10,6 +12,8 @@
   padding: 15px 0px;
   position: sticky;
   top: 0;
+  background: white;
+  z-index: 100;
 }
 
 .bookingFlowDrawer .closeButton {

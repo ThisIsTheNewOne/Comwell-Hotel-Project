@@ -9,15 +9,22 @@ import BookingContext from "@/hooks/useContext/BookingContext";
 import { useChangeDate } from "@/hooks/useChangeDate";
 import { HotelList } from "@/types/Booking";
 
-
 const BookingWidget: React.FC = () => {
-  // All of the state
-  const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
-  const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
-  const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
+  // const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
+  // const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
+  // const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
   const [isBookingCodeOpen, setIsBookingCodeOpen] = useState(false);
 
-  const { checkIn, checkOut } = useContext(BookingContext);
+  const {
+    checkIn,
+    checkOut,
+    isOpenBookingFlowDrawer,
+    setIsOpenBookingFlowDrawer,
+    isOpenHotelListDrawer,
+    setIsOpenHotelListDrawer,
+    isOpenGuestsDrawer,
+    setIsOpenGuestsDrawer,
+  } = useContext(BookingContext);
 
   const bookingCodeInput = {
     label: "Bookingkode",

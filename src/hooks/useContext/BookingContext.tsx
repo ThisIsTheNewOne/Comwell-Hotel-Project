@@ -21,6 +21,14 @@ const BookingContext = createContext({
   setTotalGuests: (totalGuests: number) => {},
   selectedRoom: null as null | roomDetails,
   setSelectedRoom: (selectedRoom: null | roomDetails) => {},
+  isOpenBookingFlowDrawer: false,
+  setIsOpenBookingFlowDrawer: (isOpenBookingFlowDrawer: boolean) => {},
+  isOpenHotelListDrawer: false,
+  setIsOpenHotelListDrawer: (isOpenHotelListDrawer: boolean) => {},
+  isOpenGuestsDrawer: false,
+  setIsOpenGuestsDrawer: (isOpenGuestsDrawer: boolean) => {},
+  isOpenCalendarDrawer: false,
+  setIsCalendarDrawer: (isOpenCalendarDrawer: boolean) => {},
 });
 
 interface BookingContextProviderProps {
@@ -51,6 +59,10 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [selectedHotel, setSelectedHotel] = useState<string | null>(null);
   const [totalGuests, setTotalGuests] = useState(1);
   const [selectedRoom, setSelectedRoom] = useState(null as null | roomDetails);
+  const [isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer] = useState(false);
+  const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
+  const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
+  const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
 
   return (
     <BookingContext.Provider
@@ -69,6 +81,14 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setTotalGuests,
         selectedRoom,
         setSelectedRoom,
+        isOpenBookingFlowDrawer, 
+        setIsOpenBookingFlowDrawer,
+        isOpenHotelListDrawer, 
+        setIsOpenHotelListDrawer,
+        isOpenGuestsDrawer, 
+        setIsOpenGuestsDrawer,
+        isOpenCalendarDrawer, 
+        setIsCalendarDrawer
       }}
     >
       {props.children}

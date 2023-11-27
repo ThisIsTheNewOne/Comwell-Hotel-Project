@@ -14,18 +14,18 @@ interface Props {
 
 const BookingInputDouble = (props: Props) => {
   const { bookingInputProps, disableDates } = props;
-  const {  setCheckIn,  setCheckOut } = useContext(BookingContext);
+  const {  setCheckIn,  setCheckOut, isOpenCalendarDrawer, setIsCalendarDrawer } = useContext(BookingContext);
 
   const doesDrawerExist = true;
-  const [isOpenDrawer, setIsDrawer] = useState(false);
+  // const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
 
   const openDrawer = () => {
     console.log("Hotel list drawer open");
-    setIsDrawer(true);
+    setIsCalendarDrawer(true);
   };
 
   const closeDrawer = () => {
-    setIsDrawer(false);
+    setIsCalendarDrawer(false);
   };
 
 
@@ -57,7 +57,7 @@ const BookingInputDouble = (props: Props) => {
       {doesDrawerExist && (
         <Drawer
           className="hotelListDrawer z-[100]"
-          open={isOpenDrawer}
+          open={isOpenCalendarDrawer}
           onClose={closeDrawer}
           direction="right"
           size={390}

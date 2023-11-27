@@ -15,7 +15,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
 
   const roomImgList = ["", "", "", ""];
 
-  const roomPackages = [
+  const roomPackages = [   
     {
       name: "Black Weekend 2023 - Save 30% on accommodation with breakfast buffet",
       price: 1083,
@@ -34,10 +34,11 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
       description:
         "Stays with dinner and/or spa treatments can be canceled free of charge, no later than 7 days before arrival. If canceled between 6 and 2 days before arrival, 50% of the price of the stay will be charged. If canceled less than 2 days before arrival, the full price of the stay will be charged.",
     },
+    
   ];
 
   return (
-    <div key={id}>
+    <div key={id} >
       <div>
         <div className="md:px-[14px] md:py-[10px]">
           <div className="relative w-full flex">
@@ -75,7 +76,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
 
           <section className="px-[20px] py-[0px]">
             <div className="mb-[10px] text-[28px]">Packages</div>
-            <div className="flex gap-[17px]">
+            <div className="flex flex-wrap gap-[17px]">
               {roomPackages.map((roomPackage, index) => (
                 <RoomPackages
                   key={index}

@@ -35,7 +35,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
       roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
       price: 7.402,
     },
-  ];
+  ];   
 
   return (
     <div key={id}>

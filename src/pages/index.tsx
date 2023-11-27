@@ -1,13 +1,24 @@
 import BookingWidgetContainer from "@/components/BookingWidget/BookingWidgetContainer";
 import LocalizedLink from "@/components/molecules/LocalizedLink";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import { useContext, useEffect } from "react";
 
 export default function Home() {
+  const { isOpenBookingFlowDrawer, isOpenHotelListDrawer, isOpenGuestsDrawer, isOpenCalendarDrawer } =
+    useContext(BookingContext);
+
+  useEffect(() => {
+    if (isOpenBookingFlowDrawer || isOpenHotelListDrawer || isOpenGuestsDrawer || isOpenCalendarDrawer) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpenBookingFlowDrawer, isOpenHotelListDrawer, isOpenGuestsDrawer, isOpenCalendarDrawer]);
+
   return (
     <div>
-      {/* <section className="w-full bg-gradient-to-t lg:from-black/[0.35] pt-20 pb-8 md:pt-20 to-black/[0.1] via-transparent before:absolute before:inset-0"> */}
-
       <section className="-mt-[110px] pt-[220px] ">
-        <div className="relative min-h-[70vh] w-full z-0  ">
+        <div className="min-h-[70vh] w-full z-0  ">
           <img
             src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/homepage/public/images/mainPage/HeroImage.jpg"
             alt="Hero Img"
