@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import BookingOverview from "./BookingOverview";
+import BookingOverview from "./bookingOverview";
 import CreditCard from "./CreditCard";
 import BookingContext from "@/hooks/useContext/BookingContext";
 
