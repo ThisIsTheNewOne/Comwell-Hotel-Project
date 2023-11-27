@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <section className="-mt-[110px] pt-[220px] ">
-        <div className="relative min-h-[70vh] w-full">
+        <div className="min-h-[70vh] w-full">
           <img src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/homepage/public/images/mainPage/HeroImage.jpg" alt="Hero Img" className="absolute inset-0 w-full h-full object-cover z-[-1]" />
           <div className="relative z-10">
             <div className="grid grid-cols-[repeat(12,_1fr)] pt-[14vh] w-full gap-[16px] h-[500px] pl-[10vw] pr-[10%]">
