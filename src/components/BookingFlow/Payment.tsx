@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BookingOverview from "./bookingOverview";
+import BookingOverview from "./BookingOverview";
 import CreditCard from "./CreditCard";
 
 const Payment: React.FC = () => {

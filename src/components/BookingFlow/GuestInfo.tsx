@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import BookingOverview from "./bookingOverview";
+import BookingOverview from "./BookingOverview";
 import ContinueContainer from "./FooterBookingFlow/ContinueContainer";
 
 type GuestInfoType = {
@@ -57,27 +57,9 @@ const GuestInfo: React.FC<GuestInfoType> = (props: GuestInfoType) => {
         <div className="guestInfoContainer">
           <h1>Gæsteinformation</h1>
           <form id="guestForm" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Fulde navn"
-              value={name}
-              onChange={handleNameChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            <input
-              type="tel"
-              name="telefon"
-              placeholder="Telefon"
-              value={telefon}
-              onChange={handleTelefonChange}
-            />
+            <input type="text" name="name" placeholder="Fulde navn" value={name} onChange={handleNameChange} />
+            <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+            <input type="tel" name="telefon" placeholder="Telefon" value={telefon} onChange={handleTelefonChange} />
             {/* <button onClick={handleCancel}>Cancel</button> */}
             {/* <input type="submit" value={"Forsæt"} /> */}
           </form>
