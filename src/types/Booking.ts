@@ -37,3 +37,5 @@ export type roomDetails = {
   roomDescription: string;
   price: number;
   }
+
+  export type Currency = "DKK" | "EUR" | "USD";

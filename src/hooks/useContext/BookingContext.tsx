@@ -38,7 +38,9 @@ const BookingContext = createContext({
   setIsOpenGuestsDrawer: (isOpenGuestsDrawer: boolean) => {},
   isOpenCalendarDrawer: false,
   setIsCalendarDrawer: (isOpenCalendarDrawer: boolean) => {},
-  postBooking: () => {}
+  postBooking: () => {},
+  selectedPackage: null as null | number,
+  setSelectedPackage: (selectedPackage: null | number) => {},
 });
 
 interface BookingContextProviderProps {
@@ -72,6 +74,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
   const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
   const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState(null as null | number);
 
   // Get all hotels on render
   useEffect(() => {
@@ -148,7 +151,9 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setIsOpenGuestsDrawer,
         isOpenCalendarDrawer,
         setIsCalendarDrawer,
-        postBooking
+        postBooking,
+        selectedPackage, 
+        setSelectedPackage
       }}
     >
       {props.children}

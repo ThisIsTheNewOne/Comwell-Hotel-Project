@@ -44,7 +44,6 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
   // ];    
   const isRoomAMatch = useCallback((room: Room) => {
     const firstGuestList = guestList[0]
-    // PAAAAAAAAAAAAAAAAAAAAAIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNNNNNNNN
     return room.adultGuests >= ((firstGuestList.find(g => g.label === 'Adults'))?.amount ?? 0) ||
     room.childGuests >= ((firstGuestList.find(g => g.label === 'Children'))?.amount?? 0) ||
     room.childGuests >= ((firstGuestList.find(g => g.label === 'Infants'))?.amount ?? 0 )
@@ -55,10 +54,6 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
       <div className="selectRoomContainer">
         <h1>Vælg værelse</h1>
         <ul className="roomList flex flex-col gap-y-4 py-4">
-          {/* <SmallRoomOverview roomSize="16 m" roomImage="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp" roomName="Twin seng" price={7.402} /> */}
-          {/* <SmallRoomOverview roomSize="40 m" roomImage="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/suite.webp" roomName="Suite" price={13.439} /> */}
-          {/* <SmallRoomOverview roomSize="16 m" roomImage="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp" roomName="Twin seng" price={7.402} /> */}
-
           {roomList.map((room, index) => {
             if(isRoomAMatch(room)){
             return (

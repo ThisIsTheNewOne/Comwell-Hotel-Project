@@ -46,10 +46,11 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
 
   const hotelInput = {
     label: "Hotel",
-    placeholder: `${selectedHotel !== null ? selectedHotel : "Vælg hotel"}`,
+    placeholder: `${selectedHotel !== null ? selectedHotel.name : "Vælg hotel"}`,
   };
 
   function handleHotelSelect(hotel: Hotel) {
+    console.log("This is the selected hotel in the end", hotel, selectedHotel)
     if (selectedHotel?._id === hotel._id) {
       setSelectedHotel(null);
     } else {

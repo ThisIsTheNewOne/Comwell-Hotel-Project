@@ -1,16 +1,30 @@
-import React, { useContext } from "react";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import React, { useContext, useState } from "react";
 
 type RoomPackagesType = {
   name: string;
   price: number;
   description: string;
+  activePackage: string | null;
+  setActivePackage: (activePackage: string | null) => void;
 };
 
 const RoomPackages: React.FC<RoomPackagesType> = (props: RoomPackagesType) => {
-  const { name, price, description } = props;
+  const { name, price, description, activePackage, setActivePackage } = props;
+  const { setSelectedPackage } = useContext(BookingContext);
+
+  const selectPackage = () => {
+    setSelectedPackage(price);
+    setActivePackage(name);
+  };
 
   return (
-    <div className=" flex flex-col justify-between border-[1px] border-gray-300 rounded-[6px] py-[15px] px-[15px] w-[60%]">
+    <div
+      className={`flex flex-col justify-between border ${
+        activePackage === name ? "border-black" : "border-gray-300"
+      } hover:border-black rounded-[6px] py-[15px] px-[15px] w-[48%] cursor-pointer`}
+      onClick={() => selectPackage()}
+    >
       <div className="flex">
         <div className="text-[20px] leading-[1.1] mb-[10px] mr-[30px]">
           {name}

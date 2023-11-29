@@ -68,7 +68,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
               <BookingHotel />
             </div>
           </div>
-          <div className="right">
+          <div className="right"> 
             <BookingPrice />
           </div>
         </div>
