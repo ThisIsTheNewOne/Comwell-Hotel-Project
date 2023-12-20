@@ -2,7 +2,7 @@ import { signUp, login } from "./auth-proxy";
 
 export async function createSignup(data) {
   try {
-    const response = await signUp(data.email, data.password);
+    const response = await signUp(data.name, data.email, data.telefon, data.password);
 
     console.log("response createSignup", response);
 
