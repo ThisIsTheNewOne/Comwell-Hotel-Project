@@ -12,7 +12,7 @@ export async function signUp(name, email, telefon, password) {
       returnSecureToken: true,
     }),
   });
-  console.log("response signUp",response);
+  console.log("response signUp", response);
   return response;
 }
 
