@@ -25,7 +25,6 @@ const HotelInput: React.FC<HotelInputProps> = (props: HotelInputProps) => {
             />
           </div>
           <div className="hotelInfo">
-          <div className="divider">HAHAHAHAAH</div>
             <div className="hotelName">{hotelName}</div>
             <div className="hotelCity font-medium">{city}</div>
           </div>
