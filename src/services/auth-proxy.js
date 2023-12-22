@@ -1,28 +1,30 @@
-export async function signUp(email, password) {
-  const response = await fetch("http://localhost:3000/register", {
+export async function signUp(name, email, telefon, password) {
+  const response = await fetch("http://localhost:3006/" + "user", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      telefon,
+      password,
+      returnSecureToken: true,
+    }),
+  });
+  console.log("response signUp", response);
+  return response;
+}
+
+export async function login(email, password) {
+  const response = await fetch("http://localhost:3006/" + "user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       email,
-      password,
-      returnSecureToken: true,
-    }),
-  });
-  console.log(response);
-  return response;
-}
-
-export async function login(username, password) {
-  const response = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username,
-      password,
+      password
     }),
   });
 
@@ -34,7 +36,13 @@ export async function login(username, password) {
 }
 
 //A function, to retrieve the stored user information
-export function userAuthValidation() {
+/* export function userAuthValidation() {
   const token = localStorage.getItem("token");
   return token;
+}
+*/
+
+export function userAuthValidation() {
+  const userObject = localStorage.getItem("userObject");
+  return userObject;
 }
