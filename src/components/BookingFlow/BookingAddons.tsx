@@ -57,6 +57,7 @@ const BookingAddons: React.FC<BookingAddonsType> = (
 
   return (
     <div className="selectRoomContainer">
+      <div className="h-[87%] flex flex-col flex-start">
       <h1>Vælg værelse</h1>
       <div key={id} className="mt-[40px] flex  flex-wrap  gap-[20px]">
         {addOnsList.map((addOn, index) => (
@@ -112,13 +113,15 @@ const BookingAddons: React.FC<BookingAddonsType> = (
           </div>
         </div>
       </Drawer>
+      </div>
 
-      <div className="h-[20%]">
+      <div className="fixed bottom-0 left-0 w-full transition-all duration-[400ms] z-[1]">
         <ContinueContainer
           id={id}
           setDrawerComponent={setDrawerComponent}
           nextPage="guestInfo"
         />
+    
       </div>
     </div>
   );

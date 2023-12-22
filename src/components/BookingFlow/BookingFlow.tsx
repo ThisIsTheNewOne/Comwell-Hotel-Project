@@ -10,6 +10,7 @@ import BookingPrice from "./HeaderBookingFlow/BookingPrice";
 import GoBackButton from "./HeaderBookingFlow/GoBackButton";
 import RoomDetails from "./RoomDetails";
 import BookingAddons from "./BookingAddons";
+import Confirmation from "./Confirmation";
 
 interface Props {
   isOpenBookingFlowDrawer: boolean;
@@ -25,6 +26,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     "addons",
     "guestInfo",
     "payment",
+    "confirmation"
   ]);
 
   function handleClick() {
@@ -93,7 +95,8 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
           {drawerComponent === "guestInfo" && (
             <GuestInfo id="guestInfo" setDrawerComponent={setDrawerComponent} />
           )}
-          {drawerComponent === "payment" && <Payment />}
+          {drawerComponent === "payment" && <Payment id="payment"  setDrawerComponent={setDrawerComponent} />}
+          {drawerComponent === "confirmation" && <Confirmation /> }
         </>
       </Drawer>
     </nav>

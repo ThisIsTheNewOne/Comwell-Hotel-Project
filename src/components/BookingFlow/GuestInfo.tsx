@@ -64,10 +64,9 @@ const GuestInfo: React.FC<GuestInfoType> = (props: GuestInfoType) => {
             {/* <input type="submit" value={"Forsæt"} /> */}
           </form>
         </div>
-        <BookingOverview />
-        <ContinueContainer id={id} setDrawerComponent={setDrawerComponent} nextPage="payment" />
+        <BookingOverview id={id} setDrawerComponent={setDrawerComponent} nextPage="payment" />
       </div>
-    </div>
+    </div> 
   );
 };
 
