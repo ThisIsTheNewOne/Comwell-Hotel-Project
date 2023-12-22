@@ -23,6 +23,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
   }
 
   function handleClose() {
+    console.log("what is up with this in the end", isOpenHotelListDrawer)
     setIsOpenHotelListDrawer(false);
   }
 
@@ -92,13 +93,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
           selectedFilter={selectedFilter}
           handleFilterChange={handleFilterChange}
         />
-        <div className="divider"></div>
-        {/* Add your hotel list here based on the selectedFilter */}
         <div className="hotelList">
-          {/* <ul className="flex flex-col gap-y-2">
-            <HotelInput hotelName="Borupgaard" city="Snekkersten" isSelected={selectedHotel === "Borupgaard"} onClick={() => handleHotelSelect("Borupgaard")} />
-            <HotelInput hotelName="Borupgaard2" city="Snekkersten" isSelected={selectedHotel === "Borupgaard2"} onClick={() => handleHotelSelect("Borupgaard2")} />
-          </ul> */}
           <ul className="flex flex-col gap-y-2">
             {hotelList
               .filter((hotel) => {
@@ -119,8 +114,10 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
               ))}
           </ul>
         </div>
+       
         <div className="drawerSelectButton">
-          <button onClick={handleClose}>Vælg</button>
+          {/* <div> Is this a good button in the end ?</div> */}
+          <button onClick={() =>  handleClose()}>Vælg</button>
         </div>
       </Drawer>
     </nav>
