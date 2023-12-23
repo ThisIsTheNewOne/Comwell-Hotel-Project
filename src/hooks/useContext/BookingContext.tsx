@@ -4,6 +4,7 @@ import {
   Room,
   guestTypes,
   roomDetails,
+  roomPackage,
 } from "@/types/Booking";
 import { createContext, useCallback, useEffect, useState } from "react";
 
@@ -41,6 +42,10 @@ const BookingContext = createContext({
   postBooking: () => {},
   selectedPackage: null as null | number,
   setSelectedPackage: (selectedPackage: null | number) => {},
+  totalPrice: 0,
+  setTotalPrice: (totalPrice: number) => {},
+  selectedAddon: [] as roomPackage[], 
+  setSelectedAddon: (selectedAddon: roomPackage[]) => {}
 });
 
 interface BookingContextProviderProps {
@@ -75,6 +80,8 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
   const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null as null | number);
+  const [selectedAddon, setSelectedAddon] = useState([] as roomPackage[]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // Get all hotels on render
   useEffect(() => {
@@ -153,7 +160,11 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setIsCalendarDrawer,
         postBooking,
         selectedPackage, 
-        setSelectedPackage
+        setSelectedPackage,
+        selectedAddon, 
+        setSelectedAddon,
+        totalPrice,
+        setTotalPrice
       }}
     >
       {props.children}

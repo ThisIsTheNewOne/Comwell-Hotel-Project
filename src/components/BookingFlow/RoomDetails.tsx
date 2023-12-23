@@ -79,6 +79,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
             <div className="flex flex-wrap gap-[17px]">
               {roomPackages.map((roomPackage, index) => (
                 <RoomPackages
+                  id={"roomDetails"}
                   key={index}
                   name={roomPackage.name}
                   price={roomPackage.price}

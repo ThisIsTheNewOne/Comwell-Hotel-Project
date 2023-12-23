@@ -33,7 +33,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     console.log("Booking flow drawer open");
     setIsOpenBookingFlowDrawer(true);
   }
-
+ 
   function handleClose() {
     const currentIndex = componentList.indexOf(drawerComponent);
 
@@ -44,6 +44,8 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     }
   }
 
+
+console.log("This is the drawer", drawerComponent)
 
   return (
     <nav>

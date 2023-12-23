@@ -26,28 +26,25 @@ const ContinueContainer: React.FC<ContinueContainerType> = (
     nextPage,
     price,
     selectedRoom,
-    postBooking,
+    
     isCreditCardValid,
   } = props;
   const { selectedPackage } = useContext(BookingContext);
   const { currency } = useContext(LanguageContext);
   const [formatNumber] = usePriceFormatter();
+  const {postBooking, totalPrice} = useContext(BookingContext);
+ 
 
   const selectNextComponent = () => {
     setDrawerComponent(nextPage || "selectRoom");
   };
 
-  const calculatedPrice =
-    selectedPackage !== null
-      ? selectedPackage
-      : selectedRoom?.price !== undefined
-        ? selectedRoom?.price
-        : 0;
+  const calculatedPrice = totalPrice
   const calculatedPriceFormatted = formatNumber(calculatedPrice);
 
   const paymentFunction = () => {
     console.log("is this a correct function");
-    postBooking;
+    postBooking();
     setDrawerComponent("confirmation");
   };
 
