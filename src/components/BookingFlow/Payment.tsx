@@ -297,7 +297,7 @@ const Payment: React.FC<Props> = (props: Props) => {
         <BookingOverview
           id={id}
           setDrawerComponent={setDrawerComponent}
-          nextPage={"confirmation"}
+          nextPage={"reservationAdded"}
           postBooking={postBooking}
           isCreditCardValid={isCreditCardValid}
         />
