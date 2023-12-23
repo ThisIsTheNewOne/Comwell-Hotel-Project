@@ -11,6 +11,7 @@ import GoBackButton from "./HeaderBookingFlow/GoBackButton";
 import RoomDetails from "./RoomDetails";
 import BookingAddons from "./BookingAddons";
 import Confirmation from "./Confirmation";
+import ReservationAdded from "./ReservationAdded";
 
 interface Props {
   isOpenBookingFlowDrawer: boolean;
@@ -26,14 +27,15 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     "addons",
     "guestInfo",
     "payment",
-    "confirmation"
+    "reservationAdded",
+    "confirmation",
   ]);
 
   function handleClick() {
     console.log("Booking flow drawer open");
     setIsOpenBookingFlowDrawer(true);
   }
- 
+
   function handleClose() {
     const currentIndex = componentList.indexOf(drawerComponent);
 
@@ -44,8 +46,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     }
   }
 
-
-console.log("This is the drawer", drawerComponent)
+  console.log("This is the drawer", drawerComponent);
 
   return (
     <nav>
@@ -63,19 +64,24 @@ console.log("This is the drawer", drawerComponent)
         direction="right"
         size={910}
       >
-        <div className="header">
-          <div className="left">
-            <GoBackButton handleClose={handleClose} />
-            <div className="bookingSummary font-regular">
-              <BookingDates />
-              <BookingRooms />
-              <BookingHotel />
+        {drawerComponent === "reservationAdded" ||
+        drawerComponent === "confirmation" ? (
+          <></>
+        ) : (
+          <div className="header">
+            <div className="left">
+              <GoBackButton handleClose={handleClose} />
+              <div className="bookingSummary font-regular">
+                <BookingDates />
+                <BookingRooms />
+                <BookingHotel />
+              </div>
+            </div>
+            <div className="right">
+              <BookingPrice />
             </div>
           </div>
-          <div className="right"> 
-            <BookingPrice />
-          </div>
-        </div>
+        )}
 
         <>
           {drawerComponent === "selectedRoom" && (
@@ -84,21 +90,26 @@ console.log("This is the drawer", drawerComponent)
               setDrawerComponent={setDrawerComponent}
             />
           )}
-
           {drawerComponent === "roomDetails" && (
             <RoomDetails
               id="roomDetails"
               setDrawerComponent={setDrawerComponent}
             />
           )}
-
-          {drawerComponent === "addons" && <BookingAddons id="addons"  setDrawerComponent={setDrawerComponent} />}
-
+          {drawerComponent === "addons" && (
+            <BookingAddons
+              id="addons"
+              setDrawerComponent={setDrawerComponent}
+            />
+          )}
           {drawerComponent === "guestInfo" && (
             <GuestInfo id="guestInfo" setDrawerComponent={setDrawerComponent} />
           )}
-          {drawerComponent === "payment" && <Payment id="payment"  setDrawerComponent={setDrawerComponent} />}
-          {drawerComponent === "confirmation" && <Confirmation /> }
+          {drawerComponent === "payment" && (
+            <Payment id="payment" setDrawerComponent={setDrawerComponent} />
+          )}
+          {drawerComponent === "reservationAdded" && <ReservationAdded />}
+          {drawerComponent === "confirmation" && <Confirmation />}
         </>
       </Drawer>
     </nav>

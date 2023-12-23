@@ -16,7 +16,7 @@ const Payment: React.FC<Props> = (props: Props) => {
   const [showCreditCard, setShowCreditCard] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [isCreditCardValid, setIsCreditCardValid] = useState(false);
-  const { postBooking, selectedHotel, checkIn, checkOut } =
+  const { postBooking, selectedHotel, checkIn, checkOut, guestInfo } =
     useContext(BookingContext);
   const [calendarInput] = useChangeDate({ checkIn, checkOut });
 
@@ -87,9 +87,12 @@ const Payment: React.FC<Props> = (props: Props) => {
                     <span className="text-lg">Gæsteinfo</span>
                     <ul className="space-y-2">
                       <li className="flex flex-col text-sm opacity-[0.65]">
-                        <span>Ana Sofia Castellanos</span>
+                        {/* <span>Ana Sofia Castellanos</span>
                         <span>castellanos_chopas@hotmail.com</span>
-                        <span>+4581906847</span>
+                        <span>+4581906847</span> */}
+                       <span>{guestInfo?.name}</span> 
+                       <span>{guestInfo?.email}</span> 
+                       <span>{guestInfo?.telefon}</span> 
                       </li>
                     </ul>
                   </div>
@@ -115,7 +118,7 @@ const Payment: React.FC<Props> = (props: Props) => {
                   </div>
                   <div className="flex flex-col text-sm">
                     <span className="text-lg">Dato</span>
-                    {/* <span className="opacity-[0.65]">{calendarInput.}</span> */}
+
                     <span className="opacity-[0.65]">
                       {calendarInput
                         .map((item) => item.placeholder)
@@ -124,6 +127,15 @@ const Payment: React.FC<Props> = (props: Props) => {
                   </div>
                 </div>
               </li>
+
+
+            </ul>
+          </div>
+
+          <div className="order-first">
+            <h1>Evt. kommentar</h1>
+            <ul className="max-lg:grid grid-cols-2 grid-rows-[auto,auto] max-lg:gap-3 lg:space-y-3 mt-3">
+             <input type="text" placeholder="Evt. kommentar..." className="w-full border rounded-[10px] px-2 py-3" />
             </ul>
           </div>
 
@@ -285,33 +297,11 @@ const Payment: React.FC<Props> = (props: Props) => {
         <BookingOverview
           id={id}
           setDrawerComponent={setDrawerComponent}
-          nextPage={"payment"}
+          nextPage={"confirmation"}
           postBooking={postBooking}
           isCreditCardValid={isCreditCardValid}
         />
 
-        {/* <div className="fixed bottom-0 left-0 w-full transition-all duration-[400ms] z-[1]">
-          <div className="bottom-bar relative border-t border-gray-200 bg-white p-4 lg:py-6 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full before:pointer-events-none">
-            <div className="flex justify-between items-center gap-x-4">
-              <div className="relative max-lg:transition-opacity md:ml-auto opacity-100 max-md:w-full">
-                <button
-                  onClick={postBooking}
-                  disabled={!isCreditCardValid}
-                  className={
-                    "body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] " +
-                    (isCreditCardValid
-                      ? "bg-theme text-white hover:lg:bg-theme-80"
-                      : "opacity-40 bg-theme text-white")
-                  }
-                >
-                  <span className="flex items-center gap-x-[7px] justify-center">
-                    Tilføj betalingsmetode for at bekræfte bookingen
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

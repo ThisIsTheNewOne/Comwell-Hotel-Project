@@ -45,7 +45,9 @@ const BookingContext = createContext({
   totalPrice: 0,
   setTotalPrice: (totalPrice: number) => {},
   selectedAddon: [] as roomPackage[], 
-  setSelectedAddon: (selectedAddon: roomPackage[]) => {}
+  setSelectedAddon: (selectedAddon: roomPackage[]) => {},
+  guestInfo: { name: "", email: "", telefon: "" },
+  setGuestsInfo: (guestInfo: { name: string; email: string; telefon: string }) => {},
 });
 
 interface BookingContextProviderProps {
@@ -82,6 +84,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [selectedPackage, setSelectedPackage] = useState(null as null | number);
   const [selectedAddon, setSelectedAddon] = useState([] as roomPackage[]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [guestInfo, setGuestsInfo] = useState({ name: "", email: "", telefon: "" });
 
   // Get all hotels on render
   useEffect(() => {
@@ -164,7 +167,9 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         selectedAddon, 
         setSelectedAddon,
         totalPrice,
-        setTotalPrice
+        setTotalPrice,
+        guestInfo, 
+        setGuestsInfo
       }}
     >
       {props.children}

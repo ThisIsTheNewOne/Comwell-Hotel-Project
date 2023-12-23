@@ -13,17 +13,8 @@ interface Props {
 const BookingOverview: React.FC<Props> = (props: Props) => {
   const { id, setDrawerComponent, nextPage, postBooking, isCreditCardValid } =
     props;
-  const {
-    setSelectedPackage,
-    selectedPackage,
-    selectedAddon,
-    setSelectedAddon,
-    totalPrice,
-    selectedRoom
-  } = useContext(BookingContext);
-
-  
-
+  const { selectedPackage, selectedAddon, totalPrice, selectedRoom } =
+    useContext(BookingContext);
 
   // const { postBooking } = useContext(BookingContext)
   return (
@@ -77,7 +68,6 @@ const BookingOverview: React.FC<Props> = (props: Props) => {
               </div>
             </div>
           ))}
-
         </div>
         <footer className="bottom-0 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full pb-8 mt-12">
           <div className="py-5 border-y border-gray-200 flex justify-between items-center w-full">
@@ -96,7 +86,7 @@ const BookingOverview: React.FC<Props> = (props: Props) => {
         <ContinueContainer
           id={id}
           setDrawerComponent={setDrawerComponent}
-          nextPage="payment"
+          nextPage={nextPage}
           postBooking={postBooking}
           isCreditCardValid={isCreditCardValid}
         />
