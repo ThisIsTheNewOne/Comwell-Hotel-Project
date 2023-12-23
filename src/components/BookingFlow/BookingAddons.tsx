@@ -93,7 +93,7 @@ const BookingAddons: React.FC<BookingAddonsType> = (
             <div>Img</div>
             <h1>{selectedAddOns.name}</h1>
             <div className="text-light">{selectedAddOns.fullDescription}</div>
-            <div className="h-[100vh]">
+            {/* <div className="h-[100vh]">
               <ContinueContainer
                 id={id}
                 setDrawerComponent={setDrawerComponent}
@@ -101,7 +101,7 @@ const BookingAddons: React.FC<BookingAddonsType> = (
                 price={selectedAddOns.price}
                 nextPage="addons"
               />
-            </div>
+            </div> */}
           </div>
         </Drawer>
       </div>
@@ -111,6 +111,8 @@ const BookingAddons: React.FC<BookingAddonsType> = (
           id={id}
           setDrawerComponent={setDrawerComponent}
           nextPage="guestInfo"
+          type={"addon"}
+          price={selectedAddOns.price}
         />
       </div>
     </div>

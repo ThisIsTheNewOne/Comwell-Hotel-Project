@@ -27,10 +27,11 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
     price,
     setDrawerComponent,
   } = props;
-  const { setSelectedRoom } = useContext(BookingContext);
+  const { setSelectedRoom,setTotalPrice } = useContext(BookingContext);
   const [formatNumber] = usePriceFormatter();
 
   const selectNextComponent = () => {
+    setTotalPrice(price)
     setDrawerComponent("roomDetails");
     setSelectedRoom(room);
   };

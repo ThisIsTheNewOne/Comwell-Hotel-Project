@@ -80,7 +80,7 @@ const ContinueContainer: React.FC<ContinueContainerType> = (
       <div className="relative  border-t border-gray-200 bg-white p-4 lg:py-6 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full before:pointer-events-none">
         <div className="flex justify-between items-center gap-x-4">
           <div className="relative flex max-lg:transition-opacity md:ml-auto opacity-100 max-md:w-full">
-            {id !== "payment" && id !== "guestInfo" ? (
+            {id !== "payment" && id !== "guestInfo" && id !== "addons" ? (
               <div className="text-[30px] mr-8">
                 {currency}
                 {calculatedPriceFormatted}

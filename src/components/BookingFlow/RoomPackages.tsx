@@ -76,7 +76,9 @@ const RoomPackages: React.FC<RoomPackagesType> = (props: RoomPackagesType) => {
   };
 
   useEffect(() => {
+    if(selectedPackage !== null) {
       calculateNewPrice();
+    }
   }, [selectedAddon]); 
 
   return (
