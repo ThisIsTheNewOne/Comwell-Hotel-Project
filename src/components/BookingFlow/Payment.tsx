@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import BookingOverview from "./bookingOverview";
 import CreditCard from "./CreditCard";
 import BookingContext from "@/hooks/useContext/BookingContext";
+import { useChangeDate } from "@/hooks/useChangeDate";
 
 interface Props {
   id: string;
@@ -9,13 +10,15 @@ interface Props {
   nextPage?: string;
 }
 
-const Payment: React.FC<Props> = (props:Props) => {
+const Payment: React.FC<Props> = (props: Props) => {
   const { id, setDrawerComponent, nextPage } = props;
   // All of the state
   const [showCreditCard, setShowCreditCard] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [isCreditCardValid, setIsCreditCardValid] = useState(false);
-  const { postBooking } = useContext(BookingContext);
+  const { postBooking, selectedHotel, checkIn, checkOut } =
+    useContext(BookingContext);
+  const [calendarInput] = useChangeDate({ checkIn, checkOut });
 
   const toggleCreditCardVisibility = () => {
     setShowCreditCard(!showCreditCard);
@@ -51,10 +54,15 @@ const Payment: React.FC<Props> = (props:Props) => {
                     </svg>
                   </div>
                   <div className="flex flex-col text-sm">
-                    <span className="text-lg">Borupgaard</span>
-                    <span className="opacity-[0.65]">Nørrevej 80</span>
-                    <span className="opacity-[0.65]">3070 Snekkersten</span>
-                    <span className="opacity-[0.65]">Denmark</span>
+                    <span className="text-lg">{selectedHotel?.name}</span>
+                    <span className="opacity-[0.65]">
+                      {selectedHotel?.address}
+                    </span>
+                    <span className="opacity-[0.65]">
+                      {" "}
+                      {selectedHotel?.city}
+                    </span>
+                    <span className="opacity-[0.65]"> Denmark</span>
                   </div>
                 </div>
               </li>
@@ -107,7 +115,12 @@ const Payment: React.FC<Props> = (props:Props) => {
                   </div>
                   <div className="flex flex-col text-sm">
                     <span className="text-lg">Dato</span>
-                    <span className="opacity-[0.65]">1. dec. - 7. dec.</span>
+                    {/* <span className="opacity-[0.65]">{calendarInput.}</span> */}
+                    <span className="opacity-[0.65]">
+                      {calendarInput
+                        .map((item) => item.placeholder)
+                        .join(" - ")}
+                    </span>
                   </div>
                 </div>
               </li>
@@ -269,7 +282,13 @@ const Payment: React.FC<Props> = (props:Props) => {
           </div>
         </div>
 
-        <BookingOverview id={id} setDrawerComponent={setDrawerComponent} nextPage={"payment"} postBooking={postBooking} isCreditCardValid={isCreditCardValid} />
+        <BookingOverview
+          id={id}
+          setDrawerComponent={setDrawerComponent}
+          nextPage={"payment"}
+          postBooking={postBooking}
+          isCreditCardValid={isCreditCardValid}
+        />
 
         {/* <div className="fixed bottom-0 left-0 w-full transition-all duration-[400ms] z-[1]">
           <div className="bottom-bar relative border-t border-gray-200 bg-white p-4 lg:py-6 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full before:pointer-events-none">
