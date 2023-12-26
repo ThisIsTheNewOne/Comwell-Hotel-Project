@@ -1,27 +1,27 @@
-export async function signUp(email, password) {
-  const response = await fetch("http://localhost:3000/register", {
+export async function signUp(email: string, password: string) {
+  const response = await fetch("http://localhost:3006/user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email,
-      password,
-      returnSecureToken: true,
+      "userId": email,
+      "username": email.split('@')[0],
+      "password": password
     }),
   });
   console.log(response);
   return response;
 }
 
-export async function login(username, password) {
-  const response = await fetch("http://localhost:3000/login", {
+export async function login(username: string, password: string) {
+  const response = await fetch("http://localhost:3006/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
+      username: username.split('@')[0],
       password,
     }),
   });

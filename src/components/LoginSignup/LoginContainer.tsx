@@ -51,7 +51,7 @@ const LoginContainer: React.FC = () => {
 
   return (
     <>
-      <div className="logInContainer font-semibold">
+      <div className="logInContainer font-semibold absolute">
         <form id="loginForm">
           <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
           <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
