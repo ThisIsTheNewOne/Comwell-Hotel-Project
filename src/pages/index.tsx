@@ -16,15 +16,10 @@ export default function Home() {
   }, [isOpenBookingFlowDrawer, isOpenHotelListDrawer, isOpenGuestsDrawer, isOpenCalendarDrawer]);
 
   return (
-    <div>
+    <div style={{ backgroundImage: "url(https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/homepage/public/images/mainPage/HeroImage.jpg)" }}>
       <section className="-mt-[110px] pt-[220px] ">
-        <div className="min-h-[70vh] w-full">
-          <img src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/homepage/public/images/mainPage/HeroImage.jpg" alt="Hero Img" className="absolute inset-0 w-full h-full object-cover z-[-1]" />
-          <div className="relative z-10">
-            <div className="grid grid-cols-[repeat(12,_1fr)] pt-[14vh] w-full gap-[16px] h-[500px] pl-[10vw] pr-[10%]">
-              <BookingWidgetContainer />
-            </div>
-          </div>
+        <div className="min-h-[70vh] w-1/3 ml-10">
+          <BookingWidgetContainer />
         </div>
       </section>
 
