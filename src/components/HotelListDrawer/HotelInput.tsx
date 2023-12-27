@@ -17,6 +17,7 @@ const HotelInput: React.FC<HotelInputProps> = (props: HotelInputProps) => {
           className={`hotelButton ${isSelected ? "selected" : ""}`}
           onClick={onClick}
         >
+          
           <div className="imageContainer">
             <img
               src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/borupgaard.webp"

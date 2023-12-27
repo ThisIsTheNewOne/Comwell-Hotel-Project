@@ -4,11 +4,11 @@ import LanguageContext from "@/hooks/useContext/LanguageContext";
 import { usePriceFormatter } from "@/hooks/usePriceFormatter";
 
 const BookingPrice = () => {
-  const { selectedPackage } = useContext(BookingContext);
+  const { totalPrice } = useContext(BookingContext);
   const { currency } = useContext(LanguageContext);
   const [formatNumber] = usePriceFormatter();
 
-  const price = selectedPackage !== null ? selectedPackage : 0;
+  const price = totalPrice
   const calculatedPriceFormatted = formatNumber(price)
 
   return (
