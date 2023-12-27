@@ -2,12 +2,11 @@ import "@/styles/globals.css";
 import "react-modern-drawer/dist/index.css";
 import { DefaultLayout } from "@/components/Layouts/DefaultLayout";
 import MyContext from "@/hooks/useContext/MyContext";
-import "@/styles/globals.css";
 import "@/styles/hotelListDrawer.css";
 import "@/styles/guestsDrawer.css";
-// import "@/styles/userLogin.css";
 import { LanguageContextProvider } from "@/hooks/useContext/LanguageContext";
 import "@/styles/bookingFlow.css";
+
 import type { AppProps } from "next/app";
 import { BookingContextProvider } from "@/hooks/useContext/BookingContext";
 
