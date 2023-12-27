@@ -5,6 +5,7 @@ import MyContext from "@/hooks/useContext/MyContext";
 import "@/styles/globals.css";
 import "@/styles/hotelListDrawer.css";
 import "@/styles/guestsDrawer.css";
+import "@/styles/userDashboard.css";
 // import "@/styles/userLogin.css";
 import { LanguageContextProvider } from "@/hooks/useContext/LanguageContext";
 import "@/styles/bookingFlow.css";
