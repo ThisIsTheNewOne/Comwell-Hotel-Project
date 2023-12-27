@@ -12,7 +12,7 @@ import RoomDetails from "./RoomDetails";
 import BookingAddons from "./BookingAddons";
 import Confirmation from "./Confirmation";
 import ReservationAdded from "./ReservationAdded";
-import { MODAL_TYPES, useGlobalModal2 } from "../modal/GlobalModal";
+
 
 interface Props {
   isOpenBookingFlowDrawer: boolean;
@@ -23,7 +23,7 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
   const { isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer } = props;
   const drawerRef = useRef<HTMLDivElement>(null);
   const [drawerComponent, setDrawerComponent] = useState("selectedRoom");
-  const { showModal } = useGlobalModal2();
+
   const [componentList] = useState([
     "selectedRoom",
     "roomDetails",
