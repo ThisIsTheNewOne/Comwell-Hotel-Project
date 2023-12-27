@@ -66,7 +66,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
     } else {
 
         try {
-          const response = await fetch(`http://localhost:3006/hotel/${hotelId}`, {
+          const response = await fetch(http://localhost:3006/" + "hotel/" + id, {
           method: 'PUT',
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
             }
       
           } catch (error) {
-          console.error('Error deleting destination:', error);
+          console.error('Error deleting hotel:', error);
           }
       } */
   }
