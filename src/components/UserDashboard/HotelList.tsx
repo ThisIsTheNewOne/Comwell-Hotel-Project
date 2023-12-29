@@ -11,7 +11,6 @@ interface Props {
 
 const HotelList: React.FC<Props> = (props: Props) => {
   const {hotelList} = props;
-  console.log(hotelList)
   const { selectedHotel, setSelectedHotel } = useContext(BookingContext);
   const [isOpenAddHotelDrawer, setIsOpenAddHotelDrawer] = useState(false);
 
@@ -32,7 +31,7 @@ const HotelList: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-<div className="">
+<div>
           <div className="col-span-full mt-5 md:mt-12">
             <div className="grid grid-cols-12 gap-x-4 gap-y-6 md:grid-cols-8 md:gap-y-8">
             {hotelList.map((hotel) => (
@@ -41,8 +40,8 @@ const HotelList: React.FC<Props> = (props: Props) => {
             id={hotel._id}
             hotelName={hotel.name}
             city={hotel.city}
-            isSelected={selectedHotel?.name === hotel.name}
-            onClick={() => handleHotelSelect(hotel)}        
+            address={hotel.address}
+            image={hotel.image}       
           />
         ))}
 

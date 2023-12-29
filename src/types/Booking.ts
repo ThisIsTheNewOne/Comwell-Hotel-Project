@@ -27,6 +27,7 @@ export type Hotel = {
   name: string;
   city: string;
   address: string;
+  image: string;
 } 
 
 

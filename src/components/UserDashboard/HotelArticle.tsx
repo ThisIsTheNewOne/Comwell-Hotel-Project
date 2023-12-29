@@ -8,18 +8,17 @@ interface HotelArticleProps {
     id: string;
     hotelName: string;
     city: string;
-    isSelected: boolean;
-    onClick: () => void;
+    address: string;
+    image: string;
   }
 
   const HotelArticle: React.FC<HotelArticleProps> = (props: HotelArticleProps) => {
   // All of the state
-  const { id, hotelName, city, isSelected, onClick } = props;
+  const { id, hotelName, city, address, image} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenEditHotelDrawer, setIsOpenEditHotelDrawer] = useState(false);
   const [isDeleteBoxVisible, setIsDeleteBoxVisible] = useState(false);
   const [isOpenAddRoomDrawer, setIsOpenAddRoomDrawer] = useState(false);
-  const combinedClassName = `hotelButton ${isSelected ? "selected" : ""}`;
 
 
   function handleAddRoomDrawer() {
@@ -28,12 +27,10 @@ interface HotelArticleProps {
     }
 
   function handleClick() {
-    console.log("Hello from create new button", isOpen);
     setIsOpen(true);
   }
 
   function handleEditHotelDrawer() {
-    console.log("edit hotel drawer", isOpenEditHotelDrawer);
     setIsOpenEditHotelDrawer(true);
   }
  
@@ -74,7 +71,7 @@ interface HotelArticleProps {
                 <div className="relative aspect-[1.45/1] overflow-hidden rounded-[5px] md:aspect-[1.6/1] z-0">
                   <div className="relative block h-full w-full overflow-hidden bg-gray-200 inset-0">
                     <picture>
-                    <img src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/homepage/public/images/hotels/aarhus/aarhus.webp" data-src="https://cdn.dwarf.dk/comwell-cms-production/img/containers/main/hoteller/caa/udefra/comwell-aarhus-bygning.jpg/a4f7ec8757855baeddf95828e22da17b.jpg" className="transition-transform group-hover:scale-[1.05] ease-in duration-150 h-full w-full object-cover lazyautosizes lazyloaded hotelImage" alt="" width="38" height="24" data-sizes="auto" loading="lazy" decoding="async" sizes="269px"/>
+                    <img src={image} className="transition-transform group-hover:scale-[1.05] ease-in duration-150 h-full w-full object-cover lazyautosizes lazyloaded hotelImage" alt="" width="38" height="24" data-sizes="auto" loading="lazy" decoding="async" sizes="269px"/>
                     </picture>
                   </div>
                 </div>
@@ -96,6 +93,11 @@ interface HotelArticleProps {
             <EditHotelDrawer
         setIsOpenEditHotelDrawer={setIsOpenEditHotelDrawer}
         isOpenEditHotelDrawer={isOpenEditHotelDrawer}
+        id={id}
+        hotelName={hotelName}
+        hotelCity={city}
+        hotelAddress={address}
+        hotelImage={image}
       />
             <button onClick={handleDeleteClick} className="delete items-center gap-x-1 rounded-full py-2 pl-5 pr-5  text-white transition-opacity hover:opacity-[0.7]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -117,7 +119,8 @@ interface HotelArticleProps {
   )}
         </div>
                 </div>
-                </div>
+                </div>                
+                <h3>{address}</h3>
                 <h3>{city}</h3>
               </div>
           

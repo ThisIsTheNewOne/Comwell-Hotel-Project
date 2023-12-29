@@ -13,10 +13,7 @@ const Hotels: React.FC = () => {
   return (
     <div className="userDashboard font-semibold">
       <h1>Hotels</h1>
-
-      <div className="hotelList">
         <HotelList hotelList={hotels}/>
-        </div>
 
     </div>
   );

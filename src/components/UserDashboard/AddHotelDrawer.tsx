@@ -11,13 +11,24 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenAddHotelDrawer, setIsOpenAddHotelDrawer } = props;
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [image, setImage] = useState("");
+  const [address, setAddress] = useState("");
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
   }
+
   function handleCityChange(event: ChangeEvent<HTMLInputElement>) {
     setCity(event.target.value);
+  }
+
+  function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
+    setImage(event.target.value);
+  }
+
+  function handleAddressChange(event: ChangeEvent<HTMLInputElement>) {
+    setAddress(event.target.value);
   }
 
   function handleClose() {
@@ -28,9 +39,11 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
     event.preventDefault();
     console.log("handle submit");
     const data = {
-      name,
-      city,
-    };
+        image,
+        name,
+        city,
+        address,
+      };
 
     console.log(data);
 
@@ -50,39 +63,6 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
       } catch (error) {
         console.log("error happened: ", error);
       }
-
-    
-
-
-    /* if (urlParams.get("update") === "false") {
-        const response = await fetch("http://localhost:3006/" + "hotel", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-    } else {
-
-        try {
-          const response = await fetch(http://localhost:3006/" + "hotel/" + id, {
-          method: 'PUT',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data)
-          });
-                
-          const result = await response.text();
-            if(result.includes("updated")){
-            window.location.replace("./index.html");
-            }
-      
-          } catch (error) {
-          console.error('Error deleting hotel:', error);
-          }
-      } */
   }
 
 
@@ -114,8 +94,10 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
           </div>
         <div className="editHotel font-semibold mt-6">
         <form id="addHotelForm">
+        <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
           <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
           <input type="text" name="city" placeholder="City" value={city} onChange={handleCityChange} />
+          <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} />
         </form>
       </div>
       <div className="flex justify-center mt-6">
