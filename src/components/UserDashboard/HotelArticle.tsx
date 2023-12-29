@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import Drawer from "react-modern-drawer";
-import RoomArticle from "./RoomArticle";
 import EditHotelDrawer from "./EditHotelDrawer";
+import RoomList from "./RoomList";
 import AddRoomDrawer from "./AddRoomDrawer";
 
 interface HotelArticleProps {
@@ -20,12 +20,7 @@ interface HotelArticleProps {
   const [isDeleteBoxVisible, setIsDeleteBoxVisible] = useState(false);
   const [isOpenAddRoomDrawer, setIsOpenAddRoomDrawer] = useState(false);
 
-
-  function handleAddRoomDrawer() {
-      console.log("edit hotel drawer", isOpenAddRoomDrawer);
-      setIsOpenAddRoomDrawer(true);
-    }
-
+ 
   function handleClick() {
     setIsOpen(true);
   }
@@ -36,6 +31,11 @@ interface HotelArticleProps {
  
   function handleClose() {
     setIsOpen(false);
+  }
+
+  function handleAddRoomDrawer() {
+    console.log("edit hotel drawer", isOpenAddRoomDrawer);
+    setIsOpenAddRoomDrawer(true);
   }
 
   function handleDeleteClick() {
@@ -143,19 +143,17 @@ interface HotelArticleProps {
             Rooms
         </h2>
         <div className="room-list">
-            <RoomArticle/>
-            <RoomArticle/>
-            <RoomArticle/>
-            <RoomArticle/>
-            <div className="addRoom">
-                <button onClick={handleAddRoomDrawer} className="items-center gap-x-1 rounded-full py-2 pl-5 pr-5 bg-theme text-white transition-opacity hover:opacity-[0.7]">
-                    Add room
-                </button>
-            </div>
-            <AddRoomDrawer 
-        setIsOpenAddRoomDrawer={setIsOpenAddRoomDrawer}
-        isOpenAddRoomDrawer={isOpenAddRoomDrawer}/>
-        </div>
+          <RoomList hotelId={id}/>
+          
+    <div className="addRoom">
+        <button onClick={handleAddRoomDrawer} className="items-center gap-x-1 rounded-full h-fit py-2 pl-5 pr-5 bg-theme text-white transition-opacity hover:opacity-[0.7]">
+            Add room
+        </button>
+    </div>
+    <AddRoomDrawer 
+       setIsOpenAddRoomDrawer={setIsOpenAddRoomDrawer}
+       isOpenAddRoomDrawer={isOpenAddRoomDrawer}/>
+        </div> 
         
             </Drawer>
               </article>

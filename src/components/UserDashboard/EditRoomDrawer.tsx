@@ -4,10 +4,15 @@ import Drawer from "react-modern-drawer";
 interface Props {
   isOpenEditRoomDrawer: boolean;
   setIsOpenEditRoomDrawer: (isOpenEditRoomDrawer: boolean) => void;
+  roomID: string;
+  roomImage: string;
+  roomName: string;
+  roomDescription: string;
+  roomPrice: number;
 }
 
 const EditRoomDrawer: React.FC<Props> = (props: Props) => {
-  const { isOpenEditRoomDrawer, setIsOpenEditRoomDrawer } = props;
+  const { isOpenEditRoomDrawer, setIsOpenEditRoomDrawer,roomID, roomImage, roomDescription, roomName, roomPrice } = props;
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
@@ -75,10 +80,17 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
           </button>
           </div>
           <h2 className="text-xl mt-2">Current info</h2>
-          <p>Image: <span>link</span></p>
-          <p>Name: <span>Room 1</span></p>
-          <p>Description: <span>Spacious double room with a view</span></p>
-          <p>Price: <span>150kr</span></p>
+          <p>Image: </p>
+          <div className="relative overflow-hidden z-0">
+                  <div className="relative block h-44 w-56 overflow-hidden bg-gray-200 inset-0">
+                    <picture>
+                    <img src={roomImage} className="transition-transform group-hover:scale-[1.05] ease-in duration-150 h-full w-full object-cover lazyautosizes lazyloaded" alt="imageHotel" width="38" height="24" data-sizes="auto" loading="lazy" decoding="async" sizes="269px"/>
+                    </picture>
+                  </div>
+                </div>
+          <p>Name: <span>{roomName}</span></p>
+          <p>Description: <span>{roomDescription}</span></p>
+          <p>Price: <span>{roomPrice}</span>kr</p>
         <div className="editHotel font-semibold mt-6">
         <form id="editRoomForm">
           <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />

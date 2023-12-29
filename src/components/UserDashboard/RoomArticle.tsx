@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import EditRoomDrawer from "./EditRoomDrawer";
+import { Room } from "@/types/Booking";
+
+interface RoomArticleProps {
+    roomID: string;
+    roomImage: string;
+    roomName: string;
+    roomDescription: string;
+    roomPrice: number;
+  }
 
 
-const RoomArticle: React.FC = () => {
+  const RoomArticle: React.FC<RoomArticleProps> = (props: RoomArticleProps) => {
   // All of the state
+  const {
+    roomID,
+    roomImage,
+    roomDescription,
+    roomName,
+    roomPrice,
+  } = props;
+
   const [isOpenEditRoomDrawer, setIsOpenEditRoomDrawer] = useState(false);
   const [isDeleteBoxVisible, setIsDeleteBoxVisible] = useState(false);
 
@@ -49,7 +66,7 @@ const RoomArticle: React.FC = () => {
     <>
       <div className="overlay" onClick={handleCancelClick}></div>
       <div className="deleteBox">
-        <h2>Are you sure you want to delete the room <span>Room 1</span>?</h2>
+        <h2>Are you sure you want to delete the room <span>"{roomName}"</span>?</h2>
         <div className="flex gap-x-2 mt-6">
         <button /* onClick={handleDeleteConfirmation} */ className="delete items-center gap-x-1 rounded-full py-2 pl-3 pr-3  text-white transition-opacity hover:opacity-[0.7]">Delete</button>
         <button onClick={handleCancelClick} className="items-center gap-x-1 rounded-full py-2 pl-3 pr-3 bg-theme  text-white transition-opacity hover:opacity-[0.7]">Cancel</button>
@@ -61,12 +78,17 @@ const RoomArticle: React.FC = () => {
     <EditRoomDrawer
         setIsOpenEditRoomDrawer={setIsOpenEditRoomDrawer}
         isOpenEditRoomDrawer={isOpenEditRoomDrawer}
+        roomID={roomID}
+        roomName={roomName}
+        roomImage={roomImage}
+        roomDescription={roomDescription}
+        roomPrice={roomPrice}
       />
-        <img src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/roskilde/superior.webp" alt="room1"/>
+        <img src={roomImage} alt="room1"/>
         <div className="room-info">
-      <h3>Room 1</h3>
-      <p className="description">Spacious double room with a view</p>
-      <p className="price">150kr</p>
+      <h3>{roomName}</h3>
+      <p className="description">{roomDescription}</p>
+      <p className="price">{roomPrice}kr</p>
     </div>
     </article>
          

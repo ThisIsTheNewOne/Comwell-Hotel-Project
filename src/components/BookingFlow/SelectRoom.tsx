@@ -8,6 +8,7 @@ type SelectedRoomType = {
   setDrawerComponent: (drawerComponent: string) => void;
 };
 
+
 const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
   // All of the state
   const { id, setDrawerComponent } = props;
@@ -16,32 +17,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
     guestList
   } = useContext(BookingContext);
 
-  // const selectedHotelRoomsList = [
-  //   {
-  //     roomSize: "16 m",
-  //     roomImage:
-  //       "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp",
-  //     roomName: "Twin seng",
-  //     roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
-  //     price: 7.402,
-  //   },
-  //   {
-  //     roomSize: "40 m",
-  //     roomImage:
-  //       "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/suite.webp",
-  //     roomName: "Suite",
-  //     roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
-  //     price: 13.439,
-  //   },
-  //   {
-  //     roomSize: "16 m",
-  //     roomImage:
-  //       "https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/standard-twin.webp",
-  //     roomName: "Twin seng",
-  //     roomDescription: " Vores standardværelser er indrettet i moderne, nordisk stil ogmed stort badeværelse.",
-  //     price: 7.402,
-  //   },
-  // ];    
+  
   const isRoomAMatch = useCallback((room: Room) => {
     const firstGuestList = guestList[0]
     return room.adultGuests >= ((firstGuestList.find(g => g.label === 'Adults'))?.amount ?? 0) ||
