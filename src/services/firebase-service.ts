@@ -29,9 +29,8 @@ export async function loginUser(data: { email: any; password: any; }) {
     const response = await login(data.email, data.password);
     console.log(response);
 
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("currentUser", response.user);
-    console.log(localStorage.getItem("token"));
+    localStorage.setItem("token", response.token.access_token);
+    localStorage.setItem("currentUser", JSON.stringify(response.user));
   } catch (error) {
     console.log("error happened: ", error);
   }

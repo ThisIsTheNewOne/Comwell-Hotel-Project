@@ -7,12 +7,23 @@ type GuestInfoType = {
   setDrawerComponent: (drawerComponent: string) => void;
 };
 
+type User = {
+    userId: string,
+    username: string,
+    password: string,
+    postNr: string,
+    phoneNr: string,
+    fullname: string
+}
+
 const GuestInfo: React.FC<GuestInfoType> = (props: GuestInfoType) => {
   const { id, setDrawerComponent } = props;
+  const currentUser: User = JSON.parse(localStorage.getItem("currentUser") ?? "");
+
   // All of the state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefon, setTelefon] = useState("");
+  const [name, setName] = useState(currentUser.fullname ?? "");
+  const [email, setEmail] = useState(currentUser.userId ?? "");
+  const [telefon, setTelefon] = useState(currentUser.phoneNr ?? "");
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
