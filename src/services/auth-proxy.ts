@@ -1,4 +1,4 @@
-export async function signUp(email: string, password: string) {
+export async function signUp(name: string, email: string, postnummer: string, telefon: string, password: any, confirmPassword?: string, gender?: string, birthdate?: string) {
   const response = await fetch("http://localhost:3006/user", {
     method: "POST",
     headers: {
@@ -7,7 +7,11 @@ export async function signUp(email: string, password: string) {
     body: JSON.stringify({
       "userId": email,
       "username": email.split('@')[0],
-      "password": password
+      "password": password,
+      "fullname": name,
+      "email": email,
+      "postNr": postnummer,
+      "phoneNr": telefon,
     }),
   });
   console.log(response);

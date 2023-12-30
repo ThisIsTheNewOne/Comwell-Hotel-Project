@@ -1,9 +1,8 @@
 import { signUp, login } from "./auth-proxy";
 
-export async function createSignup(data) {
-  console.log("sign up data", data);
+export async function createSignup(name: string, email: string, postnummer: string, telefon: string, password: any, confirmPassword?: string, gender?: string, birthdate?: string) {
   try {
-    const response = await signUp(data.email, data.password);
+    const response = await signUp(name, email, postnummer, telefon, password, confirmPassword, gender, birthdate);
 
     console.log(response);
 
@@ -23,7 +22,7 @@ export function createSignup(data) {
   });
 } */
 
-export async function loginUser(data) {
+export async function loginUser(data: { email: any; password: any; }) {
   console.log("login data", data);
 
   try {
@@ -31,19 +30,9 @@ export async function loginUser(data) {
     console.log(response);
 
     localStorage.setItem("token", response.token);
+    localStorage.setItem("currentUser", response.user);
     console.log(localStorage.getItem("token"));
   } catch (error) {
     console.log("error happened: ", error);
   }
 }
-
-/* export async function loginUser(data) {
-  console.log(data, "data in firebase");
-  return fetch("http://localhost:3000/login", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-} */
