@@ -53,6 +53,9 @@ interface HotelArticleProps {
     try {
       const response = await fetch("http://localhost:3006/" + "hotel/" + id, {
           method: 'DELETE',
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+          }
       });
       const result = await response.text();
       console.log(result);

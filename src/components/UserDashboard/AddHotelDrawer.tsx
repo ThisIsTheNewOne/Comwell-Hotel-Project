@@ -38,30 +38,32 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
     event.preventDefault();
     console.log("handle submit");
     const data = {
-        image,
-        name,
-        city,
-        address,
-      };
+      image,
+      name,
+      city,
+      address,
+    };
 
     console.log(data);
 
     try {
-        const response = await fetch("http://localhost:3006/" + "hotel", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-        console.log(response);
+      const response = await fetch("http://localhost:3006/" + "hotel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+        
+        body: JSON.stringify(data),
+      });
+      console.log(response);
 
-        window.location.replace("./hotels");
-    
-       
-      } catch (error) {
-        console.log("error happened: ", error);
-      }
+      window.location.replace("./hotels");
+
+
+    } catch (error) {
+      console.log("error happened: ", error);
+    }
   }
 
 
@@ -90,22 +92,22 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
               ></path>
             </svg>
           </button>
-          </div>
+        </div>
         <div className="editHotel font-semibold mt-6">
-        <form id="addHotelForm">
-        <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
-          <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
-          <input type="text" name="city" placeholder="City" value={city} onChange={handleCityChange} />
-          <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} />
-        </form>
-      </div>
-      <div className="flex justify-center mt-6">
-            <button onClick={handleSubmit} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80">
-              <span className="flex items-center gap-x-[7px] justify-center">
-                <span>Add</span>
-              </span>
-            </button>
-          </div>
+          <form id="addHotelForm">
+            <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
+            <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
+            <input type="text" name="city" placeholder="City" value={city} onChange={handleCityChange} />
+            <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} />
+          </form>
+        </div>
+        <div className="flex justify-center mt-6">
+          <button onClick={handleSubmit} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80">
+            <span className="flex items-center gap-x-[7px] justify-center">
+              <span>Add</span>
+            </span>
+          </button>
+        </div>
       </Drawer>
     </nav>
   );
