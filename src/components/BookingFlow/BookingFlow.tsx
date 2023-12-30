@@ -12,6 +12,7 @@ import RoomDetails from "./RoomDetails";
 import BookingAddons from "./BookingAddons";
 import Confirmation from "./Confirmation";
 import ReservationAdded from "./ReservationAdded";
+import DrawerModal from "../Modal/DrawerModal";
 
 
 interface Props {
@@ -23,12 +24,13 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
   const { isOpenBookingFlowDrawer, setIsOpenBookingFlowDrawer } = props;
   const drawerRef = useRef<HTMLDivElement>(null);
   const [drawerComponent, setDrawerComponent] = useState("selectedRoom");
+  const [isUnsavedChangesDialogOpen, setIsUnsavedChangesDialogOpen] = useState(false);
 
   const [componentList] = useState([
     "selectedRoom",
     "roomDetails",
     "addons",
-    "guestInfo",
+    "guestInfo", 
     "payment",
     "reservationAdded",
     "confirmation",
@@ -49,41 +51,31 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
     }
   }
 
-  console.log("This is the drawer", drawerComponent);
-
-  const useOutsideClick = (
-    ref: React.RefObject<HTMLElement>,
-    callback: () => void
-  ) => {
-    const handleClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        callback();
-      }
-    };
-
-    useEffect(() => {
-      document.addEventListener("mousedown", handleClick);
-
-      return () => {
-        document.removeEventListener("mousedown", handleClick);
-      };
-    }, [ref, callback]);
-  };
+  const openDialog = () => {
+    setIsUnsavedChangesDialogOpen(true);
+  }
 
   return (
     <nav>
-      {/* <h1 className="text-heading-lg block py-4">Booking Flow</h1>
-      <button onClick={handleClick}>Search</button> */}
+     <DrawerModal 
+       isUnsavedChangesDialogOpen={isUnsavedChangesDialogOpen} 
+       setIsUnsavedChangesDialogOpen={setIsUnsavedChangesDialogOpen}
+       setDrawerComponent={setDrawerComponent}
+       setIsOpenBookingFlowDrawer={setIsOpenBookingFlowDrawer}
+     />
+
       <div className="max-lg:mt-auto w-full py-[16px] " onClick={handleClick}>
         <button className="bg-theme2 w-full text-white rounded-[30px] py-[16px] font-semibold text-[16px]">
           Søg
         </button>
       </div>
+
+
       <div ref={drawerRef}>
         <Drawer
           className="bookingFlowDrawer font-semibold"
           open={isOpenBookingFlowDrawer}
-          onClose={handleClose}
+          onClose={openDialog}
           direction="right"
           size={910}
         >
@@ -149,6 +141,16 @@ const BookingFlow: React.FC<Props> = (props: Props) => {
           </>
         </Drawer>
       </div>
+      
+      {/* {isUnsavedChangesDialogOpen && (
+        <dialog open className="">
+          <p>Your changes will not be saved. Are you sure you want to close?</p>
+          <button onClick={() => setIsUnsavedChangesDialogOpen(false)}> 
+            Cancel
+          </button>
+          <button onClick={handleClose}>Close</button>
+        </dialog>
+      )} */}
     </nav>
   );
 };
