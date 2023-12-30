@@ -4,6 +4,7 @@ import {
   Room,
   guestTypes,
   roomDetails,
+  roomPackage,
 } from "@/types/Booking";
 import { createContext, useCallback, useEffect, useState } from "react";
 
@@ -38,7 +39,15 @@ const BookingContext = createContext({
   setIsOpenGuestsDrawer: (isOpenGuestsDrawer: boolean) => {},
   isOpenCalendarDrawer: false,
   setIsCalendarDrawer: (isOpenCalendarDrawer: boolean) => {},
-  postBooking: () => {}
+  postBooking: () => {},
+  selectedPackage: null as null | number,
+  setSelectedPackage: (selectedPackage: null | number) => {},
+  totalPrice: 0,
+  setTotalPrice: (totalPrice: number) => {},
+  selectedAddon: [] as roomPackage[], 
+  setSelectedAddon: (selectedAddon: roomPackage[]) => {},
+  guestInfo: { name: "", email: "", telefon: "" },
+  setGuestsInfo: (guestInfo: { name: string; email: string; telefon: string }) => {},
 });
 
 interface BookingContextProviderProps {
@@ -72,6 +81,10 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [isOpenHotelListDrawer, setIsOpenHotelListDrawer] = useState(false);
   const [isOpenGuestsDrawer, setIsOpenGuestsDrawer] = useState(false);
   const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState(null as null | number);
+  const [selectedAddon, setSelectedAddon] = useState([] as roomPackage[]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [guestInfo, setGuestsInfo] = useState({ name: "", email: "", telefon: "" });
 
   // Get all hotels on render
   useEffect(() => {
@@ -148,7 +161,15 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         setIsOpenGuestsDrawer,
         isOpenCalendarDrawer,
         setIsCalendarDrawer,
-        postBooking
+        postBooking,
+        selectedPackage, 
+        setSelectedPackage,
+        selectedAddon, 
+        setSelectedAddon,
+        totalPrice,
+        setTotalPrice,
+        guestInfo, 
+        setGuestsInfo
       }}
     >
       {props.children}

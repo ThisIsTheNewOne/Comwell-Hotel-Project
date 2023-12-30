@@ -1,3 +1,4 @@
+import { Currency } from "@/types/Booking";
 import { useRouter } from "next/router";
 import { createContext, useState } from "react";
 
@@ -5,6 +6,7 @@ const LanguageContext = createContext({
   selectedValue: { value: "en", label: "English" } as language,
   setSelectedValue: (selectedValue: language) => {},
   languages: [] as language[],
+  currency: "DKK" as Currency
 });
 
 type language = {
@@ -50,12 +52,15 @@ export const LanguageContextProvider: React.FC<LanguageContextProviderProps> = (
     initialLanguage as language
   );
 
+  const currency = "DKK" as Currency
+
   return (
     <LanguageContext.Provider
       value={{
         selectedValue,
         setSelectedValue,
         languages,
+        currency
       }}
     >
       {props.children}

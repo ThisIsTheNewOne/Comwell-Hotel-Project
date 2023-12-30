@@ -1,17 +1,21 @@
 import React, { useContext } from "react";
 import BookingContext from "@/hooks/useContext/BookingContext";
+import LanguageContext from "@/hooks/useContext/LanguageContext";
+import { usePriceFormatter } from "@/hooks/usePriceFormatter";
 
 const BookingPrice = () => {
+  const { totalPrice } = useContext(BookingContext);
+  const { currency } = useContext(LanguageContext);
+  const [formatNumber] = usePriceFormatter();
 
-  const { selectedRoom } = useContext(BookingContext);
-
-  const price = selectedRoom?.price || 0;
+  const price = totalPrice
+  const calculatedPriceFormatted = formatNumber(price)
 
   return (
     <>
       <div className="price">
-        <span>0</span>
-        <span>kr.</span>
+        <span>{calculatedPriceFormatted}</span>
+        <span>{currency}</span>
       </div>
       <div className="bedicon flex h-[36px] w-[36px] items-center justify-center rounded-full">
         <svg

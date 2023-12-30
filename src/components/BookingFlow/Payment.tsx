@@ -2,13 +2,23 @@ import React, { useContext, useState } from "react";
 import BookingOverview from "./bookingOverview";
 import CreditCard from "./CreditCard";
 import BookingContext from "@/hooks/useContext/BookingContext";
+import { useChangeDate } from "@/hooks/useChangeDate";
 
-const Payment: React.FC = () => {
+interface Props {
+  id: string;
+  setDrawerComponent: (drawerComponent: string) => void;
+  nextPage?: string;
+}
+
+const Payment: React.FC<Props> = (props: Props) => {
+  const { id, setDrawerComponent, nextPage } = props;
   // All of the state
   const [showCreditCard, setShowCreditCard] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [isCreditCardValid, setIsCreditCardValid] = useState(false);
-  const { postBooking } = useContext(BookingContext);
+  const { postBooking, selectedHotel, checkIn, checkOut, guestInfo } =
+    useContext(BookingContext);
+  const [calendarInput] = useChangeDate({ checkIn, checkOut });
 
   const toggleCreditCardVisibility = () => {
     setShowCreditCard(!showCreditCard);
@@ -44,10 +54,15 @@ const Payment: React.FC = () => {
                     </svg>
                   </div>
                   <div className="flex flex-col text-sm">
-                    <span className="text-lg">Borupgaard</span>
-                    <span className="opacity-[0.65]">Nørrevej 80</span>
-                    <span className="opacity-[0.65]">3070 Snekkersten</span>
-                    <span className="opacity-[0.65]">Denmark</span>
+                    <span className="text-lg">{selectedHotel?.name}</span>
+                    <span className="opacity-[0.65]">
+                      {selectedHotel?.address}
+                    </span>
+                    <span className="opacity-[0.65]">
+                      {" "}
+                      {selectedHotel?.city}
+                    </span>
+                    <span className="opacity-[0.65]"> Denmark</span>
                   </div>
                 </div>
               </li>
@@ -72,9 +87,12 @@ const Payment: React.FC = () => {
                     <span className="text-lg">Gæsteinfo</span>
                     <ul className="space-y-2">
                       <li className="flex flex-col text-sm opacity-[0.65]">
-                        <span>Ana Sofia Castellanos</span>
+                        {/* <span>Ana Sofia Castellanos</span>
                         <span>castellanos_chopas@hotmail.com</span>
-                        <span>+4581906847</span>
+                        <span>+4581906847</span> */}
+                       <span>{guestInfo?.name}</span> 
+                       <span>{guestInfo?.email}</span> 
+                       <span>{guestInfo?.telefon}</span> 
                       </li>
                     </ul>
                   </div>
@@ -100,10 +118,24 @@ const Payment: React.FC = () => {
                   </div>
                   <div className="flex flex-col text-sm">
                     <span className="text-lg">Dato</span>
-                    <span className="opacity-[0.65]">1. dec. - 7. dec.</span>
+
+                    <span className="opacity-[0.65]">
+                      {calendarInput
+                        .map((item) => item.placeholder)
+                        .join(" - ")}
+                    </span>
                   </div>
                 </div>
               </li>
+
+
+            </ul>
+          </div>
+
+          <div className="order-first">
+            <h1>Evt. kommentar</h1>
+            <ul className="max-lg:grid grid-cols-2 grid-rows-[auto,auto] max-lg:gap-3 lg:space-y-3 mt-3">
+             <input type="text" placeholder="Evt. kommentar..." className="w-full border rounded-[10px] px-2 py-3" />
             </ul>
           </div>
 
@@ -262,30 +294,14 @@ const Payment: React.FC = () => {
           </div>
         </div>
 
-        <BookingOverview />
+        <BookingOverview
+          id={id}
+          setDrawerComponent={setDrawerComponent}
+          nextPage={"reservationAdded"}
+          postBooking={postBooking}
+          isCreditCardValid={isCreditCardValid}
+        />
 
-        <div className="fixed bottom-0 left-0 w-full transition-all duration-[400ms] z-[1]">
-          <div className="bottom-bar relative border-t border-gray-200 bg-white p-4 lg:py-6 before:absolute before:top-[-41px] before:left-0 before:h-[40px] before:w-full before:pointer-events-none">
-            <div className="flex justify-between items-center gap-x-4">
-              <div className="relative max-lg:transition-opacity md:ml-auto opacity-100 max-md:w-full">
-                <button
-                  onClick={postBooking}
-                  disabled={!isCreditCardValid}
-                  className={
-                    "body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] " +
-                    (isCreditCardValid
-                      ? "bg-theme text-white hover:lg:bg-theme-80"
-                      : "opacity-40 bg-theme text-white")
-                  }
-                >
-                  <span className="flex items-center gap-x-[7px] justify-center">
-                    Tilføj betalingsmetode for at bekræfte bookingen
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );
