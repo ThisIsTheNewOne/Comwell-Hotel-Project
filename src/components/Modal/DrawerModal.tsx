@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import React, { useContext, useState } from "react";
 
 interface Props {
     isUnsavedChangesDialogOpen: boolean;
@@ -10,11 +11,21 @@ interface Props {
 const DrawerModal = (props: Props) => {
 
 const {isUnsavedChangesDialogOpen, setIsUnsavedChangesDialogOpen, setDrawerComponent, setIsOpenBookingFlowDrawer } = props
+const {
+    setSelectedPackage,
+    setSelectedAddon,
+    setTotalPrice,
+    setGuestsInfo
+  } = useContext(BookingContext);
 
   const handleClose = () => {
     setIsOpenBookingFlowDrawer(false) 
     setIsUnsavedChangesDialogOpen(false);
-    setDrawerComponent("selectedRoom")
+    setDrawerComponent("selectedRoom");
+    setSelectedPackage(null);
+    setSelectedAddon([]);
+    setTotalPrice(0);
+    setGuestsInfo({ name: "", email: "", telefon: "" })
   }; 
 
   console.log("Does it go here ???")
