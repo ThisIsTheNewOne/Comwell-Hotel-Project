@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <LocalizedLink
                     className="text-heading-lg  block py-4 transition first:pt-0 leading-8 hover:!opacity-100 group-hover:opacity-40"
-                    href={`/${page.toLowerCase().replace(/ & | /, "-and-")}`}
+                    href={`/${page.trim().toLowerCase().replace(/ & | /g, "-and-")}`}
                   >
                     {page}
                   </LocalizedLink>

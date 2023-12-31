@@ -2,6 +2,8 @@ import BookingContext from "@/hooks/useContext/BookingContext";
 import React, { useContext } from "react";
 import BookingFacilities from "./BookingFacilities";
 import { Room } from "@/types/Booking";
+import { usePriceFormatter } from "@/hooks/usePriceFormatter";
+import LanguageContext from "@/hooks/useContext/LanguageContext";
 
 interface SmallRoomOverviewProps {
   room: Room;
@@ -16,20 +18,26 @@ interface SmallRoomOverviewProps {
 const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
   props: SmallRoomOverviewProps
 ) => {
-  const { room, roomImage, roomSize, roomDescription, roomName, price, setDrawerComponent } = props;
-  const { setSelectedRoom } = useContext(BookingContext);
-  // const currentRoom = {
-  //   roomImage,
-  //   roomSize,
-  //   roomName,
-  //   roomDescription,
-  //   price,
-  // };
+  const {
+    room,
+    roomImage,
+    roomSize,
+    roomDescription,
+    roomName,
+    price,
+    setDrawerComponent,
+  } = props;
+  const { setSelectedRoom,setTotalPrice } = useContext(BookingContext);
+  const [formatNumber] = usePriceFormatter();
 
   const selectNextComponent = () => {
+    setTotalPrice(price)
     setDrawerComponent("roomDetails");
     setSelectedRoom(room);
   };
+
+  const calculatedPriceFormatted = formatNumber(price);
+  const { currency } = useContext(LanguageContext);
 
   return (
     <>
@@ -51,15 +59,13 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
           <div className="relative flex w-full flex-col px-4 pt-2 pb-4 text-left">
             <span className="text-2xl mb-4 pr-6">{roomName}</span>
             <span className="text-xs font-regular mb-4 max-h-[32px] ">
-              <p>
-               {roomDescription}
-              </p>
+              <p>{roomDescription}</p>
             </span>
             <BookingFacilities />
             <div className="mt-[42px] flex items-end lg:mt-auto">
               <div className="roomPrice flex items-end gap-x-1">
-                <span>{price}</span>
-                <span>kr.</span>
+                <span>{currency}</span>
+                <span>{calculatedPriceFormatted}</span>
               </div>
             </div>
             {/* This creates a hydration problem between the server and client */}

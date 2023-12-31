@@ -26,7 +26,7 @@ const LoginContainer: React.FC = () => {
     setIsOpenSignupDrawer(false);
   }
 
-  async function handleSubmit(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("handle submit");
     const data = {

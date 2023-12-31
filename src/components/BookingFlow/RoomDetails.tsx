@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ContinueContainer from "./FooterBookingFlow/ContinueContainer";
 import BookingContext from "@/hooks/useContext/BookingContext";
 import BookingFacilities from "./BookingFacilities";
@@ -12,6 +12,7 @@ type RoomDetailsType = {
 const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
   const { id, setDrawerComponent } = props;
   const { selectedRoom } = useContext(BookingContext);
+  const [activePackage, setActivePackage] = useState(null as null | string);
 
   const roomImgList = ["", "", "", ""];
 
@@ -78,10 +79,13 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
             <div className="flex flex-wrap gap-[17px]">
               {roomPackages.map((roomPackage, index) => (
                 <RoomPackages
+                  id={"roomDetails"}
                   key={index}
                   name={roomPackage.name}
                   price={roomPackage.price}
                   description={roomPackage.description}
+                  activePackage={activePackage}
+                  setActivePackage={setActivePackage}
                 />
               ))}
             </div>
@@ -92,6 +96,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
           id={id}
           setDrawerComponent={setDrawerComponent}
           nextPage={"addons"}
+          selectedRoom={selectedRoom}
         />
       </div>
     </div>

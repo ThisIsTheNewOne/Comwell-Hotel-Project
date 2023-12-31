@@ -27,6 +27,7 @@ export type Hotel = {
   name: string;
   city: string;
   address: string;
+  image: string;
 } 
 
 
@@ -37,3 +38,13 @@ export type roomDetails = {
   roomDescription: string;
   price: number;
   }
+
+  export type roomPackage = {
+    name: string;
+    price: number;
+    description: string;
+    fullDescription: string;
+  }
+  
+
+  export type Currency = "DKK" | "EUR" | "USD";
