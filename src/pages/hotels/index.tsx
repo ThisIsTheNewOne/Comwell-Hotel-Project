@@ -12,7 +12,9 @@ const Hotels: React.FC = () => {
 
   return (
     <div className="userDashboard font-semibold">
-      <h1>Hotels</h1>
+      <h1>Hi, username</h1>
+      <p>Manage hotels and rooms here</p>
+      <h2 className="mt-4 text-2xl">Hotels</h2>
         <HotelList hotelList={hotels}/>
 
     </div>

@@ -35,6 +35,10 @@ const RoomList: React.FC<RoomListProps> = (props: RoomListProps) => {
     <>
     {roomList.map((room) => (
         <RoomArticle 
+        hotelId={hotelId}
+        roomAdultGuests={room.adultGuests}
+        roomChildGuests={room.childGuests}
+        roomInfantGuests={room.infantGuests}
         roomID={room._id}
         roomImage={room.image}
         roomName={room.label}

@@ -155,7 +155,9 @@ interface HotelArticleProps {
     </div>
     <AddRoomDrawer 
        setIsOpenAddRoomDrawer={setIsOpenAddRoomDrawer}
-       isOpenAddRoomDrawer={isOpenAddRoomDrawer}/>
+       isOpenAddRoomDrawer={isOpenAddRoomDrawer}
+       hotelId={id}
+       />
         </div> 
         
             </Drawer>

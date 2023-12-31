@@ -66,7 +66,7 @@ const EditHotelDrawer: React.FC<Props> = (props: Props) => {
   
         if (response.ok) {
           console.log("Hotel details updated successfully");
-          //location.reload();
+          location.reload();
         } else {
           console.error("Failed to update hotel details");
         }
