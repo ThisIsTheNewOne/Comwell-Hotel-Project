@@ -1,9 +1,19 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import BookingContext from "@/hooks/useContext/BookingContext";
+import React, { useState, ChangeEvent, FormEvent, useContext, useEffect } from "react";
 import Drawer from "react-modern-drawer";
+import ReactSelect from 'react-select';
+import Image from 'next/image';
 
 interface Props {
   isOpenAddRoomDrawer: boolean;
   setIsOpenAddRoomDrawer: (isOpenAddRoomDrawer: boolean) => void;
+}
+
+interface Features {
+  _id: string,
+  img: string,
+  name: string,
+  __v: number
 }
 
 const AddRoomDrawer: React.FC<Props> = (props: Props) => {
@@ -12,6 +22,7 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const {getRoomFeatures} = useContext(BookingContext)
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
@@ -48,6 +59,55 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   }
 
 
+  // const [featuresLoaded, setFeaturesLoaded] = useState(false);
+
+  const [selectedValue, setSelectedValue] = useState('');
+  const [options, setOptions] = useState([]  as Features[] );
+
+  useEffect(() => {
+    const fetchRoomFeatures = async () => {
+      try {
+        const features = await getRoomFeatures() as unknown as Features[];
+
+        if (features && features.length > 0) {
+          setOptions(features);
+          // setFeaturesLoaded(true);
+        }
+      } catch (error) {
+        console.error("Error fetching room features:", error);
+        // handle error appropriately
+      }
+    };
+
+    fetchRoomFeatures();
+  }, []);
+
+  const handleSelectChange = (e: any) => {
+    setSelectedValue(e.target.value);
+  };
+
+  const Option = (props: any) => {
+    return (
+      <div {...props.innerProps} style={{ display: 'flex', alignItems: 'center' }}>
+        {props.data.img && (
+          <img 
+            src={"https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/icons/Calendar.svg"} 
+            alt={props.data.name} 
+            style={{ width: '20px', height: '20px', marginRight: '10px' }} 
+          />
+        )}
+        <span style={{ color: 'black' }}>{props.data.name}</span>
+      </div>
+    );
+  };
+
+  const formattedOptions = options.map(option => ({
+    value: option._id,
+    label: option.name,
+    img: option.img
+  }));
+
+
   return (
     <nav>
       <Drawer
@@ -80,6 +140,22 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
           <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
           <input type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} />
           <input type="text" name="price" placeholder="Price" value={price} onChange={handlePriceChange} />
+      
+        
+          <ReactSelect
+          options={formattedOptions}
+          getOptionLabel={(option) => option.label}
+          components={{ Option }}
+          value={formattedOptions.find((option: any) => option.value === selectedValue)}
+          onChange={(selectedOption) => {
+            if (selectedOption) {
+              setSelectedValue(selectedOption.value)
+            }
+          }}
+           />
+        
+          
+          
         </form>
       </div>
       <div className="flex justify-center mt-6">

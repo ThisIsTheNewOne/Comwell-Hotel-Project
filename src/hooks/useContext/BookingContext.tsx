@@ -48,6 +48,7 @@ const BookingContext = createContext({
   setSelectedAddon: (selectedAddon: roomPackage[]) => {},
   guestInfo: { name: "", email: "", telefon: "" },
   setGuestsInfo: (guestInfo: { name: string; email: string; telefon: string }) => {},
+  getRoomFeatures: () => {}
 });
 
 interface BookingContextProviderProps {
@@ -133,6 +134,23 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
     }
   }, [checkIn, checkOut, selectedRoom]);
 
+  const getRoomFeatures = async () => {
+    try {
+      const response = await fetch("http://localhost:3006/" + "room-features/" + "all-room-features", {
+        method: "GET", 
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+
+      const result = await response.json();
+      console.log("Is this okay ??", result);
+      return result
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   return (
     <BookingContext.Provider
       value={{
@@ -169,7 +187,8 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
         totalPrice,
         setTotalPrice,
         guestInfo, 
-        setGuestsInfo
+        setGuestsInfo,
+        getRoomFeatures
       }}
     >
       {props.children}
