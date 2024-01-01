@@ -19,7 +19,7 @@ type User = {
 
 const GuestInfo: React.FC<GuestInfoType> = (props: GuestInfoType) => {
   const { id, setDrawerComponent } = props;
-  const currentUser: User = JSON.parse(localStorage.getItem("currentUser") ?? "");
+  const currentUser: User = localStorage.getItem("currentUser") ? JSON.parse( localStorage.getItem("currentUser") as string ) : "";
 
   // All of the state
   const [name, setName] = useState(currentUser.fullname ?? "");
