@@ -2,6 +2,7 @@ import {
   CalendarVariable,
   Hotel,
   Room,
+  User,
   guestTypes,
   roomDetails,
   roomPackage,
@@ -85,7 +86,17 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   const [selectedPackage, setSelectedPackage] = useState(null as null | number);
   const [selectedAddon, setSelectedAddon] = useState([] as roomPackage[]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [guestInfo, setGuestsInfo] = useState({ name: "", email: "", telefon: "" });
+  
+  
+
+
+  // All of the state
+  // const [name, setName] = useState(currentUser?.fullname );
+  // const [email, setEmail] = useState(currentUser?.userId);
+  // const [telefon, setTelefon] = useState(currentUser?.phoneNr);  
+  
+  const [guestInfo, setGuestsInfo] = useState({ name:  "", email:  "", telefon: "" });
+
 
   // Get all hotels on render
   useEffect(() => {

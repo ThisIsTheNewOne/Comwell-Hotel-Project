@@ -1,13 +1,15 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import Drawer from "react-modern-drawer";
 import SignupDrawer from "./SignupDrawer";
 import { loginUser } from "@/services/firebase-service";
+import BookingContext from "@/hooks/useContext/BookingContext";
 
 const LoginContainer: React.FC = () => {
   // All of the state
   const [isOpenSignupDrawer, setIsOpenSignupDrawer] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setGuestsInfo } = useContext(BookingContext)
 
   // All of my own functions
   function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
@@ -36,7 +38,22 @@ const LoginContainer: React.FC = () => {
 
     console.log(data);
 
-    loginUser(data);
+    const response = await loginUser(data);
+
+    console.log("whattttt", response)
+
+    const user = response.user
+    const name = user.fullname
+    const email2 = user.userId
+    const phone2 = user.phoneNr
+  
+    const newGuestInfo = {
+      name: name,
+      email: email2,
+      telefon: phone2
+    }
+
+    setGuestsInfo(newGuestInfo)
 
     /* const response = await loginUser(data); */
 
