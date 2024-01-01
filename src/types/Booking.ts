@@ -47,4 +47,13 @@ export type roomDetails = {
   }
   
 
+  export type User = {
+    userId: string,
+    username: string,
+    password: string,
+    postNr: string,
+    phoneNr: string,
+    fullname: string
+}
+
   export type Currency = "DKK" | "EUR" | "USD";

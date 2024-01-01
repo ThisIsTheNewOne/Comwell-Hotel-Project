@@ -1,3 +1,4 @@
+
 export async function signUp(name: string, email: string, postnummer: string, telefon: string, password: any, confirmPassword?: string, gender?: string, birthdate?: string) {
   const response = await fetch("http://localhost:3006/user", {
     method: "POST",
@@ -19,6 +20,7 @@ export async function signUp(name: string, email: string, postnummer: string, te
 }
 
 export async function login(username: string, password: string) {
+
   const response = await fetch("http://localhost:3006/login", {
     method: "POST",
     headers: {
@@ -33,6 +35,7 @@ export async function login(username: string, password: string) {
   const jsonResponse = await response.json();
 
   console.log(jsonResponse);
+ 
 
   return jsonResponse;
 }
