@@ -3,7 +3,7 @@ import LoginContainer from "../LoginSignup/LoginContainer";
 
 const Navigation: React.FC = () => {
   const [showLoginContainer, setShowLoginContainer] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -19,7 +19,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   return (
-    <nav className="z-[5] ml-auto w-52">
+    <nav className="ml-auto w-52">
       <ul className="flex items-center justify-between md:gap-x-7">
         <li>Location</li>
         <li className="relative">
@@ -36,12 +36,9 @@ const Navigation: React.FC = () => {
               ></path>
             </svg>
           </button>
-
-          {showLoginContainer && (
-            <div ref={containerRef}>
-              <LoginContainer />
-            </div>
-          )}
+          <dialog ref={containerRef} open={showLoginContainer}>
+            <LoginContainer />
+          </dialog>
 
           {/* <button type="button" aria-label="Luk profil menu" className="fixed top-[85px] left-0 w-full h-full bg-black/80 transition !duration-100 !ease-out !scale-100 !delay-[0] opacity-0 pointer-events-none invisible" data-v-636226b5=""></button> */}
         </li>

@@ -26,7 +26,7 @@ const LoginContainer: React.FC = () => {
     setIsOpenSignupDrawer(false);
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("handle submit");
     const data = {
@@ -51,7 +51,7 @@ const LoginContainer: React.FC = () => {
 
   return (
     <>
-      <div className="logInContainer font-semibold">
+      <div className="logInContainer font-semibold absolute">
         <form id="loginForm">
           <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
           <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
@@ -72,7 +72,7 @@ const LoginContainer: React.FC = () => {
         </div>
         <div className="py-5 flex flex-col w-full px-8 gap-y-4">
           <div className="contents">
-            <button onClick={handleSubmit} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80">
+            <button onClick={(e) => handleSubmit(e)} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80">
               <span className="flex items-center gap-x-[7px] justify-center">
                 <span>Log ind</span>
               </span>

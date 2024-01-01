@@ -1,0 +1,166 @@
+.userDashboard { 
+    padding: 100px 60px;
+    background-color: #fff;
+}
+
+.userDashboard h1 {
+    font-size: 36px;
+}
+
+.userDashboard .hotelArticle:hover .hotelImage {
+    transform: scale(1.1);
+}
+
+
+/*DRAWER*/
+
+.hotelArticle .hotelDrawer {
+    padding: 30px 25px;
+  }
+  
+  .hotelArticle .hotelDrawer .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .hotelArticle .hotelDrawer .closeButton {
+    background-color: rgb(225 225 229);
+    border-radius: 100px;
+    padding: 8px;
+    height: fit-content;
+  }
+  
+  .hotelArticle .hotelDrawer h1 {
+    font-size: 36px;
+  }
+  
+.hotelArticle .hotelDrawer .delete {
+    background-color: rgb(232, 92, 92);
+}
+
+.hotelArticle .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black color */
+  z-index: 9998; /* Below deleteBox but above other content */
+}
+
+.hotelArticle .deleteBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 45px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* On top of the overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hotelArticle .deleteBox button {
+  margin-top: 10px;
+}
+
+
+/*ROOM LIST*/
+.hotelArticle .room-list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    gap: 20px; 
+    margin-top: 20px;
+    height: 70vh;
+    padding-bottom: 40px;
+  }
+  
+  .roomArticle {
+    position: relative;
+    width: 47%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .roomArticle .room-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+  }
+
+  .roomArticle .room-actions button {
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 5px;
+  }
+
+  .roomArticle button.delete-btn {
+    background-color: rgb(232, 92, 92);
+}
+  
+  .roomArticle .room img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .roomArticle .room-info {
+    padding: 10px;
+  }
+  
+  .roomArticle .room-info h3 {
+    margin-top: 0;
+  }
+  
+  .roomArticle .room-info p {
+    margin-bottom: 5px;
+  }
+  
+  .roomArticle .description {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .hotelArticle .addRoom {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    margin-top: 10px;
+  }
+
+
+  /*EDIT HOTEL FORM*/
+  .editHotel form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .editHotel form input {
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 14px 12px;
+    font-size: 16px;
+    color: #000;
+  }
+  
+  .editHotel input::placeholder {
+    color: black;
+  }
+  
+  .editHotel button.underline {
+    color: rgb(24, 43, 57);
+  }
+
+
+  
+ 
+  
