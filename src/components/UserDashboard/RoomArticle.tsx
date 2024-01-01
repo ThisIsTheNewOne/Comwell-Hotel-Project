@@ -3,6 +3,10 @@ import EditRoomDrawer from "./EditRoomDrawer";
 import { Room } from "@/types/Booking";
 
 interface RoomArticleProps {
+    hotelId: string;
+    roomAdultGuests: number;
+    roomChildGuests: number;
+    roomInfantGuests: number;
     roomID: string;
     roomImage: string;
     roomName: string;
@@ -14,6 +18,10 @@ interface RoomArticleProps {
   const RoomArticle: React.FC<RoomArticleProps> = (props: RoomArticleProps) => {
   // All of the state
   const {
+    hotelId,
+    roomAdultGuests,
+    roomChildGuests,
+    roomInfantGuests,
     roomID,
     roomImage,
     roomDescription,
@@ -42,6 +50,27 @@ interface RoomArticleProps {
       function handleCancelClick() {
         setIsDeleteBoxVisible(false);
       }
+
+      const handleDeleteConfirmation = async () => {
+        console.log(roomID);
+        console.log(roomName)
+    
+        try {
+          const response = await fetch("http://localhost:3006/" + "room/" + roomID, {
+              method: 'DELETE',
+              headers: {
+                Authorization: 'Bearer ' + localStorage.getItem("token")
+              }
+          });
+          const result = await response.text();
+          console.log(result);
+          if(result.includes("deleted")){
+              location.reload();
+          }
+          } catch (error) {
+          console.error('Error deleting destination:', error);
+          }   
+      }
     
 
   return (
@@ -68,7 +97,7 @@ interface RoomArticleProps {
       <div className="deleteBox">
         <h2>Are you sure you want to delete the room <span>"{roomName}"</span>?</h2>
         <div className="flex gap-x-2 mt-6">
-        <button /* onClick={handleDeleteConfirmation} */ className="delete items-center gap-x-1 rounded-full py-2 pl-3 pr-3  text-white transition-opacity hover:opacity-[0.7]">Delete</button>
+        <button onClick={handleDeleteConfirmation} className="delete items-center gap-x-1 rounded-full py-2 pl-3 pr-3  text-white transition-opacity hover:opacity-[0.7]">Delete</button>
         <button onClick={handleCancelClick} className="items-center gap-x-1 rounded-full py-2 pl-3 pr-3 bg-theme  text-white transition-opacity hover:opacity-[0.7]">Cancel</button>
         </div>
       </div>
@@ -78,6 +107,10 @@ interface RoomArticleProps {
     <EditRoomDrawer
         setIsOpenEditRoomDrawer={setIsOpenEditRoomDrawer}
         isOpenEditRoomDrawer={isOpenEditRoomDrawer}
+        hotelId={hotelId}
+        roomAdultGuests={roomAdultGuests}
+        roomChildGuests={roomChildGuests}
+        roomInfantGuests={roomInfantGuests}
         roomID={roomID}
         roomName={roomName}
         roomImage={roomImage}
@@ -88,7 +121,10 @@ interface RoomArticleProps {
         <div className="room-info">
       <h3>{roomName}</h3>
       <p className="description">{roomDescription}</p>
-      <p className="price">{roomPrice}kr</p>
+      <p>Adult guests: {roomAdultGuests}</p>
+      <p>Child guests: {roomChildGuests}</p>
+      <p>Infant guests: {roomInfantGuests}</p>
+      <p className="price"><span>{roomPrice}</span>kr</p>
     </div>
     </article>
          

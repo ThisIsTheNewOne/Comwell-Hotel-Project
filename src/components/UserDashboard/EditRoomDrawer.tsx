@@ -4,6 +4,10 @@ import Drawer from "react-modern-drawer";
 interface Props {
   isOpenEditRoomDrawer: boolean;
   setIsOpenEditRoomDrawer: (isOpenEditRoomDrawer: boolean) => void;
+  hotelId: string;
+  roomAdultGuests: number;
+  roomChildGuests: number;
+  roomInfantGuests: number;
   roomID: string;
   roomImage: string;
   roomName: string;
@@ -12,10 +16,13 @@ interface Props {
 }
 
 const EditRoomDrawer: React.FC<Props> = (props: Props) => {
-  const { isOpenEditRoomDrawer, setIsOpenEditRoomDrawer,roomID, roomImage, roomDescription, roomName, roomPrice } = props;
+  const { isOpenEditRoomDrawer, setIsOpenEditRoomDrawer, hotelId, roomAdultGuests, roomChildGuests, roomInfantGuests, roomID, roomImage, roomDescription, roomName, roomPrice } = props;
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+  const [adultGuests, setAdultGuests] = useState("");
+  const [childGuests, setChildGuests] = useState("");
+  const [infantGuests, setInfantGuests] = useState("");
   const [price, setPrice] = useState("");
 
   // All of my own functions
@@ -31,6 +38,18 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
     setDescription(event.target.value);
   }
 
+  function handleAdultGuestsChange(event: ChangeEvent<HTMLInputElement>) {
+    setAdultGuests(event.target.value);
+  }
+
+  function handleChildGuestsChange(event: ChangeEvent<HTMLInputElement>) {
+    setChildGuests(event.target.value);
+  }
+
+  function handleInfanftGuestsChange(event: ChangeEvent<HTMLInputElement>) {
+    setInfantGuests(event.target.value);
+  }
+
   function handlePriceChange(event: ChangeEvent<HTMLInputElement>) {
     setPrice(event.target.value);
   }
@@ -43,20 +62,46 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
     event.preventDefault();
     console.log("handle submit");
     const data = {
-      name,
-      image,
-      description,
-      price
+      hotelId: hotelId,    
+      name: name ? name : roomName,
+      image: image ? image : roomImage,
+      description: description ? description : roomDescription,
+      adultGuests: adultGuests ? adultGuests : roomAdultGuests,
+      childGuests: childGuests ? childGuests : roomChildGuests,
+      infantGuests: infantGuests ? infantGuests : roomInfantGuests,
+      price: price ? price : roomPrice
     };
 
     console.log(data);
+
+    try {
+        // Make a PUT request to update the room details
+        const response = await fetch("http://localhost:3006/" + "room/" + roomID, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (response.ok) {
+          console.log("Room details updated successfully");
+          //location.reload();
+        } else {
+          console.error("Failed to update room details");
+        }
+      } catch (error) {
+        console.error("Error updating room details:", error);
+      }
+
   }
 
 
   return (
     <nav>
       <Drawer
-        className="hotelListDrawer font-semibold"
+        className="hotelListDrawer font-semibold overflow-y-scroll"
         open={isOpenEditRoomDrawer}
         onClose={handleClose}
         direction="right"
@@ -90,12 +135,18 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
                 </div>
           <p>Name: <span>{roomName}</span></p>
           <p>Description: <span>{roomDescription}</span></p>
+          <p>Adult guests: {roomAdultGuests}</p>
+      <p>Child guests: {roomChildGuests}</p>
+      <p>Infant guests:{roomInfantGuests}</p>
           <p>Price: <span>{roomPrice}</span>kr</p>
         <div className="editHotel font-semibold mt-6">
         <form id="editRoomForm">
           <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
           <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
           <input type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} />
+          <input type="number" name="adultGuests" placeholder="Adult guests" value={adultGuests} onChange={handleAdultGuestsChange} />
+          <input type="number" name="childGuests" placeholder="Child guests" value={childGuests} onChange={handleChildGuestsChange} />
+          <input type="number" name="infantGueests" placeholder="Infant guests" value={infantGuests} onChange={handleInfanftGuestsChange} />
           <input type="text" name="price" placeholder="Price" value={price} onChange={handlePriceChange} />
         </form>
       </div>

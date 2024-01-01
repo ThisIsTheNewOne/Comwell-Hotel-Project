@@ -48,7 +48,8 @@ const SignupDrawer: React.FC = () => {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("handle submit");
-    const data = {
+
+    createSignup(
       name,
       email,
       postnummer,
@@ -57,21 +58,7 @@ const SignupDrawer: React.FC = () => {
       confirmPassword,
       gender,
       birthdate,
-    };
-
-    console.log(data);
-
-    createSignup(data);
-
-    /* const response = await createSignup(data); */
-
-    /* if (response.ok) {
-      console.log("everything went ok.");
-      console.log(response);
-      const body = await response.json();
-      console.log(body);
-      /* handleCancel();
-    } */
+    );
   }
 
   return (

@@ -59,13 +59,14 @@ const EditHotelDrawer: React.FC<Props> = (props: Props) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            Authorization: 'Bearer ' + localStorage.getItem("token")
           },
           body: JSON.stringify(data),
         });
   
         if (response.ok) {
           console.log("Hotel details updated successfully");
-          //location.reload();
+          location.reload();
         } else {
           console.error("Failed to update hotel details");
         }
