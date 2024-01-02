@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useContext, useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext, useEffect, useRef } from "react";
 import Drawer from "react-modern-drawer";
 import SignupDrawer from "./SignupDrawer";
 import { loginUser, logoutUser } from "@/services/firebase-service";
@@ -17,9 +17,10 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
   const { setGuestsInfo, guestInfo } = useContext(BookingContext);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const currentUser = useCurrentUser();
-  const [error, setError] = useState<boolean>(false);
+
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const loginContainerRef = useRef<HTMLDivElement>(null);
   const emptyGuestObject = {
     name: "",
     email: "",
@@ -120,10 +121,23 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
      window.location.replace("./hotels");
   }
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (loginContainerRef.current && !loginContainerRef.current.contains(event.target as Node)) {
+        setShowLoginContainer(false);
+      }
+    }
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}>
-        <div className="fixed left-[93%]  logInMainContainer">
+        <div ref={loginContainerRef}  className="fixed left-[93%]  logInMainContainer">
           {isLoggedIn ? (
             // If user is logged in, show buttons for dashboard and logout
             <div className="logInContainer font-semibold absolute">
