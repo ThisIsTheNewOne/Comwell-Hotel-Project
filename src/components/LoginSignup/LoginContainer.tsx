@@ -1,15 +1,17 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext, useEffect } from "react";
 import Drawer from "react-modern-drawer";
 import SignupDrawer from "./SignupDrawer";
-import { loginUser } from "@/services/firebase-service";
+import { loginUser, logoutUser } from "@/services/firebase-service";
 import BookingContext from "@/hooks/useContext/BookingContext";
+import { currentUser } from "@/hooks/userStorage";
 
 const LoginContainer: React.FC = () => {
   // All of the state
   const [isOpenSignupDrawer, setIsOpenSignupDrawer] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setGuestsInfo } = useContext(BookingContext)
+  const { setGuestsInfo } = useContext(BookingContext);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   // All of my own functions
   function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
@@ -54,12 +56,59 @@ const LoginContainer: React.FC = () => {
     }
 
     setGuestsInfo(newGuestInfo)
-  }
+
+      }
+
+
+      const handleLogout = () => {
+        logoutUser();
+        window.location.replace("./")
+      }
+
+    useEffect(() => {
+        // Check if the user is logged in
+        const user = currentUser; 
+    
+        if (user) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      }, []);
+      
+      function handleGoToDashboard() {
+        window.location.replace("./hotels");
+      }
 
   return (
-    <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}>
-     <div className="fixed left-[93%]  logInMainContainer">
-      <div className="logInContainer font-semibold absolute">
+    <>
+
+{/* <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}> */}
+     {/* <div className="fixed left-[93%]  logInMainContainer"> */}
+
+{isLoggedIn ? (
+        // If user is logged in, show buttons for dashboard and logout
+        <div className="logInContainer font-semibold absolute">
+          <div className="py-5 flex flex-col w-full px-8 gap-y-4">
+          <div className="contents">
+            <h2 className="text-black mb-5">Hi, {currentUser?.fullname}</h2>
+            <button onClick={handleGoToDashboard} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-theme text-white hover:lg:bg-theme-80">
+              <span className="flex items-center gap-x-[7px] justify-center">
+                <span>Go to dashboard</span>
+              </span>
+            </button>
+            <button onClick={handleLogout} className="body w-full rounded-full font-semibold leading-none md:w-auto md:px-10 md:transition max-md:transition-opacity h-[52px] opacity-100 bg-red-400 text-white hover:lg:bg-theme-80">
+              <span className="flex items-center gap-x-[7px] justify-center">
+                <span>Log out</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        </div>
+      ) : (
+        // If user is not logged in, show the login form and signup drawer
+        <div>
+          <div className="logInContainer font-semibold absolute">
         <form id="loginForm">
           <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
           <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
@@ -104,8 +153,7 @@ const LoginContainer: React.FC = () => {
           <SignupDrawer />
         </div>
       </Drawer>
-      </div>
-    </div>
+    </>
   );
 };
 

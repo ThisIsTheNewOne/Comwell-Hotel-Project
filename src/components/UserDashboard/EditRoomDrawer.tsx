@@ -87,7 +87,7 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
   
         if (response.ok) {
           console.log("Room details updated successfully");
-          //location.reload();
+          location.reload();
         } else {
           console.error("Failed to update room details");
         }

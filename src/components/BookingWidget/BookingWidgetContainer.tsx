@@ -17,7 +17,7 @@ const BookingWidgetContainer = () => {
 
 
   return (
-    <div className=" bg-white border-2 border-black rounded-[17px] 3xl:col-span-4 2xl:col-span-5 xl:col-span-6 lg:col-span-7 lg:block hidden">
+    <div className=" bg-white border-2 rounded-[17px] 3xl:col-span-4 2xl:col-span-5 xl:col-span-6 lg:col-span-7 lg:block hidden">
       <div className="m-4 mt-0 mr-8">
         <h1 className="text-heading-lg block py-4 font-semibold leading-none">
           Check ind på Comwell og kom ud i Danmark
