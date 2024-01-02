@@ -31,13 +31,17 @@ const Header: React.FC = () => {
     });
   }
 
+  function handleLogoClick() {
+    window.location.replace("./")
+  }
+
   return (
     <header className="grid-edge fixed top-0 flex h-[84px] w-full items-center justify-center transition delay-75 duration-200 bg-transparent pl-14 pr-6 text-black z-50">
       <div className="grid-comwell w-full">
         <div className="col-span-full flex items-center justify-between">
-          <div className="w-32">
+          <button onClick={handleLogoClick} className="w-32">
             <img src="./icons/Comwell-logo.svg" alt="logo" />
-          </div>
+          </button>
         
           <div>
             <Navigation />
