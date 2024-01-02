@@ -44,8 +44,8 @@ const Navigation: React.FC<Props> = (props: Props) => {
   }, [guestInfo]);
 
   return (
-    <nav className="flex justify-end pr-10 font-medium text-white">
-      <ul className="flex items-center gap-9">
+    <nav className={`flex justify-end pr-10 font-medium ${showLoginContainer ? 'bg-white text-black' : 'text-white'}`}>
+    <ul className="flex items-center gap-9">
         <li>Lokationer</li>
         <li className="relative">
           <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
