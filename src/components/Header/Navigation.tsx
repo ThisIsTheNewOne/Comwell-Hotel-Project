@@ -17,21 +17,17 @@ const Navigation: React.FC<Props> = (props: Props) => {
   useEffect(() => {
   
     function handleClickOutside(event: MouseEvent) {
-     console.log("Whatmight this be in the end??", event.target)
+     console.log("Whatmight this be in the end??", event.target, guestInfo.name)
       if (containerRef.current && event.target instanceof Node && !containerRef.current.contains(event.target)) {
         setShowLoginContainer(false);
-      } else  if(guestInfo.name !== undefined && guestInfo.name.length > 0) {
-        setShowLoginContainer(false);
       }
-
-     
     }
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [guestInfo]);
+  }, [guestInfo, setShowLoginContainer]);
 
   return (
     <nav className="flex justify-end pr-10 font-medium text-white">
@@ -40,7 +36,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
         <li className="relative">
           <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
             <div className="whitespace-nowrap">
-            <span>{currentUser?.fullname || "Profil"}</span>
+            <span>{(currentUser?.fullname ?? guestInfo.name) || "Profil"}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-5 lg:w-4">
               <path
@@ -54,8 +50,6 @@ const Navigation: React.FC<Props> = (props: Props) => {
           <dialog ref={containerRef} open={showLoginContainer}>
             <LoginContainer />
           </dialog>
-
-          {/* <button type="button" aria-label="Luk profil menu" className="fixed top-[85px] left-0 w-full h-full bg-black/80 transition !duration-100 !ease-out !scale-100 !delay-[0] opacity-0 pointer-events-none invisible" data-v-636226b5=""></button> */}
         </li>
         <li>Menu</li>
       </ul>
