@@ -36,3 +36,8 @@ export async function loginUser(data: { email: any; password: any; }) {
     console.log("error happened: ", error);
   }
 }
+
+export function logoutUser() {
+  localStorage.removeItem("currentUser");
+  localStorage.removeItem("token");
+}

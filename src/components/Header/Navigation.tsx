@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import LoginContainer from "../LoginSignup/LoginContainer";
+import { currentUser } from "@/hooks/userStorage";
 
 const Navigation: React.FC = () => {
   const [showLoginContainer, setShowLoginContainer] = useState(false);
@@ -19,13 +20,13 @@ const Navigation: React.FC = () => {
   }, []);
 
   return (
-    <nav className="ml-auto w-52">
-      <ul className="flex items-center justify-between md:gap-x-7">
+    <nav className="flex justify-end pr-10 font-medium">
+      <ul className="flex items-center gap-9">
         <li>Location</li>
         <li className="relative">
-          <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 overflow-hidden py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
-            <div className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[8ch]">
-              <span className="navigation max-md:hidden">Profil</span>
+          <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
+            <div className="whitespace-nowrap">
+            <span>{currentUser?.fullname || "Profile"}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-5 lg:w-4">
               <path
