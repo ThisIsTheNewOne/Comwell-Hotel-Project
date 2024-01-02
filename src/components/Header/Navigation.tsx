@@ -20,7 +20,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
      console.log("Whatmight this be in the end??", event.target)
       if (containerRef.current && event.target instanceof Node && !containerRef.current.contains(event.target)) {
         setShowLoginContainer(false);
-      } else  if(guestInfo.name.length > 0) {
+      } else  if(guestInfo.name !== undefined && guestInfo.name.length > 0) {
         setShowLoginContainer(false);
       }
 

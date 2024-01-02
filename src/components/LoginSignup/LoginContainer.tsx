@@ -81,12 +81,11 @@ const LoginContainer: React.FC = () => {
       }
 
   return (
-    <>
+   
 
-{/* <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}> */}
-     {/* <div className="fixed left-[93%]  logInMainContainer"> */}
 
-{isLoggedIn ? (
+<>
+     {isLoggedIn ? (
         // If user is logged in, show buttons for dashboard and logout
         <div className="logInContainer font-semibold absolute">
           <div className="py-5 flex flex-col w-full px-8 gap-y-4">
@@ -108,7 +107,9 @@ const LoginContainer: React.FC = () => {
       ) : (
         // If user is not logged in, show the login form and signup drawer
         <div>
-          <div className="logInContainer font-semibold absolute">
+          <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}>
+            <div className="fixed left-[93%]  logInMainContainer">
+           <div className="logInContainer font-semibold absolute">
         <form id="loginForm">
           <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
           <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
@@ -136,8 +137,8 @@ const LoginContainer: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
-      <Drawer className="signupDrawer font-semibold" open={isOpenSignupDrawer} onClose={handleClose} direction="right" size={390}>
+          </div>
+          <Drawer className="signupDrawer font-semibold" open={isOpenSignupDrawer} onClose={handleClose} direction="right" size={390}>
         <div className="signupContainer">
           <div className="header">
             <div className="top">
@@ -152,7 +153,11 @@ const LoginContainer: React.FC = () => {
           </div>
           <SignupDrawer />
         </div>
-      </Drawer>
+          </Drawer>
+          </div>
+          </div>
+      </div>
+      )}
     </>
   );
 };
