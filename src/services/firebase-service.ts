@@ -6,14 +6,6 @@ export async function createSignup(name: string, email: string, postnummer: stri
   try {
     const response = await signUp(name, email, postnummer, telefon, password, confirmPassword, gender, birthdate);
 
-    console.log("response createSignup", response);
-
-    const body = await response.json();
-    console.log(body);
-
-    localStorage.setItem("userObject", JSON.stringify(response));
-    console.log(localStorage.getItem("userObject"));
-
     //We are redirectiong to index page
   } catch (error) {
     console.log("error happened: ", error);
