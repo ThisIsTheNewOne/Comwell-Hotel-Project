@@ -1,22 +1,36 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import LoginContainer from "../LoginSignup/LoginContainer";
+import BookingContext from "@/hooks/useContext/BookingContext";
 
-const Navigation: React.FC = () => {
-  const [showLoginContainer, setShowLoginContainer] = useState(false);
+interface Props {
+  showLoginContainer: boolean
+  setShowLoginContainer:(props: any) => void
+}
+
+const Navigation: React.FC<Props> = (props: Props) => {
+  // const [showLoginContainer, setShowLoginContainer] = useState(false);
+  const {showLoginContainer, setShowLoginContainer} = props
+  const { guestInfo } = useContext(BookingContext)
   const containerRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+  
     function handleClickOutside(event: MouseEvent) {
+     console.log("Whatmight this be in the end??", event.target)
       if (containerRef.current && event.target instanceof Node && !containerRef.current.contains(event.target)) {
         setShowLoginContainer(false);
+      } else  if(guestInfo.name.length > 0) {
+        setShowLoginContainer(false);
       }
+
+     
     }
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [guestInfo]);
 
   return (
     <nav className="ml-auto w-52">

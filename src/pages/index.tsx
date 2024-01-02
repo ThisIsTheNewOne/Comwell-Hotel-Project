@@ -32,7 +32,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full h-[100vh] bg-white relative z-0">
+      <section className="w-full h-[100vh] bg-white ">
         <h1>Current</h1>
         {currentOffer.map((offer, index) => (
           <div className="relative w-full h-[100vh]" key={index}>

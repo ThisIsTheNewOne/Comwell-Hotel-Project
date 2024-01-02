@@ -54,20 +54,11 @@ const LoginContainer: React.FC = () => {
     }
 
     setGuestsInfo(newGuestInfo)
-
-    /* const response = await loginUser(data); */
-
-    /* if (response.ok) {
-      console.log("everything went ok.");
-      console.log(response);
-      const body = await response.json();
-      console.log(body);
-      /* handleCancel();
-    } */
   }
 
   return (
-    <>
+    <div className={`fixed top-[84px] left-[0] w-full h-full ${!isOpenSignupDrawer ? 'bg-[rgba(0,0,0,0.8)]' : 'bg-transparent'} justify-center items-center z-[9999]`}>
+     <div className="fixed left-[93%]  logInMainContainer">
       <div className="logInContainer font-semibold absolute">
         <form id="loginForm">
           <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
@@ -113,7 +104,8 @@ const LoginContainer: React.FC = () => {
           <SignupDrawer />
         </div>
       </Drawer>
-    </>
+      </div>
+    </div>
   );
 };
 
