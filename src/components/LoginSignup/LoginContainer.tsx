@@ -3,7 +3,7 @@ import Drawer from "react-modern-drawer";
 import SignupDrawer from "./SignupDrawer";
 import { loginUser, logoutUser } from "@/services/firebase-service";
 import BookingContext from "@/hooks/useContext/BookingContext";
-import { currentUser } from "@/hooks/userStorage";
+import { useCurrentUser } from "@/hooks/userStorage";
 
 interface Props {
   setShowLoginContainer: (props: any) => void;
@@ -16,14 +16,16 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
   const [password, setPassword] = useState("");
   const { setGuestsInfo, guestInfo } = useContext(BookingContext);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const currentUser = useCurrentUser();
+  const [error, setError] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const emptyGuestObject = {
+    name: "",
+    email: "",
+    telefon: ""
+  }
 
-  // All of my own functions
-  function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value);
-  }
-  function handlePasswordChange(event: ChangeEvent<HTMLInputElement>) {
-    setPassword(event.target.value);
-  }
 
   function handleClick() {
     setIsOpenSignupDrawer(true);
@@ -32,6 +34,29 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
   function handleClose() {
     setIsOpenSignupDrawer(false);
   }
+
+  const handleEmailChange = (event: any) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+  
+
+    if (!/\S+@\S+\.\S+/.test(newEmail)) {
+      setEmailError('Please enter a valid email.');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const handlePasswordChange = (event: any) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+  
+    if (newPassword.length < 8) {
+      setPasswordError('Password should be at least 8 characters long.');
+    } else {
+      setPasswordError('');
+    }
+  };
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -43,7 +68,17 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
 
     const response = await loginUser(data);
 
+    console.log("This is the error", response)
+
+    if( response === undefined) {
+      setPasswordError('Wrong password or email.');
+      return
+    } 
+
     const user = response.user
+
+ 
+
     const name = user.fullname
     const email2 = user.userId
     const phone2 = user.phoneNr
@@ -62,12 +97,7 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
 
   const handleLogout = () => {
     logoutUser();
-    const newGuestInfo = {
-      name: "",
-      email: "",
-      telefon: ""
-    }
-    setGuestsInfo(newGuestInfo)
+    setGuestsInfo(emptyGuestObject)
     setIsLoggedIn(false);
     setShowLoginContainer(false)
     // window.location.replace("./")
@@ -78,10 +108,13 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
     
     if (user) {
      setIsLoggedIn(true);
+     setShowLoginContainer(false)
     } else {
+     setGuestsInfo(emptyGuestObject)
      setIsLoggedIn(false);
+     setShowLoginContainer(false)
     }
-  }, []);
+  }, [currentUser]);
       
   function handleGoToDashboard() {
      window.location.replace("./hotels");
@@ -116,8 +149,13 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
             <div>
               <div className="logInContainer font-semibold absolute">
                 <form id="loginForm">
+                  {/* <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+                  <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} /> */}
                   <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+                    {emailError && <div className="error-message">{emailError}</div>}
+
                   <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
+                    {passwordError && <div className="error-message">{passwordError}</div>}
                   <div className="flex flex-col gap-y-1 text-sm">
                     <span>Har du glemt din adgangskode?</span>
                     <button type="button" className="text-theme whitespace-nowrap text-left underline">

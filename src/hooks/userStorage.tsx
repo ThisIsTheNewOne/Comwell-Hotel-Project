@@ -1,7 +1,15 @@
+import { useState, useEffect } from 'react';
 import { User } from "@/types/Booking";
 
-  export const currentUser: User | null = typeof window !== 'undefined'
-  ? (localStorage.getItem("currentUser")
-    ? JSON.parse(localStorage.getItem("currentUser") as string)
-    : null)
-  : null;
+export function useCurrentUser() {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+  }, []);
+ 
+  return currentUser;
+}

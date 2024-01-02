@@ -229,12 +229,16 @@
 .logInContainer {
   background-color: white;
   width: 300px;
-  height: 350px;
+  height: auto;
   transform: translate(-248px, 25px);
   border-radius: 10px;
   padding: 30px 20px;
   color: #aeaeae;
   overflow: hidden;
+}
+
+.error-message {
+  color: red;
 }
 
 .logInContainer form {

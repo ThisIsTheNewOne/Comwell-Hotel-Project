@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import LoginContainer from "../LoginSignup/LoginContainer";
 import BookingContext from "@/hooks/useContext/BookingContext";
-import { currentUser } from "@/hooks/userStorage";
+import { useCurrentUser } from "@/hooks/userStorage";
+import { User } from "@/types/Booking";
 
 interface Props {
   showLoginContainer: boolean
@@ -13,8 +14,10 @@ const Navigation: React.FC<Props> = (props: Props) => {
   const {showLoginContainer, setShowLoginContainer} = props
   const { guestInfo } = useContext(BookingContext)
   const containerRef = useRef<HTMLDialogElement>(null);
+  const currentUser = useCurrentUser();
+  const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
+  useEffect(() => { 
   
     function handleClickOutside(event: MouseEvent) {
      console.log("Whatmight this be in the end??", event.target, guestInfo.name)
@@ -28,6 +31,17 @@ const Navigation: React.FC<Props> = (props: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [guestInfo, setShowLoginContainer]);
+  
+
+  useEffect(() => {
+    console.log("What is this??", guestInfo)
+    if(guestInfo.name) {
+      setUser(currentUser)
+    } else {
+      setUser(null)
+    }
+  
+  }, [guestInfo]);
 
   return (
     <nav className="flex justify-end pr-10 font-medium text-white">
@@ -36,7 +50,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
         <li className="relative">
           <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
             <div className="whitespace-nowrap">
-            <span>{(currentUser?.fullname ?? guestInfo.name) || "Profil"}</span>
+            <span>{(user?.fullname ?? guestInfo.name) || "Profil"}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-5 lg:w-4">
               <path
