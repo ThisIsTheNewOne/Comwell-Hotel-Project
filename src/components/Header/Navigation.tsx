@@ -48,7 +48,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
             </svg>
           </button>
           <dialog ref={containerRef} open={showLoginContainer}>
-            <LoginContainer />
+            <LoginContainer setShowLoginContainer={setShowLoginContainer} />
           </dialog>
         </li>
         <li>Menu</li>

@@ -5,8 +5,12 @@ import { loginUser, logoutUser } from "@/services/firebase-service";
 import BookingContext from "@/hooks/useContext/BookingContext";
 import { currentUser } from "@/hooks/userStorage";
 
-const LoginContainer: React.FC = () => {
-  // All of the state
+interface Props {
+  setShowLoginContainer: (props: any) => void;
+}
+
+const LoginContainer: React.FC<Props> = (props: Props) => {
+  const { setShowLoginContainer } = props;
   const [isOpenSignupDrawer, setIsOpenSignupDrawer] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,12 +56,21 @@ const LoginContainer: React.FC = () => {
     setGuestsInfo(newGuestInfo)
     // const user2 = currentUser; 
     setIsLoggedIn(true);
+    setShowLoginContainer(false)
    
   }
 
   const handleLogout = () => {
     logoutUser();
-    window.location.replace("./")
+    const newGuestInfo = {
+      name: "",
+      email: "",
+      telefon: ""
+    }
+    setGuestsInfo(newGuestInfo)
+    setIsLoggedIn(false);
+    setShowLoginContainer(false)
+    // window.location.replace("./")
   }
 
   useEffect(() => {
