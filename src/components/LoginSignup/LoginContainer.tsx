@@ -101,7 +101,7 @@ const LoginContainer: React.FC<Props> = (props: Props) => {
     setGuestsInfo(emptyGuestObject)
     setIsLoggedIn(false);
     setShowLoginContainer(false)
-    // window.location.replace("./")
+    window.location.replace("./")
   }
 
   useEffect(() => {

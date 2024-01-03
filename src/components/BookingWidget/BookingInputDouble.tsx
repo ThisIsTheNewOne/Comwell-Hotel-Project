@@ -97,7 +97,7 @@ const BookingInputDouble = (props: Props) => {
                 />
               </div>
 
-              <div>V</div>
+              <div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-[25px] rotate-180"><path stroke="currentColor" stroke-width="1.5" d="M16.666 12.916 10 6.666l-6.667 6.25"></path></svg></div>
             </div>
           </div>
         ))}
