@@ -130,8 +130,8 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          startDate: checkIn.date,
-          endDate: checkOut.date,
+          startDate: checkIn.date[0],
+          endDate: checkOut.date[0],
           // Needs to be updated with user info
           userId: "guest",
           roomId: selectedRoom?._id,

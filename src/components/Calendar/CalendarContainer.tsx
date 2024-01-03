@@ -11,7 +11,8 @@ interface State {
 interface Props {
   setCheckIn: (checkIn: CalendarVariable) => void;
   setCheckOut: (checkOut: CalendarVariable) => void;
-  disableDates: (string | Date)[]
+  enableDates: (string | Date)[];
+  monthChange: (year: number, month: number) => void
 }
 
 class CalendarContainer extends Component<Props, State> {
@@ -48,19 +49,14 @@ class CalendarContainer extends Component<Props, State> {
           mode: "range",
           minDate: "today",
           dateFormat: "Y-m-d",
-            disable: this.props.disableDates, //disables specific dates
-          inline: true,
-           onDayCreate: (dObj, dStr, fp, dayElem) => {
-            // You can fetch the price based on the date (dStr) from your server
-            // For simplicity, let's just use a random price for now
-            const price = Math.floor(Math.random() * 100) + 50;
-            dayElem.innerHTML += `</b><span class="price"> ${price}</span>`;
-          },
+          enable: this.props.enableDates, //disables specific dates
+          inline: true
         }}
         value={date}
         // onChange={date => {
         //     this.setState({ date });
         //   }}
+        onMonthChange={(e, currentDate, instance)=> this.props.monthChange(instance.currentYear, instance.currentMonth)}
         onChange={(date) => tryFunction(date)}
       />
     );
