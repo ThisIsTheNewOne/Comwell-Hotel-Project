@@ -65,12 +65,12 @@ const SignupDrawer: React.FC = () => {
     <>
       <div className="signupDrawerContainer pb-40">
         <form id="signupForm" className="mt-20" onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="Fulde navn" value={name} onChange={handleNameChange} />
-          <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} />
-          <input type="text" name="postnummer" placeholder="Postnummer" value={postnummer} onChange={handlePostnummerChange} />
-          <input type="tel" name="telefon" placeholder="Telefon" value={telefon} onChange={handleTelefonChange} />
-          <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} />
-          <input type="password" name="confirmPassword" placeholder="Bekræft adgangskode" value={confirmPassword} onChange={handleConfirmPasswordChange} />
+          <input type="text" name="name" placeholder="Fulde navn" value={name} onChange={handleNameChange} required/>
+          <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange} required/>
+          <input type="text" name="postnummer" placeholder="Postnummer" value={postnummer} onChange={handlePostnummerChange}/>
+          <input type="tel" name="telefon" placeholder="Telefon" value={telefon} onChange={handleTelefonChange} required/>
+          <input type="password" name="password" placeholder="Adgangskode" value={password} onChange={handlePasswordChange} required/>
+          <input type="password" name="confirmPassword" placeholder="Bekræft adgangskode" value={confirmPassword} onChange={handleConfirmPasswordChange} required/>
           <label className="labelSignup">Køn</label>
           <select id="gender" name="gender" value={gender} onChange={handleGenderChange}>
             <option value="other">Ikke specificeret</option>
@@ -86,7 +86,6 @@ const SignupDrawer: React.FC = () => {
             Tilmeld
           </button>
 
-          {/* <input type="submit" value={"Create"} /> */}
         </form>
       </div>
     </>

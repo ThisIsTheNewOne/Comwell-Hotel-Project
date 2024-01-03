@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Drawer from "react-modern-drawer";
 import Filter from "./Filters";
 import HotelInput from "./HotelInput";
@@ -19,6 +19,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
   const { selectedHotel, setSelectedHotel } = useContext(BookingContext);
   const [filteredHotelList, setFilteredHotelList] = useState<Hotel[]>([]);
 
+
   function handleClick() {
     console.log("Hotel list drawer open");
     setIsOpenHotelListDrawer(true);
@@ -29,7 +30,6 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     setIsOpenHotelListDrawer(false);
   }
 
-  console.log("selectedFilter", selectedFilter)
   function handleFilterChange(filter: string) {
     setSelectedFilter(filter);
   
@@ -47,6 +47,12 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     setFilteredHotelList(newFilteredHotelList);
   
   }
+
+  useEffect(() => {
+    if (hotelList && hotelList.length > 0) {
+      handleFilterChange(selectedFilter); 
+    }
+  }, [hotelList]); 
   
 
   const hotelInput = {

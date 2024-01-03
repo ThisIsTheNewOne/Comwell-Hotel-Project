@@ -105,11 +105,11 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
         </div>
         <div className="editHotel font-semibold mt-6">
           <form id="addHotelForm">
-            <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
-            <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
+            <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} required/>
+            <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} required/>
             <div className="select flex gap-4">
               <label htmlFor="city">City:</label>
-              <select value={city} onChange={handleCityChange}>
+              <select value={city} onChange={handleCityChange} required>
                 <option value="">Select a city</option>
                 {allCities.map((cityName, index) => (
                   <option key={index} value={cityName}>
@@ -118,7 +118,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
                 ))}
               </select>
             </div>
-            <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} />
+            <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} required/>
           </form>
         </div>
         <div className="flex justify-center mt-6">

@@ -7,8 +7,14 @@ export async function createSignup(name: string, email: string, postnummer: stri
     const response = await signUp(name, email, postnummer, telefon, password, confirmPassword, gender, birthdate);
 
     //We are redirectiong to index page
+    if (response.ok) {
+      console.log("User created successfully");
+      location.reload();
+    } else {
+      console.error("Failed to create user");
+    }
   } catch (error) {
-    console.log("error happened: ", error);
+    console.error("Error creating user:", error);
   }
 }
 
