@@ -27,6 +27,7 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   const [infantGuests, setInfantGuests] = useState("");
   const [price, setPrice] = useState("");
   const {getRoomFeatures} = useContext(BookingContext)
+  const [showErrors, setShowErrors] = useState(false);
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
@@ -64,6 +65,14 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("handle submit");
+    setShowErrors(true);
+
+    // Check if all required fields are filled
+    if (!image || !name || !description || !adultGuests || !childGuests || !infantGuests || !price) {
+      console.error("Please fill in all required fields.");
+      return; 
+    }
+
     const data = {
       hotelId: hotelId,  
       label: name,
@@ -154,7 +163,7 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   return (
     <nav>
       <Drawer
-        className="hotelListDrawer font-semibold"
+        className="hotelListDrawer font-semibold overflow-y-scroll"
         open={isOpenAddRoomDrawer}
         onClose={handleClose}
         direction="right"
@@ -179,13 +188,20 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
           </div>
         <div className="editHotel font-semibold mt-6">
         <form id="addRoomForm">
-          <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
-          <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
-          <input type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} />
-          <input type="number" name="adultGuests" placeholder="Adult guests" value={adultGuests} onChange={handleAdultGuestsChange} />
-          <input type="number" name="childGuests" placeholder="Child guests" value={childGuests} onChange={handleChildGuestsChange} />
-          <input type="number" name="infantGueests" placeholder="Infant guests" value={infantGuests} onChange={handleInfanftGuestsChange} />
-          <input type="text" name="price" placeholder="Price" value={price} onChange={handlePriceChange} />
+        <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} required/>
+        {showErrors && image === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} required/>
+        {showErrors && name === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} required/>
+        {showErrors && description === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="number" name="adultGuests" placeholder="Adult guests" value={adultGuests} onChange={handleAdultGuestsChange} required/>
+        {showErrors && adultGuests === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="number" name="childGuests" placeholder="Child guests" value={childGuests} onChange={handleChildGuestsChange} required/>
+        {showErrors && childGuests === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="number" name="infantGuests" placeholder="Infant guests" value={infantGuests} onChange={handleInfanftGuestsChange} required/>
+        {showErrors && infantGuests === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
+        <input type="text" name="price" placeholder="Price" value={price} onChange={handlePriceChange} required/>
+        {showErrors && price === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
       
         
           <ReactSelect

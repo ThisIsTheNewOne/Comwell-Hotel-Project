@@ -13,6 +13,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
   const [city, setCity] = useState("");
   const [image, setImage] = useState("");
   const [address, setAddress] = useState("");
+  const [showErrors, setShowErrors] = useState(false);
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
@@ -44,6 +45,15 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("handle submit");
+
+    setShowErrors(true);
+
+    // Check if all required fields are filled
+    if (!image || !name || !city || !address) {
+      console.error("Please fill in all required fields.");
+      return; 
+    }
+
     const data = {
       image,
       name,
@@ -106,7 +116,9 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
         <div className="editHotel font-semibold mt-6">
           <form id="addHotelForm">
             <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} required/>
+            {showErrors && image === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
             <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} required/>
+            {showErrors && name === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
             <div className="select flex gap-4">
               <label htmlFor="city">City:</label>
               <select value={city} onChange={handleCityChange} required>
@@ -118,7 +130,9 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
                 ))}
               </select>
             </div>
+            {showErrors && city === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
             <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} required/>
+            {showErrors && address === "" && <span className="errorMessage text-red-500 text-xs mb-3">This field is required</span>}
           </form>
         </div>
         <div className="flex justify-center mt-6">
