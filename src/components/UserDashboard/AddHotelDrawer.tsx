@@ -1,3 +1,4 @@
+import { fynCities, jyllandCities, sjællandCities } from "@/data/hotelRegions";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Drawer from "react-modern-drawer";
 
@@ -18,7 +19,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
     setName(event.target.value);
   }
 
-  function handleCityChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleCityChange(event: ChangeEvent<HTMLSelectElement>) {
     setCity(event.target.value);
   }
 
@@ -33,6 +34,12 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
   function handleClose() {
     setIsOpenAddHotelDrawer(false);
   }
+
+  const allCities = [
+    ...sjællandCities.map(({ city }) => city),
+    ...fynCities.map(({ city }) => city),
+    ...jyllandCities.map(({ city }) => city),
+  ].sort(); 
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -58,11 +65,14 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
       });
       console.log(response);
 
-      window.location.replace("./hotels");
-
-
+      if (response.ok) {
+        console.log("Hotel added successfully");
+        location.reload();
+      } else {
+        console.error("Failed to add hoteæl");
+      }
     } catch (error) {
-      console.log("error happened: ", error);
+      console.error("Error adding hotel:", error);
     }
   }
 
@@ -97,7 +107,17 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
           <form id="addHotelForm">
             <input type="text" name="image" placeholder="Image link" value={image} onChange={handleImageChange} />
             <input type="text" name="name" placeholder="Name" value={name} onChange={handleNameChange} />
-            <input type="text" name="city" placeholder="City" value={city} onChange={handleCityChange} />
+            <div className="select flex gap-4">
+              <label htmlFor="city">City:</label>
+              <select value={city} onChange={handleCityChange}>
+                <option value="">Select a city</option>
+                {allCities.map((cityName, index) => (
+                  <option key={index} value={cityName}>
+                    {cityName}
+                  </option>
+                ))}
+              </select>
+            </div>
             <input type="text" name="address" placeholder="Address" value={address} onChange={handleAddressChange} />
           </form>
         </div>

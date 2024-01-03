@@ -173,7 +173,7 @@
     gap: 8px;
   }
   
-  .editHotel form input {
+  .editHotel form input, .editHotel form .select{
     border: 1px solid #e5e7eb;
     border-radius: 4px;
     padding: 14px 12px;

@@ -88,13 +88,17 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
           body: JSON.stringify(data),
         });
         console.log(response);
-  
-        window.location.replace("./hotels");
-  
-  
+
+        if (response.ok) {
+          console.log("Room created updated successfully");
+          location.reload();
+        } else {
+          console.error("Failed to create room");
+        }
       } catch (error) {
-        console.log("error happened: ", error);
+        console.error("Error creating room:", error);
       }
+  
   }
 
 

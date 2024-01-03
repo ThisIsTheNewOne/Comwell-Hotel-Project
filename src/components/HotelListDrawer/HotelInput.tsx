@@ -3,12 +3,13 @@ import React, { useState } from "react";
 interface HotelInputProps {
   hotelName: string;
   city: string;
+  image: string;
   isSelected: boolean;
   onClick: () => void;
 }
 
 const HotelInput: React.FC<HotelInputProps> = (props: HotelInputProps) => {
-  const { hotelName, city, isSelected, onClick } = props;
+  const { hotelName, city, image, isSelected, onClick } = props;
 
   return (
     <>
@@ -20,7 +21,7 @@ const HotelInput: React.FC<HotelInputProps> = (props: HotelInputProps) => {
           
           <div className="imageContainer">
             <img
-              src="https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/images/hotels/borupgaard/borupgaard.webp"
+              src={image}
               alt="borupgaard"
             />
           </div>

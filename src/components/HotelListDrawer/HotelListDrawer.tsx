@@ -5,6 +5,7 @@ import HotelInput from "./HotelInput";
 import BookingInputSingle from "../BookingWidget/BookingInputSingle";
 import { Hotel } from "@/types/Booking";
 import BookingContext from "@/hooks/useContext/BookingContext";
+import setRegion from "@/data/hotelRegions";
 
 interface Props {
   isOpenHotelListDrawer: boolean;
@@ -16,6 +17,7 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
   const { isOpenHotelListDrawer, setIsOpenHotelListDrawer, hotelList } = props;
   const [selectedFilter, setSelectedFilter] = useState<string>("Alle");
   const { selectedHotel, setSelectedHotel } = useContext(BookingContext);
+  const [filteredHotelList, setFilteredHotelList] = useState<Hotel[]>([]);
 
   function handleClick() {
     console.log("Hotel list drawer open");
@@ -27,23 +29,25 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
     setIsOpenHotelListDrawer(false);
   }
 
+  console.log("selectedFilter", selectedFilter)
   function handleFilterChange(filter: string) {
     setSelectedFilter(filter);
-    console.log("This is the selected filter", filter);
-    //  here i want to sort the hotelList based on the selected filter
-    //  if the filter is "Alle" then show all hotels
-    //  if the filter is "Sjælland" then show all hotels in sjælland
-    //  if the filter is "Fyn" then show all hotels in fyn
-    //  if the filter is "Jylland" then show all hotels in jylland
-
-    const filteredHotelList = hotelList.filter((hotel) => {
+  
+    const newFilteredHotelList = hotelList.filter((hotel) => {
       if (filter === "Alle") {
         return true;
       } else {
-        return hotel.city === filter;
+        const region = setRegion(hotel.city);
+        console.log(hotel.city),
+        console.log("region", region)
+        return region === filter;
       }
     });
+
+    setFilteredHotelList(newFilteredHotelList);
+  
   }
+  
 
   const hotelInput = {
     label: "Hotel",
@@ -94,24 +98,17 @@ const HotelListDrawer: React.FC<Props> = (props: Props) => {
           handleFilterChange={handleFilterChange}
         />
         <div className="hotelList">
-          <ul className="flex flex-col gap-y-2">
-            {hotelList
-              .filter((hotel) => {
-                if (selectedFilter === "Alle") {
-                  return true;
-                } else {
-                  return hotel.city === selectedFilter;
-                }
-              })
-              .map((hotel) => (
-                <HotelInput
-                  key={hotel.name}
-                  hotelName={hotel.name}
-                  city={hotel.city}
-                  isSelected={selectedHotel?.name === hotel.name}
-                  onClick={() => handleHotelSelect(hotel)}
-                />
-              ))}
+        <ul className="flex flex-col gap-y-2">
+            {filteredHotelList.map((hotel) => ( 
+              <HotelInput
+                key={hotel.name}
+                hotelName={hotel.name}
+                city={hotel.city}
+                image={hotel.image}
+                isSelected={selectedHotel?.name === hotel.name}
+                onClick={() => handleHotelSelect(hotel)}
+              />
+            ))}
           </ul>
         </div>
        

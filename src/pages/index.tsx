@@ -68,6 +68,7 @@ export default function Home() {
         <span className="bg-white text-black label block rounded-full px-3 py-1.5 uppercase text-xs">Se lokaler og mødepakker</span>
         </div>
         <div className="absolute bottom-4 left-4 text-white">
+        <p className="text-xl mb-1">Additional text here</p>
           <p className="text-xs">Additional text here</p>
         </div>
       </div>
@@ -84,6 +85,7 @@ export default function Home() {
         <span className="bg-white text-black label block rounded-full px-3 py-1.5 uppercase text-xs">Nyhed</span>
         </div>
         <div className="absolute bottom-4 left-4 text-white">
+          <p className="text-xl mb-1">Additional text here</p>
           <p className="text-xs">Additional text here</p>
         </div>
       </div>
@@ -100,6 +102,7 @@ export default function Home() {
         <span className="bg-white text-black label block rounded-full px-3 py-1.5 uppercase text-xs">Få overblikket</span>
         </div>
         <div className="absolute bottom-4 left-4 text-white">
+        <p className="text-xl mb-1">Additional text here</p>
           <p className="text-xs">Additional text here</p>
         </div>
       </div>

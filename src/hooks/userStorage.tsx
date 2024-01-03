@@ -5,3 +5,5 @@ import { User } from "@/types/Booking";
     ? JSON.parse(localStorage.getItem("currentUser") as string)
     : null)
   : null;
+
+ /*  const currentUser: User = localStorage.getItem("currentUser") ? JSON.parse( localStorage.getItem("currentUser") as string ) : ""; */

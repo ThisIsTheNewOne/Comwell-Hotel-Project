@@ -20,7 +20,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   return (
-    <nav className="flex justify-end pr-10 font-medium text-white">
+    <nav className="flex justify-end pr-10 font-medium">
       <ul className="flex items-center gap-9">
         <li>Lokationer</li>
         <li className="relative">
