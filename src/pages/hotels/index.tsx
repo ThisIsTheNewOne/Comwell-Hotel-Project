@@ -1,17 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BookingContext from "@/hooks/useContext/BookingContext";
 import HotelList from "@/components/UserDashboard/HotelList";
-import { currentUser } from "@/hooks/userStorage";
+import { useCurrentUser } from "@/hooks/userStorage";
+import { User } from "@/types/Booking";
 
 const Hotels: React.FC = () => { 
 const { hotels } = useContext(BookingContext);
-const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!currentUser);
+const [user, setUser] = useState({} as User)
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("currentUser");
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
 
 const handleClick = () => {
   window.location.replace("./");
 }
 
-  if (!isLoggedIn) {
+  if (!user) {
     return (
       <div className="dashboard-overlay font-semibold">
         <div className="dialog-box">
@@ -31,7 +39,7 @@ const handleClick = () => {
 
   return (
     <div className="userDashboard font-semibold">
-      <h1>Hi, {currentUser?.fullname}</h1>
+      <h1>Hi, {user?.fullname}</h1>
       <p>Manage hotels and rooms here</p>
       <h2 className="mt-4 text-2xl">Hotels</h2>
         <HotelList hotelList={hotels}/>

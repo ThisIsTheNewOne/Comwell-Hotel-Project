@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Drawer from "react-modern-drawer";
 import CalendarContainer from "../Calendar/CalendarContainer";
 import BookingContext from "@/hooks/useContext/BookingContext";
@@ -9,12 +9,60 @@ interface Props {
   disableDates: (string | Date)[]
 }
 
+type VacancyDTO = {
+  id: string,
+  gaps: string[],
+  price: number
+}
 
+type findAllVacanciesByRoomDTO = {
+  startDate: Date;
+  hotelId: string;
+}
+
+function dateDiffInDays(date1: Date, date2: Date): number {
+  const oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
+
+  // Calculate the difference in milliseconds
+  const diffInMilliseconds = Math.abs(date1.getTime() - date2.getTime());
+
+  // Convert the difference to days
+  const diffInDays = Math.round(diffInMilliseconds / oneDay);
+
+  return diffInDays;
+}
 
 
 const BookingInputDouble = (props: Props) => {
   const { bookingInputProps, disableDates } = props;
-  const {  setCheckIn,  setCheckOut, isOpenCalendarDrawer, setIsCalendarDrawer } = useContext(BookingContext);
+  const [vacancies, setVacancies] = useState([] as string[]);
+  const [cheapestRoom, setCheapestRoom] = useState<VacancyDTO>()
+  const [currentDate, setCurrentDate] =useState(new Date())
+  
+  const { selectedHotel, checkIn, checkOut } = useContext(BookingContext);
+
+  useEffect(() => {
+    if(!selectedHotel) { return }
+
+    const data = {
+      startDate: currentDate,
+      hotelId: selectedHotel._id
+    } as findAllVacanciesByRoomDTO
+
+    fetch("http://localhost:3006/" + "booking/room/vacancies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    }).then(async (res) => {
+        const dataVacancies: VacancyDTO[] = await res.json();
+        const allduplicateDates = ([] as string[]).concat(...dataVacancies.map(x => x.gaps))
+        setVacancies([... new Set(allduplicateDates)]);
+        setCheapestRoom(dataVacancies.reduce((acc, loc) => acc.price < loc.price ? acc : loc))
+      }).catch((err) => console.log(err));
+  }, [selectedHotel, currentDate])
+  const { setCheckIn, setCheckOut, isOpenCalendarDrawer, setIsCalendarDrawer } = useContext(BookingContext);
 
   const doesDrawerExist = true;
   // const [isOpenCalendarDrawer, setIsCalendarDrawer] = useState(false);
@@ -62,7 +110,22 @@ const BookingInputDouble = (props: Props) => {
           direction="right"
           size={390}
         >
-          <CalendarContainer setCheckIn={setCheckIn} setCheckOut={setCheckOut} disableDates={disableDates} />
+          <CalendarContainer
+            setCheckIn={setCheckIn}
+            setCheckOut={setCheckOut}
+            enableDates={vacancies}
+            monthChange={(year, month)=> {
+              const date = new Date()
+              date.setFullYear(year, month)
+              setCurrentDate(date)
+            }} />
+          <div>
+            {
+              checkIn.date[0] && checkOut.date[0] && checkIn.date[0]!==checkOut.date[0] ? 
+              "Cost:" + (dateDiffInDays(checkOut.date[0], checkIn.date[0]) * (cheapestRoom?.price ?? 0))
+              : null 
+            }
+          </div>
         </Drawer>
       )}
     </div>

@@ -25,7 +25,7 @@ const {
     setSelectedPackage(null);
     setSelectedAddon([]);
     setTotalPrice(0);
-    setGuestsInfo({ name: "", email: "", telefon: "" })
+    // setGuestsInfo({ name: "", email: "", telefon: "" })
   }; 
 
   console.log("Does it go here ???")
