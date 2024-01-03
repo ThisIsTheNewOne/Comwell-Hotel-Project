@@ -6,7 +6,8 @@ import { User } from "@/types/Booking";
 
 const Hotels: React.FC = () => { 
 const { hotels } = useContext(BookingContext);
-const [user, setUser] = useState({} as User)
+const [user, setUser] = useState({} as User);
+
 
 useEffect(() => {
   const storedUser = localStorage.getItem("currentUser");
@@ -19,7 +20,8 @@ const handleClick = () => {
   window.location.replace("./");
 }
 
-  if (!user) {
+
+  if (!user || Object.keys(user).length === 0) {
     return (
       <div className="dashboard-overlay font-semibold">
         <div className="dialog-box">

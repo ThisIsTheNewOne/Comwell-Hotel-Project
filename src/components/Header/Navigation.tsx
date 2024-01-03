@@ -44,13 +44,13 @@ const Navigation: React.FC<Props> = (props: Props) => {
   }, [guestInfo]);
 
   return (
-    <nav className={`flex justify-end pr-10 font-medium ${showLoginContainer ? 'bg-white text-black' : 'text-white'}`}>
+    <nav className={`flex justify-end pr-10 font-medium ${showLoginContainer ? 'bg-white text-black' : 'text-black'}`}>
     <ul className="flex items-center gap-9">
         <li>Lokationer</li>
         <li className="relative">
           <button className="flex items-center gap-x-1.5 pl-4 pr-2 md:px-0 py-4" onClick={() => setShowLoginContainer(!showLoginContainer)}>
             <div className="whitespace-nowrap">
-            <span>{(user?.fullname ?? guestInfo.name) || "Profil"}</span>
+            <span>{(currentUser?.fullname ?? guestInfo.name) || "Profil"}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-5 lg:w-4">
               <path
