@@ -10,6 +10,9 @@
     { city: 'Greve'},
     { city: 'Solrød Strand' },
     { city: 'Nordhavn' },
+    { city: 'Snekkersten' },
+    { city: 'Holte' },
+    { city: 'Korsør' },
   ];
 
    export const fynCities = [
@@ -38,6 +41,7 @@
     { city: 'Skive'},
     { city: 'Kolding'},
     { city: 'Børkop'},
+    { city: 'Skørping'},
   ];
 
 
