@@ -76,7 +76,7 @@ const EditRoomDrawer: React.FC<Props> = (props: Props) => {
 
     try {
         // Make a PUT request to update the room details
-        const response = await fetch("http://localhost:3006/" + "room/" + roomID, {
+        const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "room/" + roomID, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

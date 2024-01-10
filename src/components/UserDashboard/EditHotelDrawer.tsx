@@ -55,7 +55,7 @@ const EditHotelDrawer: React.FC<Props> = (props: Props) => {
 
     try {
         // Make a PUT request to update the hotel details
-        const response = await fetch("http://localhost:3006/" + "hotel/" + id, {
+        const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "hotel/" + id, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

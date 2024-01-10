@@ -100,7 +100,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
 
   // Get all hotels on render
   useEffect(() => {
-    fetch("http://localhost:3006/" + "hotel")
+    fetch(process.env.NEXT_PUBLIC_BACKEND + "hotel")
       .then(async (res) => {
         const dataHotels: Hotel[] = await res.json();
         console.log("GET Hotels:", dataHotels);
@@ -112,7 +112,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
   // Get all rooms on selectHotel
   useEffect(() => {
     if (selectedHotel) {
-      fetch("http://localhost:3006/" + "room/hotel/" + selectedHotel._id)
+      fetch(process.env.NEXT_PUBLIC_BACKEND + "room/hotel/" + selectedHotel._id)
         .then(async (res) => {
           const dataRooms: Room[] = await res.json();
           console.log("GET Rooms:", dataRooms);
@@ -124,7 +124,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
 
   const postBooking = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:3006/" + "booking/", {
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "booking/", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export const BookingContextProvider: React.FC<BookingContextProviderProps> = (
 
   const getRoomFeatures = async () => {
     try {
-      const response = await fetch("http://localhost:3006/" + "room-features/" + "all-room-features", {
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "room-features/" + "all-room-features", {
         method: "GET", 
         headers: {
           "Content-Type": "application/json",

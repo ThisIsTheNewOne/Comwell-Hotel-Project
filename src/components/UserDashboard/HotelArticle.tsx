@@ -51,7 +51,7 @@ interface HotelArticleProps {
     console.log(hotelName)
 
     try {
-      const response = await fetch("http://localhost:3006/" + "hotel/" + id, {
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "hotel/" + id, {
           method: 'DELETE',
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")

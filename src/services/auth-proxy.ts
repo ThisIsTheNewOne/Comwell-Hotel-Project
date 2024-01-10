@@ -1,6 +1,6 @@
 
 export async function signUp(name: string, email: string, postnummer: string, telefon: string, password: any, confirmPassword?: string, gender?: string, birthdate?: string) {
-  const response = await fetch("http://localhost:3006/user", {
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function signUp(name: string, email: string, postnummer: string, te
 
 export async function login(username: string, password: string) {
 
-  const response = await fetch("http://localhost:3006/login", {
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

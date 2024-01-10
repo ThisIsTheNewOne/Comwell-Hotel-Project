@@ -11,6 +11,7 @@ RUN ls -la  # Add this line to list files in /app
 # Step 7: Start the app with a minimal node image
 FROM node:20-alpine
 WORKDIR /app
+EXPOSE 3000
 
 COPY --from=build /app/package.json ./
 COPY --from=build /app/package-lock.json ./

@@ -64,7 +64,7 @@ const AddHotelDrawer: React.FC<Props> = (props: Props) => {
     console.log(data);
 
     try {
-      const response = await fetch("http://localhost:3006/" + "hotel", {
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "hotel", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -56,7 +56,7 @@ interface RoomArticleProps {
         console.log(roomName)
     
         try {
-          const response = await fetch("http://localhost:3006/" + "room/" + roomID, {
+          const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "room/" + roomID, {
               method: 'DELETE',
               headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("token")

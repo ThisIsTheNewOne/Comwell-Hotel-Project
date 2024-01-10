@@ -87,7 +87,7 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
     console.log(data);
 
     try {
-        const response = await fetch("http://localhost:3006/" + "room", {
+        const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "room", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

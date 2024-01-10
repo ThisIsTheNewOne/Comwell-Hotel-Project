@@ -14,7 +14,7 @@ const RoomList: React.FC<RoomListProps> = (props: RoomListProps) => {
 
  useEffect(() => {
   if (hotelId) {
-    fetch("http://localhost:3006/" + "room/hotel/" + hotelId)
+    fetch(process.env.NEXT_PUBLIC_BACKEND + "room/hotel/" + hotelId)
     .then(async (res) => {
       const dataRooms: Room[] = await res.json();
       console.log("GET Rooms:", dataRooms);

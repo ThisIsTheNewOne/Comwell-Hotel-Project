@@ -49,7 +49,7 @@ const BookingInputDouble = (props: Props) => {
       hotelId: selectedHotel._id
     } as findAllVacanciesByRoomDTO
 
-    fetch("http://localhost:3006/" + "booking/room/vacancies", {
+    fetch(process.env.NEXT_PUBLIC_BACKEND + "booking/room/vacancies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
