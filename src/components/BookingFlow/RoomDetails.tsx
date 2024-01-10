@@ -37,6 +37,8 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
     },
   ];
 
+  console.log("THis is the selctedroom", selectedRoom)
+
   return (
     <div key={id}>
       <div>
@@ -65,7 +67,7 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
               </div>
 
               <div className=" w-1/2 flex flex-col pt-[15px]">
-                <BookingFacilities />
+                <BookingFacilities roomFeatures = {selectedRoom?.roomFeatures} /> 
                 <div className="text-s font-light leading-[1.1] ">
                   <p className="pt-[20px]">{selectedRoom?.description}</p>
                   <p className="pt-[20px]">Show full description</p>

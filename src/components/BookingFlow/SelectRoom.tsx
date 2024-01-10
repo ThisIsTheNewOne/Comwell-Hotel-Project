@@ -41,6 +41,7 @@ const SelectRoom: React.FC<SelectedRoomType> = (props: SelectedRoomType) => {
               roomName={room.label}
               roomDescription={room.description}
               price={room.price}
+              roomFeatures={room.roomFeatures}
               setDrawerComponent={setDrawerComponent}
             />
           ) } else return null })}
