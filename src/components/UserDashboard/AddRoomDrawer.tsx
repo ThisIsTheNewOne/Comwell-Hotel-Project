@@ -2,6 +2,7 @@ import BookingContext from "@/hooks/useContext/BookingContext";
 import React, { useState, ChangeEvent, FormEvent, useContext, useEffect } from "react";
 import Drawer from "react-modern-drawer";
 import ReactSelect from 'react-select';
+import { components } from 'react-select';
 import Image from 'next/image';
 
 interface Props {
@@ -28,6 +29,9 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
   const [price, setPrice] = useState("");
   const {getRoomFeatures} = useContext(BookingContext)
   const [showErrors, setShowErrors] = useState(false);
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [selectedRoomFeatures, setSelectedRoomFeatures] = useState<{ img: string; name: string }[]>([]);
+  const [options, setOptions] = useState([]  as Features[] );
 
   // All of my own functions
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
@@ -62,6 +66,7 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
     setIsOpenAddRoomDrawer(false);
   }
 
+
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("handle submit");
@@ -84,7 +89,10 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
       price
     };
 
+  
     console.log(data);
+
+    let roomId = "";
 
     try {
         const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "room", {
@@ -99,22 +107,50 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
         console.log(response);
 
         if (response.ok) {
-          console.log("Room created updated successfully");
-          location.reload();
+          console.log("Room created updated successfully", response);
+          const responseData = await response.json();
+          roomId = responseData._id;
+          console.log("Room ID:", responseData, roomId);
+          
         } else {
           console.error("Failed to create room");
         }
       } catch (error) {
         console.error("Error creating room:", error);
       }
+
+
+  
+
+     try {
+      const response = await fetch("http://localhost:3006/" + "room/" + roomId + "/add-features", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+         Authorization: 'Bearer ' + localStorage.getItem("token")
+       },
+       
+       body: JSON.stringify(selectedRoomFeatures),
+      });
+      
+      console.log(response);
+
+      if(response.ok){
+        location.reload();
+      }
+
+     } catch (error) {
+
+      
+     }
+ 
   
   }
 
 
   // const [featuresLoaded, setFeaturesLoaded] = useState(false);
 
-  const [selectedValue, setSelectedValue] = useState('');
-  const [options, setOptions] = useState([]  as Features[] );
+ 
 
   useEffect(() => {
     const fetchRoomFeatures = async () => {
@@ -134,22 +170,40 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
     fetchRoomFeatures();
   }, []);
 
-  const handleSelectChange = (e: any) => {
-    setSelectedValue(e.target.value);
-  };
+  // const handleSelectChange = (e: any) => {
+  //   setSelectedValue(e.target.value);
+  // };
 
   const Option = (props: any) => {
     return (
-      <div {...props.innerProps} style={{ display: 'flex', alignItems: 'center' }}>
-        {props.data.img && (
-          <img 
-            src={"https://raw.githubusercontent.com/ThisIsTheNewOne/Comwell-Hotel-Project/master/public/icons/Calendar.svg"} 
-            alt={props.data.name} 
-            style={{ width: '20px', height: '20px', marginRight: '10px' }} 
-          />
-        )}
-        <span style={{ color: 'black' }}>{props.data.name}</span>
+      <components.Option {...props}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img src={props.data.img} alt={props.data.label} style={{ marginRight: '10px' }} />
+        {props.data.label}
       </div>
+    </components.Option>
+    );
+  };
+
+  const SingleValue = (props: any) => {
+    return (
+      <components.SingleValue {...props}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={props.data.img} alt={props.data.label} style={{ marginRight: '10px' }} />
+          {props.data.label}
+        </div>
+      </components.SingleValue>
+    );
+  };
+  
+  const MultiValue = (props: any) => {
+    return (
+      <components.MultiValue {...props}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={props.data.img} alt={props.data.label} style={{ marginRight: '10px' }} />
+          {props.data.label}
+        </div>
+      </components.MultiValue>
     );
   };
 
@@ -158,6 +212,10 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
     label: option.name,
     img: option.img
   }));
+
+  useEffect(()=> {
+    console.log("This is what??", selectedRoomFeatures)
+  },[selectedRoomFeatures])
 
 
   return (
@@ -207,11 +265,17 @@ const AddRoomDrawer: React.FC<Props> = (props: Props) => {
           <ReactSelect
           options={formattedOptions}
           getOptionLabel={(option) => option.label}
-          components={{ Option }}
-          value={formattedOptions.find((option: any) => option.value === selectedValue)}
-          onChange={(selectedOption) => {
-            if (selectedOption) {
-              setSelectedValue(selectedOption.value)
+          components={{ Option, SingleValue, MultiValue }}
+          isMulti
+          closeMenuOnSelect={false}
+          value={formattedOptions.filter((option: any) => selectedValues.includes(option.value))}
+          onChange={(selectedOptions) => {
+            if (selectedOptions) {
+              setSelectedValues(selectedOptions.map((option: any) => option.value))
+              setSelectedRoomFeatures(selectedOptions.map((option: any) => ({ img: option.img, name: option.label })));
+            } else {
+              setSelectedValues([]);
+              setSelectedRoomFeatures([]);
             }
           }}
            />

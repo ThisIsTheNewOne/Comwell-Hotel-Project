@@ -124,7 +124,7 @@ interface RoomArticleProps {
       <p>Adult guests: {roomAdultGuests}</p>
       <p>Child guests: {roomChildGuests}</p>
       <p>Infant guests: {roomInfantGuests}</p>
-      <p className="price"><span>{roomPrice}</span>kr</p>
+      <p className="price"><span>{roomPrice}</span> kr.</p>
     </div>
     </article>
          

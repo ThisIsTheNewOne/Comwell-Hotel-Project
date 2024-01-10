@@ -9,6 +9,11 @@ export type CalendarInput = {
   type: string;
 };
 
+export type roomFeatures = {
+  img: string;
+  name: string
+}
+
 export type Room = {
   label: string;
   adultGuests: number;
@@ -18,6 +23,7 @@ export type Room = {
   description:string;
   price: number;
   _id: string;
+  roomFeatures?: roomFeatures[]
 };
 export const guestTypes = ["Adults", "Children", "Infants"];
 

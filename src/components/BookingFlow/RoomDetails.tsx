@@ -37,6 +37,8 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
     },
   ];
 
+  const roomSize = selectedRoom !== null &&  selectedRoom.adultGuests + selectedRoom.childGuests + selectedRoom.infantGuests
+
   return (
     <div key={id}>
       <div>
@@ -59,13 +61,15 @@ const RoomDetails: React.FC<RoomDetailsType> = (props: RoomDetailsType) => {
               <div className="w-1/2">
                 <h1 className="mb-[10px]">{selectedRoom?.label}</h1>
                 <div className="trumpet text-sm max-lg:right-2 w-[60px] top-2 rounded-full bg-theme2 text-white px-2.5 py-1 lowercase lg:left-2 lg:top-2">
-                  <span>{selectedRoom?.label}</span>
+                  <span>
+                    {roomSize}
+                    </span>
                   <sup>2</sup>
                 </div>
               </div>
 
               <div className=" w-1/2 flex flex-col pt-[15px]">
-                <BookingFacilities />
+                <BookingFacilities roomFeatures = {selectedRoom?.roomFeatures} /> 
                 <div className="text-s font-light leading-[1.1] ">
                   <p className="pt-[20px]">{selectedRoom?.description}</p>
                   <p className="pt-[20px]">Show full description</p>

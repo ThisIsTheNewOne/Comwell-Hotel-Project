@@ -1,7 +1,7 @@
 import BookingContext from "@/hooks/useContext/BookingContext";
 import React, { useContext } from "react";
 import BookingFacilities from "./BookingFacilities";
-import { Room } from "@/types/Booking";
+import { Room, roomFeatures } from "@/types/Booking";
 import { usePriceFormatter } from "@/hooks/usePriceFormatter";
 import LanguageContext from "@/hooks/useContext/LanguageContext";
 
@@ -12,6 +12,7 @@ interface SmallRoomOverviewProps {
   roomName: string;
   roomDescription: string;
   price: number;
+  roomFeatures?: roomFeatures[];
   setDrawerComponent: (drawerComponent: string) => void;
 }
 
@@ -25,6 +26,7 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
     roomDescription,
     roomName,
     price,
+    roomFeatures,
     setDrawerComponent,
   } = props;
   const { setSelectedRoom,setTotalPrice } = useContext(BookingContext);
@@ -38,6 +40,8 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
 
   const calculatedPriceFormatted = formatNumber(price);
   const { currency } = useContext(LanguageContext);
+
+  const truncate = (input:any) => input.length > 300 ? `${input.substring(0, 100)}...` : input;
 
   return (
     <>
@@ -59,9 +63,9 @@ const SmallRoomOverview: React.FC<SmallRoomOverviewProps> = (
           <div className="relative flex w-full flex-col px-4 pt-2 pb-4 text-left">
             <span className="text-2xl mb-4 pr-6">{roomName}</span>
             <span className="text-xs font-regular mb-4 max-h-[32px] ">
-              <p>{roomDescription}</p>
+            <p>{truncate(roomDescription)}</p>
             </span>
-            <BookingFacilities />
+            <BookingFacilities  roomFeatures={roomFeatures}/>
             <div className="mt-[42px] flex items-end lg:mt-auto">
               <div className="roomPrice flex items-end gap-x-1">
                 <span>{currency}</span>
